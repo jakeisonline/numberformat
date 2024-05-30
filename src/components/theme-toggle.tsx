@@ -1,9 +1,8 @@
 "use client"
 
-import * as React from "react"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
-
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -13,7 +12,19 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export default function ThemeToggle() {
+  const [mounted, setMounted] = useState(false)
   const { setTheme } = useTheme()
+
+  /* We don't want this component to render until it's mounted,
+  as the server doesn't understand nor care about a user's theme preference */
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <DropdownMenu>

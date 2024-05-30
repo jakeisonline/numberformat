@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html className="h-full" lang="en" suppressHydrationWarning>
       <body
-        className={`flex min-h-full bg-white dark:bg-slate-900 ${lexend.className}`}
+        className={`flex min-h-full bg-[#ECECE6] dark:bg-[#1B1D23] ${lexend.className}`}
       >
         <ThemeContextProvider
           attribute="class"

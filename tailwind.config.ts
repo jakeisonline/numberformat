@@ -7,6 +7,7 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+  darkMode: "class",
   prefix: "",
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
