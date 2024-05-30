@@ -1,5 +1,6 @@
 import LocaleLookupInput from "@/components/localeLookupInput"
 import LocaleSelection from "@/components/localeSelection"
+import ThemeToggle from "@/components/theme-toggle"
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
           </p>
           <LocaleLookupInput />
           <LocaleSelection />
+          <ThemeToggle />
         </div>
       </div>
     </main>

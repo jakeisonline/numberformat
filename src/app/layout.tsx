@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Lexend } from "next/font/google"
 import "./globals.css"
+import ThemeContextProvider from "@/contexts/theme-provider"
 
 const lexend = Lexend({ subsets: ["latin"] })
 
@@ -15,11 +16,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html className="h-full" lang="en">
+    <html className="h-full" lang="en" suppressHydrationWarning>
       <body
         className={`flex min-h-full bg-white dark:bg-slate-900 ${lexend.className}`}
       >
-        {children}
+        <ThemeContextProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeContextProvider>
       </body>
     </html>
   )
