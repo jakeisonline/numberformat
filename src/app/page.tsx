@@ -10,8 +10,9 @@ export default function Home() {
       </header>
       <div className="relative mx-auto flex w-full max-w-8xl flex-auto justify-center mt-8">
         <section className="flex flex-col space-y-8 w-10/12">
-          <p className="inline bg-gradient-to-r text-white bg-clip-text font-display text-7xl font-bold tracking-tight text-transparent text-center">
-            Every number format, for every locale
+          <p className="inline bg-gradient-to-r text-white bg-clip-text font-display text-7xl font-bold tracking-tight text-transparent text-center break-words">
+            Every number format,
+            <br /> for every locale
           </p>
           <LocaleLookupInput />
           <LocaleSelection />
