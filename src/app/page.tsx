@@ -5,16 +5,17 @@ import ThemeToggle from "@/components/theme-toggle"
 export default function Home() {
   return (
     <main className="flex w-full flex-col">
-      <header></header>
-      <div className="relative mx-auto flex w-full max-w-8xl flex-auto justify-center mt-20">
-        <div className="flex flex-col space-y-8">
-          <p className="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl font-light tracking-tight text-transparent">
-            Get the right locale format
+      <header className="flex justify-end py-6 px-6">
+        <ThemeToggle />
+      </header>
+      <div className="relative mx-auto flex w-full max-w-8xl flex-auto justify-center mt-8">
+        <section className="flex flex-col space-y-8 w-10/12">
+          <p className="inline bg-gradient-to-r text-white bg-clip-text font-display text-7xl font-bold tracking-tight text-transparent text-center">
+            Every number format, for every locale
           </p>
           <LocaleLookupInput />
           <LocaleSelection />
-          <ThemeToggle />
-        </div>
+        </section>
       </div>
     </main>
   )

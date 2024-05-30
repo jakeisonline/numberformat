@@ -19,26 +19,14 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-const frameworks = [
+const locales = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "en-GB",
+    label: "English (United Kingdom)",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
+    value: "de-DE",
+    label: "German (Germany)",
   },
 ]
 
@@ -56,8 +44,8 @@ export default function LocaleSelection() {
           className="w-[200px] justify-between"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+            ? locales.find((locale) => locale.value === value)?.label
+            : "Select language..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -67,10 +55,10 @@ export default function LocaleSelection() {
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {locales.map((locale) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={locale.value}
+                  value={locale.value}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
@@ -79,10 +67,10 @@ export default function LocaleSelection() {
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === framework.value ? "opacity-100" : "opacity-0",
+                      value === locale.value ? "opacity-100" : "opacity-0",
                     )}
                   />
-                  {framework.label}
+                  {locale.label}
                 </CommandItem>
               ))}
             </CommandGroup>

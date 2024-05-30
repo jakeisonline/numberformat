@@ -1,12 +1,12 @@
 import type { Metadata } from "next"
-import { Lexend } from "next/font/google"
+import { Urbanist } from "next/font/google"
 import "./globals.css"
 import ThemeContextProvider from "@/contexts/theme-provider"
 
-const lexend = Lexend({ subsets: ["latin"] })
+const googleFont = Urbanist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "WhatLocale - Easy locale lookup",
+  title: "Number Format - Every number format, for every locale",
   description: "",
 }
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html className="h-full" lang="en" suppressHydrationWarning>
       <body
-        className={`flex min-h-full bg-[#ECECE6] dark:bg-[#1B1D23] ${lexend.className}`}
+        className={`flex min-h-full bg-[#ECECE6] dark:bg-[#1B1D23] ${googleFont.className}`}
       >
         <ThemeContextProvider
           attribute="class"
