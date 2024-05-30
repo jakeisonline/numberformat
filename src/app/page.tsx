@@ -1,5 +1,5 @@
-import LocaleLookupInput from "@/components/localeLookupInput"
-import LocaleSelection from "@/components/localeSelection"
+import LocaleLookupInput from "@/components/locale-lookup-input"
+import LocaleSelection from "@/components/locale-selection"
 import ThemeToggle from "@/components/theme-toggle"
 
 export default function Home() {
