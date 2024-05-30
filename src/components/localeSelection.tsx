@@ -18,6 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import useLanguageContext from "@/hooks/use-language-context"
 
 const locales = [
   {
@@ -32,7 +33,7 @@ const locales = [
 
 export default function LocaleSelection() {
   const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  const { currentLanguage, handleLanguageChange } = useLanguageContext()
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -43,8 +44,8 @@ export default function LocaleSelection() {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? locales.find((locale) => locale.value === value)?.label
+          {currentLanguage
+            ? locales.find((locale) => locale.value === currentLanguage)?.label
             : "Select language..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -60,14 +61,18 @@ export default function LocaleSelection() {
                   key={locale.value}
                   value={locale.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
+                    handleLanguageChange(
+                      currentValue === currentLanguage ? "" : currentValue,
+                    )
                     setOpen(false)
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === locale.value ? "opacity-100" : "opacity-0",
+                      currentLanguage === locale.value
+                        ? "opacity-100"
+                        : "opacity-0",
                     )}
                   />
                   {locale.label}
