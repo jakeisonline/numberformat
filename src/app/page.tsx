@@ -1,6 +1,7 @@
 import LocaleSelection from "@/components/locale-selection"
 import MeasuresList from "@/components/measures-list"
 import NumbersContainer from "@/components/numbers-container"
+import NumbersHeading from "@/components/numbers-heading"
 import NumbersList from "@/components/numbers-list"
 import NumbersWrapper from "@/components/numbers-wrapper"
 import ThemeToggle from "@/components/theme-toggle"
@@ -28,23 +29,23 @@ export default function Home() {
       </div>
       <NumbersWrapper>
         <NumbersContainer>
-          <h2 className="flex items-center gap-x-2 text-3xl font-medium">
+          <NumbersHeading>
             <HashtagIcon className="size-10 text-[#E8A02B]" />
             Numbers
-          </h2>
+          </NumbersHeading>
           <NumbersList />
         </NumbersContainer>
         <NumbersContainer>
-          <h2 className="flex items-center gap-x-2 text-3xl font-medium">
+          <NumbersHeading>
             <BanknotesIcon className="size-10 text-[#5BB86A]" />
             Currencies
-          </h2>
+          </NumbersHeading>
         </NumbersContainer>
         <NumbersContainer>
-          <h2 className="flex items-center gap-x-2 text-3xl font-medium">
+          <NumbersHeading>
             <CubeTransparentIcon className="size-10 text-[#9C34CE]" />
             Measures
-          </h2>
+          </NumbersHeading>
           <MeasuresList />
         </NumbersContainer>
       </NumbersWrapper>
