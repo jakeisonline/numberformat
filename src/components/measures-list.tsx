@@ -2,6 +2,7 @@
 
 import useLocaleContext from "@/hooks/use-selected-locale-context"
 import { MEASURE_UNITS } from "@/lib/const"
+import { styleNumberSeparator } from "@/lib/utils"
 
 export default function MeasuresList() {
   const { selectedLocale } = useLocaleContext()
@@ -25,9 +26,12 @@ export default function MeasuresList() {
     const unitPart = measureString.replace(numberString, "").trim()
 
     // Replace the unit part with the strong-wrapped unit part
-    const formattedMeasure = measureString.replace(
-      unitPart,
-      `<strong class="font-bold text-[#9C34CE]">${unitPart}</strong>`,
+    const formattedMeasure = styleNumberSeparator(
+      measureString.replace(
+        unitPart,
+        `<strong class="font-bold text-[#9C34CE]">${unitPart}</strong>`,
+      ),
+      "#9C34CE",
     )
 
     return formattedMeasure

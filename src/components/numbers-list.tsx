@@ -1,17 +1,15 @@
 "use client"
 
 import useLocaleContext from "@/hooks/use-selected-locale-context"
-import { match } from "assert"
+import { styleNumberSeparator } from "@/lib/utils"
 
 export default function NumbersList() {
   const { selectedLocale } = useLocaleContext()
 
   function getNumber(number: number) {
     const numberString = new Intl.NumberFormat(selectedLocale).format(number)
-    const formattedNumber = numberString.replace(
-      /[,.]/g,
-      (match) => `<strong class="text-[#E8A02B] font-bold">${match}</strong>`,
-    )
+    const formattedNumber = styleNumberSeparator(numberString, "#E8A02B")
+
     return formattedNumber
   }
 

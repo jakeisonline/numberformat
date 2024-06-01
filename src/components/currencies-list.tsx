@@ -1,6 +1,7 @@
 "use client"
 
 import useLocaleContext from "@/hooks/use-selected-locale-context"
+import { styleNumberSeparator } from "@/lib/utils"
 
 export default function CurrenciesList() {
   const { selectedLocale } = useLocaleContext()
@@ -20,9 +21,12 @@ export default function CurrenciesList() {
     const unitPart = currencyString.replace(numberString, "").trim()
 
     // Replace the unit part with the strong-wrapped unit part
-    const formattedMeasure = currencyString.replace(
-      unitPart,
-      `<strong class="font-bold text-[#5BB86A]">${unitPart}</strong>`,
+    const formattedMeasure = styleNumberSeparator(
+      currencyString.replace(
+        unitPart,
+        `<strong class="font-bold text-[#5BB86A]">${unitPart}</strong>`,
+      ),
+      "#5BB86A",
     )
 
     return formattedMeasure
