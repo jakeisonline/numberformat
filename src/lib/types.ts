@@ -1,4 +1,4 @@
-export type TLanguageContextType = {
-  currentLanguage: string
-  handleLanguageChange: (language: string) => void
+export type TSelectedLocaleContextType = {
+  selectedLocale: string
+  handleSelectedLocaleChange: (locale: string) => void
 }

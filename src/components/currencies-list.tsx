@@ -1,12 +1,12 @@
 "use client"
 
-import useLanguageContext from "@/hooks/use-language-context"
+import useLocaleContext from "@/hooks/use-selected-locale-context"
 
 export default function CurrenciesList() {
-  const { currentLanguage } = useLanguageContext()
+  const { selectedLocale } = useLocaleContext()
 
   function getNumber(number: number) {
-    return new Intl.NumberFormat(currentLanguage).format(number)
+    return new Intl.NumberFormat(selectedLocale).format(number)
   }
 
   return (

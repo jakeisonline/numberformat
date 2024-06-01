@@ -1,10 +1,10 @@
 "use client"
 
-import useLanguageContext from "@/hooks/use-language-context"
+import useLocaleContext from "@/hooks/use-selected-locale-context"
 import { MEASURE_UNITS } from "@/lib/const"
 
 export default function MeasuresList() {
-  const { currentLanguage } = useLanguageContext()
+  const { selectedLocale } = useLocaleContext()
 
   function getMeasure(
     number: number,
@@ -12,14 +12,14 @@ export default function MeasuresList() {
     unitDisplay?: "long" | "short" | "narrow",
   ): string {
     // Format the measure with the unit
-    const measureString = new Intl.NumberFormat(currentLanguage, {
+    const measureString = new Intl.NumberFormat(selectedLocale, {
       style: "unit",
       unit,
       unitDisplay: unitDisplay ?? "short",
     }).format(number)
 
     // Format the number separately to find its exact match in the measureString
-    const numberString = new Intl.NumberFormat(currentLanguage).format(number)
+    const numberString = new Intl.NumberFormat(selectedLocale).format(number)
 
     // Find the part of the string that is not the number
     const unitPart = measureString.replace(numberString, "").trim()

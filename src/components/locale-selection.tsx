@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
+import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { Check, ChevronsUpDown } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -18,7 +18,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import useLanguageContext from "@/hooks/use-language-context"
 
 const locales = [
   {
@@ -33,7 +32,8 @@ const locales = [
 
 export default function LocaleSelection() {
   const [open, setOpen] = React.useState(false)
-  const { currentLanguage, handleLanguageChange } = useLanguageContext()
+  const { selectedLocale, handleSelectedLocaleChange } =
+    useSelectedLocaleContext()
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -44,8 +44,8 @@ export default function LocaleSelection() {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {currentLanguage
-            ? locales.find((locale) => locale.value === currentLanguage)?.label
+          {selectedLocale
+            ? locales.find((locale) => locale.value === selectedLocale)?.label
             : "Select language..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -61,8 +61,8 @@ export default function LocaleSelection() {
                   key={locale.value}
                   value={locale.value}
                   onSelect={(currentValue) => {
-                    handleLanguageChange(
-                      currentValue === currentLanguage ? "" : currentValue,
+                    handleSelectedLocaleChange(
+                      currentValue === selectedLocale ? "" : currentValue,
                     )
                     setOpen(false)
                   }}
@@ -70,7 +70,7 @@ export default function LocaleSelection() {
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      currentLanguage === locale.value
+                      selectedLocale === locale.value
                         ? "opacity-100"
                         : "opacity-0",
                     )}

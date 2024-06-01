@@ -1,4 +1,4 @@
-export const DEFAULT_LANGUAGE = "en-GB"
+export const DEFAULT_LOCALE = "en-GB"
 
 export const MEASURE_UNITS = [
   "acre",

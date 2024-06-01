@@ -1,13 +1,13 @@
 "use client"
 
-import useLanguageContext from "@/hooks/use-language-context"
+import useLocaleContext from "@/hooks/use-selected-locale-context"
 import { match } from "assert"
 
 export default function NumbersList() {
-  const { currentLanguage } = useLanguageContext()
+  const { selectedLocale } = useLocaleContext()
 
   function getNumber(number: number) {
-    const numberString = new Intl.NumberFormat(currentLanguage).format(number)
+    const numberString = new Intl.NumberFormat(selectedLocale).format(number)
     const formattedNumber = numberString.replace(
       /[,.]/g,
       (match) => `<strong class="text-[#E8A02B] font-bold">${match}</strong>`,
