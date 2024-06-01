@@ -19,7 +19,7 @@ export default function Home() {
         <ThemeToggle />
       </header>
       <div className="relative mx-auto mt-8 flex w-full flex-auto justify-center">
-        <section className="flex w-10/12 flex-col space-y-8">
+        <section className="flex w-10/12 flex-col">
           <h1 className="font-display inline text-center text-6xl font-bold tracking-tight">
             Every number <span className="text-[#DE541E]">format</span>,
             <br /> for every <span className="text-[#3C73F3]">locale</span>

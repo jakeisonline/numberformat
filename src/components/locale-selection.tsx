@@ -1,8 +1,7 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import { Check, ChevronsUpDown } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Command,
@@ -31,45 +30,48 @@ export default function LocaleSelection() {
     useSelectedLocaleContext()
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="w-[200px] justify-between"
-        >
-          {selectedLocale
-            ? formattedLocales.find((locale) => locale.value === selectedLocale)
-                ?.label
-            : "Select locale..."}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
-        <Command className="">
-          <CommandInput placeholder="Search locales..." />
-          <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
-            <CommandGroup>
-              {formattedLocales.map((locale) => (
-                <CommandItem
-                  key={locale.value}
-                  value={locale.value}
-                  onSelect={(currentValue) => {
-                    handleSelectedLocaleChange(
-                      currentValue === selectedLocale ? "" : currentValue,
-                    )
-                    setOpen(false)
-                  }}
-                >
-                  {locale.label}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
+    <div className="mx-auto py-8">
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="w-[400px] justify-between"
+          >
+            {selectedLocale
+              ? formattedLocales.find(
+                  (locale) => locale.value === selectedLocale,
+                )?.label
+              : "Select locale..."}
+            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-[400px] bg-[#ECECE6] p-0 dark:bg-[#1B1D23]">
+          <Command className="">
+            <CommandInput placeholder="Search locales..." />
+            <CommandList>
+              <CommandEmpty>No framework found.</CommandEmpty>
+              <CommandGroup>
+                {formattedLocales.map((locale) => (
+                  <CommandItem
+                    key={locale.value}
+                    value={locale.value}
+                    onSelect={(currentValue) => {
+                      handleSelectedLocaleChange(
+                        currentValue === selectedLocale ? "" : currentValue,
+                      )
+                      setOpen(false)
+                    }}
+                  >
+                    {locale.label}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
+    </div>
   )
 }
