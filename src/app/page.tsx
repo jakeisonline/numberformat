@@ -34,6 +34,7 @@ export default function Home() {
             <HashtagIcon className="size-10 text-[#E8A02B]" />
             Numbers
           </NumbersHeading>
+          <NumbersExplainer />
           <NumbersList />
         </NumbersContainer>
         <NumbersContainer>

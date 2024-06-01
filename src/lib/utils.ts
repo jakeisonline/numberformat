@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { LOCALES } from "./const"
+import { TNumberPartType } from "./types"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -21,4 +22,16 @@ export function styleNumberSeparator(
 
 export function getLocaleByValue(localeValue: string) {
   return LOCALES.find((locale) => locale.value === localeValue)
+}
+
+export function charIsSpace(char: string) {
+  return char === " " || char === " " || char === " "
+}
+
+export function getNumberPartTypes(
+  parts: Intl.NumberFormatPart[],
+): TNumberPartType {
+  const group = parts.find((part) => part.type === "group")
+  const decimal = parts.find((part) => part.type === "decimal")
+  return { group, decimal }
 }

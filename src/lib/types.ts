@@ -7,3 +7,8 @@ export type TLocale = {
   value: string
   label: string
 }
+
+export type TNumberPartType = {
+  group: Intl.NumberFormatPart | undefined
+  decimal: Intl.NumberFormatPart | undefined
+}

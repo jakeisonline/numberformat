@@ -7,7 +7,9 @@ export default function NumbersList() {
   const { selectedLocale } = useLocaleContext()
 
   function getNumber(number: number) {
-    const numberString = new Intl.NumberFormat(selectedLocale).format(number)
+    const numberString = new Intl.NumberFormat(selectedLocale.value).format(
+      number,
+    )
     const formattedNumber = styleNumberSeparator(numberString, "#E8A02B")
 
     return formattedNumber
