@@ -31,7 +31,8 @@ export function charIsSpace(char: string) {
 export function getNumberPartTypes(
   parts: Intl.NumberFormatPart[],
 ): TNumberPartType {
+  const currency = parts.find((part) => part.type === "currency")
   const group = parts.find((part) => part.type === "group")
   const decimal = parts.find((part) => part.type === "decimal")
-  return { group, decimal }
+  return { currency, group, decimal }
 }

@@ -9,6 +9,7 @@ export type TLocale = {
 }
 
 export type TNumberPartType = {
+  currency: Intl.NumberFormatPart | undefined
   group: Intl.NumberFormatPart | undefined
   decimal: Intl.NumberFormatPart | undefined
 }

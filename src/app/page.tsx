@@ -1,3 +1,4 @@
+import CurrenciesExplainer from "@/components/currencies-explainer"
 import CurrenciesList from "@/components/currencies-list"
 import LocaleSelection from "@/components/locale-selection"
 import MeasuresList from "@/components/measures-list"
@@ -35,21 +36,19 @@ export default function Home() {
             Numbers
           </NumbersHeading>
           <NumbersExplainer />
-          <NumbersList />
         </NumbersContainer>
         <NumbersContainer>
           <NumbersHeading>
             <BanknotesIcon className="size-10 text-[#5BB86A]" />
             Currencies
           </NumbersHeading>
-          <CurrenciesList />
+          <CurrenciesExplainer />
         </NumbersContainer>
         <NumbersContainer>
           <NumbersHeading>
             <CubeTransparentIcon className="size-10 text-[#9C34CE]" />
             Measures
           </NumbersHeading>
-          <MeasuresList />
         </NumbersContainer>
       </NumbersWrapper>
     </main>

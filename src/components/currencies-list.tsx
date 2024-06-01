@@ -1,46 +1,30 @@
 "use client"
 
 import useLocaleContext from "@/hooks/use-selected-locale-context"
+import { CURRENCIES } from "@/lib/const"
 import { styleNumberSeparator } from "@/lib/utils"
 
 export default function CurrenciesList() {
   const { selectedLocale } = useLocaleContext()
 
-  function getNumber(number: number) {
+  function getNumber(number: number, currency: string) {
     // Format the measure with the unit
     const currencyString = new Intl.NumberFormat(selectedLocale.value, {
       style: "currency",
-      currency: "USD",
+      currency,
       currencyDisplay: "narrowSymbol",
     }).format(number)
 
-    // Format the number separately to find its exact match in the measureString
-    const numberString = new Intl.NumberFormat(selectedLocale.value).format(
-      number,
-    )
-
-    // Find the part of the string that is not the number
-    const unitPart = currencyString.replace(numberString, "").trim()
-
-    // Replace the unit part with the strong-wrapped unit part
-    const formattedMeasure = styleNumberSeparator(
-      currencyString.replace(
-        unitPart,
-        `<strong class="font-bold text-[#5BB86A]">${unitPart}</strong>`,
-      ),
-      "#5BB86A",
-    )
-
-    return formattedMeasure
+    return currencyString
   }
 
   return (
     <ul className="mt-6">
-      {[10, 100, 1000, 10000, 100000, 1000000].map((number) => (
+      {CURRENCIES.map((currency) => (
         <li
-          key={number}
+          key={1}
           className="text-lg"
-          dangerouslySetInnerHTML={{ __html: getNumber(number) }}
+          dangerouslySetInnerHTML={{ __html: getNumber(1000, currency) }}
         ></li>
       ))}
     </ul>
