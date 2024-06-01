@@ -6,7 +6,6 @@ import NumbersHeading from "@/components/numbers-heading"
 import NumbersList from "@/components/numbers-list"
 import NumbersWrapper from "@/components/numbers-wrapper"
 import ThemeToggle from "@/components/theme-toggle"
-import { LOCALES } from "@/lib/const"
 import {
   HashtagIcon,
   BanknotesIcon,
@@ -25,7 +24,6 @@ export default function Home() {
             Every number <span className="text-[#DE541E]">format</span>,
             <br /> for every <span className="text-[#3C73F3]">locale</span>
           </h1>
-
           <LocaleSelection />
         </section>
       </div>
