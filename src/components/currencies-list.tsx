@@ -8,14 +8,16 @@ export default function CurrenciesList() {
 
   function getNumber(number: number) {
     // Format the measure with the unit
-    const currencyString = new Intl.NumberFormat(selectedLocale, {
+    const currencyString = new Intl.NumberFormat(selectedLocale.value, {
       style: "currency",
       currency: "USD",
       currencyDisplay: "narrowSymbol",
     }).format(number)
 
     // Format the number separately to find its exact match in the measureString
-    const numberString = new Intl.NumberFormat(selectedLocale).format(number)
+    const numberString = new Intl.NumberFormat(selectedLocale.value).format(
+      number,
+    )
 
     // Find the part of the string that is not the number
     const unitPart = currencyString.replace(numberString, "").trim()

@@ -1,4 +1,7 @@
-export const DEFAULT_LOCALE = "en-GB"
+export const DEFAULT_LOCALE = {
+  value: "en-GB",
+  label: "English (United Kingdom)",
+}
 
 export const MEASURE_UNITS = [
   "acre",

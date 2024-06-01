@@ -20,6 +20,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import { LOCALES } from "@/lib/const"
 import { useState } from "react"
 import { useMediaQuery } from "usehooks-ts"
+import { TLocale } from "@/lib/types"
 
 export default function LocaleSelection() {
   const isMobile = useMediaQuery("(max-width: 768px)", {
@@ -41,8 +42,9 @@ export default function LocaleSelection() {
               className="text-md w-[400px] justify-between border-black/20 dark:border-white/20"
             >
               {selectedLocale
-                ? LOCALES.find((locale) => locale.value === selectedLocale)
-                    ?.label
+                ? LOCALES.find(
+                    (locale) => locale.value === selectedLocale.value,
+                  )?.label
                 : "Select locale..."}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
@@ -67,7 +69,8 @@ export default function LocaleSelection() {
           className="text-md w-[400px] justify-between border-black/20 dark:border-white/20"
         >
           {selectedLocale
-            ? LOCALES.find((locale) => locale.value === selectedLocale)?.label
+            ? LOCALES.find((locale) => locale.value === selectedLocale.value)
+                ?.label
             : "Select locale..."}
         </Button>
       </DrawerTrigger>
@@ -86,7 +89,7 @@ export default function LocaleSelection() {
 
 type LocalesListProps = {
   setOpen: (open: boolean) => void
-  selectedLocale: string
+  selectedLocale: TLocale
   setSelectedLocale: (locale: string) => void
 }
 
@@ -108,7 +111,7 @@ function LocalesList({
               keywords={[locale.label]}
               onSelect={(currentValue) => {
                 setSelectedLocale(
-                  currentValue === selectedLocale ? "" : currentValue,
+                  currentValue === selectedLocale.value ? "" : currentValue,
                 )
                 setOpen(false)
               }}

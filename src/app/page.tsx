@@ -2,6 +2,7 @@ import CurrenciesList from "@/components/currencies-list"
 import LocaleSelection from "@/components/locale-selection"
 import MeasuresList from "@/components/measures-list"
 import NumbersContainer from "@/components/numbers-container"
+import NumbersExplainer from "@/components/numbers-explainer"
 import NumbersHeading from "@/components/numbers-heading"
 import NumbersList from "@/components/numbers-list"
 import NumbersWrapper from "@/components/numbers-wrapper"
@@ -14,8 +15,8 @@ import {
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-6">
-      <header className="flex justify-end px-6 py-6">
+    <main className="mx-auto w-full max-w-6xl px-6 py-6">
+      <header className="flex justify-end">
         <ThemeToggle />
       </header>
       <div className="relative mx-auto mt-8 flex w-full flex-auto justify-center">

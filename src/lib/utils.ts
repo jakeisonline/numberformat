@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { LOCALES } from "./const"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -16,4 +17,8 @@ export function styleNumberSeparator(
   )
 
   return formattedNumber
+}
+
+export function getLocaleByValue(localeValue: string) {
+  return LOCALES.find((locale) => locale.value === localeValue)
 }

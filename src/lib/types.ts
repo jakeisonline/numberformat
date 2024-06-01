@@ -1,4 +1,9 @@
 export type TSelectedLocaleContextType = {
-  selectedLocale: string
-  handleSelectedLocaleChange: (locale: string) => void
+  selectedLocale: TLocale
+  handleSelectedLocaleChange: (localeValue: string) => void
+}
+
+export type TLocale = {
+  value: string
+  label: string
 }
