@@ -1,3 +1,4 @@
+import CurrenciesList from "@/components/currencies-list"
 import LocaleSelection from "@/components/locale-selection"
 import MeasuresList from "@/components/measures-list"
 import NumbersContainer from "@/components/numbers-container"
@@ -40,6 +41,7 @@ export default function Home() {
             <BanknotesIcon className="size-10 text-[#5BB86A]" />
             Currencies
           </NumbersHeading>
+          <CurrenciesList />
         </NumbersContainer>
         <NumbersContainer>
           <NumbersHeading>
