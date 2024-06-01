@@ -19,11 +19,6 @@ import {
 import { LOCALES } from "@/lib/const"
 import { useState } from "react"
 
-let formattedLocales = Object.entries(LOCALES).map(([key, value]) => ({
-  value: key,
-  label: value,
-}))
-
 export default function LocaleSelection() {
   const [open, setOpen] = useState(false)
   const { selectedLocale, handleSelectedLocaleChange } =
@@ -37,34 +32,37 @@ export default function LocaleSelection() {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-[400px] justify-between"
+            className="text-md w-[400px] justify-between border-black/20 dark:border-white/20"
           >
             {selectedLocale
-              ? formattedLocales.find(
-                  (locale) => locale.value === selectedLocale,
-                )?.label
+              ? LOCALES.find((locale) => locale.value === selectedLocale)?.label
               : "Select locale..."}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[400px] bg-[#ECECE6] p-0 dark:bg-[#1B1D23]">
-          <Command className="">
+          <Command>
             <CommandInput placeholder="Search locales..." />
-            <CommandList>
+            <CommandList className="">
               <CommandEmpty>No framework found.</CommandEmpty>
               <CommandGroup>
-                {formattedLocales.map((locale) => (
+                {LOCALES.map((locale) => (
                   <CommandItem
                     key={locale.value}
                     value={locale.value}
+                    keywords={[locale.label]}
                     onSelect={(currentValue) => {
                       handleSelectedLocaleChange(
                         currentValue === selectedLocale ? "" : currentValue,
                       )
                       setOpen(false)
                     }}
+                    className="flex-col items-start hover:cursor-pointer hover:bg-black/10 dark:hover:bg-white/10"
                   >
-                    {locale.label}
+                    <p className="block">{locale.label}</p>
+                    <p className="block text-black/40 dark:text-white/60">
+                      {locale.value}
+                    </p>
                   </CommandItem>
                 ))}
               </CommandGroup>
