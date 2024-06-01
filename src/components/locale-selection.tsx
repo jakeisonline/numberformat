@@ -63,14 +63,6 @@ export default function LocaleSelection() {
                     setOpen(false)
                   }}
                 >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      selectedLocale === locale.value
-                        ? "opacity-100"
-                        : "opacity-0",
-                    )}
-                  />
                   {locale.label}
                 </CommandItem>
               ))}
