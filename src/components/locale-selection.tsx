@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -18,20 +17,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { LOCALES } from "@/lib/const"
+import { useState } from "react"
 
-const locales = [
-  {
-    value: "en-GB",
-    label: "English (United Kingdom)",
-  },
-  {
-    value: "de-DE",
-    label: "German (Germany)",
-  },
-]
+let formattedLocales = Object.entries(LOCALES).map(([key, value]) => ({
+  value: key,
+  label: value,
+}))
 
 export default function LocaleSelection() {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
   const { selectedLocale, handleSelectedLocaleChange } =
     useSelectedLocaleContext()
 
@@ -45,18 +40,19 @@ export default function LocaleSelection() {
           className="w-[200px] justify-between"
         >
           {selectedLocale
-            ? locales.find((locale) => locale.value === selectedLocale)?.label
-            : "Select language..."}
+            ? formattedLocales.find((locale) => locale.value === selectedLocale)
+                ?.label
+            : "Select locale..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command className="">
-          <CommandInput placeholder="Search framework..." />
+          <CommandInput placeholder="Search locales..." />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
-              {locales.map((locale) => (
+              {formattedLocales.map((locale) => (
                 <CommandItem
                   key={locale.value}
                   value={locale.value}
