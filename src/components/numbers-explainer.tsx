@@ -37,7 +37,10 @@ export default function NumbersExplainer() {
           groups
         </PartDecorator>{" "}
         of numbers are separated by a{" "}
-        <PartDecorator type="group" className="border-none px-0 text-xl">
+        <PartDecorator
+          type="group"
+          className={`border-none px-0 ${!charIsSpace(group.value) ? "text-xl" : ""}`}
+        >
           {charIsSpace(group.value) ? "space" : group.value}
         </PartDecorator>{" "}
         and{" "}
@@ -81,7 +84,7 @@ function PartDecorator({
     <span
       className={cn(
         isDecoratedPartType &&
-          `text-[${decoratorColors}] border px-1 font-bold border-[${decoratorColors}]`,
+          `text-[${decoratorColors}] inline-flex border px-1 font-bold border-[${decoratorColors}]`,
         className,
       )}
     >
