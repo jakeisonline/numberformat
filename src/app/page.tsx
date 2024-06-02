@@ -1,11 +1,9 @@
 import CurrenciesExplainer from "@/components/currencies-explainer"
-import CurrenciesList from "@/components/currencies-list"
 import LocaleSelection from "@/components/locale-selection"
 import MeasuresList from "@/components/measures-list"
 import NumbersContainer from "@/components/numbers-container"
 import NumbersExplainer from "@/components/numbers-explainer"
 import NumbersHeading from "@/components/numbers-heading"
-import NumbersList from "@/components/numbers-list"
 import NumbersWrapper from "@/components/numbers-wrapper"
 import ThemeToggle from "@/components/theme-toggle"
 import {
@@ -23,7 +21,7 @@ export default function Home() {
       <div className="relative mx-auto mt-8 flex w-full flex-auto justify-center">
         <section className="flex w-10/12 flex-col">
           <h1 className="font-display inline text-center text-6xl font-bold tracking-tight">
-            Every number <span className="text-[#DE541E]">format</span>,
+            Every <span className="text-[#DE541E]">number format</span>,
             <br /> for every <span className="text-[#3C73F3]">locale</span>
           </h1>
           <LocaleSelection />
@@ -49,6 +47,7 @@ export default function Home() {
             <CubeTransparentIcon className="size-10 text-[#9C34CE]" />
             Measures
           </NumbersHeading>
+          <MeasuresList />
         </NumbersContainer>
       </NumbersWrapper>
     </main>
