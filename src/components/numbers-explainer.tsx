@@ -2,6 +2,7 @@
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { charIsSpace, cn, getNumberPartTypes } from "@/lib/utils"
+import PartDecorator from "./part-decorator"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
@@ -24,6 +25,7 @@ export default function NumbersExplainer() {
             <PartDecorator
               key={index}
               type={part.type}
+              matchTypes={["decimal", "group"]}
               className="mx-0.5 text-3xl"
             >
               {part.value}
@@ -33,62 +35,38 @@ export default function NumbersExplainer() {
       </div>
       <p className="mt-3 text-left">
         In {selectedLocale.label}{" "}
-        <PartDecorator type="group" className="font-normal">
+        <PartDecorator
+          type="group"
+          matchTypes={["group"]}
+          className="font-normal"
+        >
           groups
         </PartDecorator>{" "}
         of numbers are separated by a{" "}
         <PartDecorator
           type="group"
+          matchTypes={["group"]}
           className={`border-none px-0 ${!charIsSpace(group.value) ? "text-xl" : ""}`}
         >
           {charIsSpace(group.value) ? "space" : group.value}
         </PartDecorator>{" "}
         and{" "}
-        <PartDecorator type="decimal" className="font-normal">
+        <PartDecorator
+          type="decimal"
+          matchTypes={["decimal"]}
+          className="font-normal"
+        >
           decimals
         </PartDecorator>{" "}
         are separated by a{" "}
-        <PartDecorator type="decimal" className="border-none px-0 text-xl">
+        <PartDecorator
+          type="decimal"
+          matchTypes={["decimal"]}
+          className="border-none px-0 text-xl"
+        >
           {decimal.value}
         </PartDecorator>
       </p>
     </div>
-  )
-}
-
-function PartDecorator({
-  type,
-  className,
-  children,
-}: {
-  type?: string
-  className?: string
-  children: React.ReactNode
-}) {
-  const isDecoratedPartType =
-    type === "decimal" || type === "group" ? true : false
-
-  let decoratorColors
-  switch (type) {
-    case "decimal":
-      decoratorColors = "#3C73F3"
-      break
-    case "group":
-      decoratorColors = "#E8A02B"
-      break
-    default:
-      decoratorColors = ""
-  }
-
-  return (
-    <span
-      className={cn(
-        isDecoratedPartType &&
-          `text-[${decoratorColors}] inline-flex border px-1 font-bold border-[${decoratorColors}]`,
-        className,
-      )}
-    >
-      {children}
-    </span>
   )
 }

@@ -2,7 +2,6 @@
 
 import useLocaleContext from "@/hooks/use-selected-locale-context"
 import { CURRENCIES } from "@/lib/const"
-import { styleNumberSeparator } from "@/lib/utils"
 
 export default function CurrenciesList() {
   const { selectedLocale } = useLocaleContext()

@@ -3,6 +3,7 @@
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { charIsSpace, cn, getNumberPartTypes } from "@/lib/utils"
 import { ExclamationCircleIcon } from "@heroicons/react/16/solid"
+import PartDecorator from "./part-decorator"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
@@ -30,6 +31,7 @@ export default function NumbersExplainer() {
             <PartDecorator
               key={index}
               type={part.type}
+              matchTypes={["currency"]}
               className="mx-0.5 text-3xl"
             >
               {part.value}
@@ -39,11 +41,19 @@ export default function NumbersExplainer() {
       </div>
       <p className="mt-3 text-left">
         In {selectedLocale.label} the{" "}
-        <PartDecorator type="currency" className="font-normal">
+        <PartDecorator
+          type="currency"
+          matchTypes={["currency"]}
+          className="font-normal"
+        >
           {selectedCurrency}
         </PartDecorator>{" "}
         symbol is placed on the{" "}
-        <PartDecorator type="position" className="border-none px-0">
+        <PartDecorator
+          type="position"
+          matchTypes={["position"]}
+          className="border-none px-0"
+        >
           {isPartTypeLast(parts, "currency") ? "right" : "left"}
         </PartDecorator>{" "}
         of the number.
@@ -59,41 +69,4 @@ export default function NumbersExplainer() {
 
 function isPartTypeLast(parts: Intl.NumberFormatPart[], partType: string) {
   return parts.findIndex((part) => part.type === partType) === parts.length - 1
-}
-
-function PartDecorator({
-  type,
-  className,
-  children,
-}: {
-  type?: string
-  className?: string
-  children: React.ReactNode
-}) {
-  const isDecoratedPartType =
-    type === "currency" || type === "position" ? true : false
-
-  let decoratorColors
-  switch (type) {
-    case "currency":
-      decoratorColors = "#5BB86A"
-      break
-    case "position":
-      decoratorColors = "#DE541E"
-      break
-    default:
-      decoratorColors = ""
-  }
-
-  return (
-    <span
-      className={cn(
-        isDecoratedPartType &&
-          `text-[${decoratorColors}] inline-flex border px-1 font-bold border-[${decoratorColors}]`,
-        className,
-      )}
-    >
-      {children}
-    </span>
-  )
 }
