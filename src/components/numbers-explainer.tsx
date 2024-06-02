@@ -71,10 +71,10 @@ function PartDecorator({
   let decoratorColors
   switch (type) {
     case "decimal":
-      decoratorColors = "#E8A02B"
+      decoratorColors = "#3C73F3"
       break
     case "group":
-      decoratorColors = "#3C73F3"
+      decoratorColors = "#E8A02B"
       break
     default:
       decoratorColors = ""

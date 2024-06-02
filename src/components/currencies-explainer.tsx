@@ -43,7 +43,7 @@ export default function NumbersExplainer() {
           {selectedCurrency}
         </PartDecorator>{" "}
         symbol is placed on the{" "}
-        <PartDecorator type="position" className="border-none px-0 font-normal">
+        <PartDecorator type="position" className="border-none px-0">
           {isPartTypeLast(parts, "currency") ? "right" : "left"}
         </PartDecorator>{" "}
         of the number.
@@ -89,7 +89,7 @@ function PartDecorator({
     <span
       className={cn(
         isDecoratedPartType &&
-          `text-[${decoratorColors}] border-[${decoratorColors}] inline-flex border px-1 font-bold`,
+          `text-[${decoratorColors}] inline-flex border px-1 font-bold border-[${decoratorColors}]`,
         className,
       )}
     >
