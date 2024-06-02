@@ -18,7 +18,7 @@ export default function NumbersExplainer() {
 
   return (
     <div className="mt-3 text-center">
-      <div className="inline-block rounded-sm border border-white/20 px-3 py-2">
+      <div className="inline-block rounded-sm border border-black/20 px-3 py-2 dark:border-white/20">
         {parts.map((part, index) => {
           return (
             <PartDecorator
