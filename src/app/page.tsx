@@ -5,6 +5,7 @@ import NumbersContainer from "@/components/numbers-container"
 import NumbersExplainer from "@/components/numbers-explainer"
 import NumbersHeading from "@/components/numbers-heading"
 import NumbersWrapper from "@/components/numbers-wrapper"
+import PercentageExplainer from "@/components/percentage-explainer"
 import ThemeToggle from "@/components/theme-toggle"
 import {
   HashtagIcon,
@@ -34,6 +35,7 @@ export default function Home() {
             Numbers
           </NumbersHeading>
           <NumbersExplainer />
+          <PercentageExplainer />
         </NumbersContainer>
         <NumbersContainer>
           <NumbersHeading>

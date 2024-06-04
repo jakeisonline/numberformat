@@ -13,7 +13,13 @@ export default function PartDecorator({
   className,
   children,
 }: PartDecoratorProps) {
-  const validPartTypes = ["decimal", "group", "currency", "position"]
+  const validPartTypes = [
+    "decimal",
+    "group",
+    "currency",
+    "position",
+    "percentSign",
+  ]
   const isDecoratedPartType =
     type && matchTypes.includes(type) ? validPartTypes.includes(type) : false
 
@@ -32,6 +38,9 @@ export default function PartDecorator({
         break
       case "position":
         decoratorColor = "#DE541E"
+        break
+      case "percentSign":
+        decoratorColor = "#9C34CE"
         break
       default:
         decoratorColor = ""
