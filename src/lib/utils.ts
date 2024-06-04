@@ -36,3 +36,20 @@ export function getNumberPartTypes(
   const decimal = parts.find((part) => part.type === "decimal")
   return { currency, group, decimal }
 }
+
+export function numberSystemToString(numberSystem: string) {
+  switch (numberSystem) {
+    case "latn":
+      return "Latin"
+    case "arab":
+      return "Arabic"
+    case "beng":
+      return "Bengali"
+    case "deva":
+      return "Devanagari"
+    case "arabext":
+      return "Arabic Extended"
+    default:
+      return "Unknown"
+  }
+}
