@@ -8,10 +8,11 @@ import {
 } from "@/lib/utils"
 import PartDecorator from "./part-decorator"
 import NumberSystem from "./number-system"
+import NumberDecorator from "./number-decorator"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
-  const amount = 123456.78
+  const amount = 12345.67
   const numberFormatted = new Intl.NumberFormat(selectedLocale.value)
   const numberSystem = numberSystemToString(
     // @ts-ignore: numberingSystems is an array returned by Intl.Locale
@@ -29,18 +30,7 @@ export default function NumbersExplainer() {
   return (
     <div className="mt-3 text-center">
       <div className="inline-block rounded-sm border border-black/20 px-3 py-2 dark:border-white/20">
-        {parts.map((part, index) => {
-          return (
-            <PartDecorator
-              key={index}
-              type={part.type}
-              matchTypes={["decimal", "group"]}
-              className="mx-0.5 text-3xl"
-            >
-              {part.value}
-            </PartDecorator>
-          )
-        })}
+        <NumberDecorator className="mx-0.5 text-3xl">{amount}</NumberDecorator>
       </div>
       <NumberSystem>Number System: {numberSystem}</NumberSystem>
       <p className="mt-3 text-left">
@@ -68,7 +58,7 @@ export default function NumbersExplainer() {
         >
           decimals
         </PartDecorator>{" "}
-        are separated by a{" "}
+        with a{" "}
         <PartDecorator
           type="decimal"
           matchTypes={["decimal"]}

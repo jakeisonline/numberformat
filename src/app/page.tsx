@@ -4,6 +4,7 @@ import MeasuresList from "@/components/measures-list"
 import NumbersContainer from "@/components/numbers-container"
 import NumbersExplainer from "@/components/numbers-explainer"
 import NumbersHeading from "@/components/numbers-heading"
+import NumbersList from "@/components/numbers-list"
 import NumbersWrapper from "@/components/numbers-wrapper"
 import PercentageExplainer from "@/components/percentage-explainer"
 import ThemeToggle from "@/components/theme-toggle"
@@ -35,7 +36,7 @@ export default function Home() {
             Numbers
           </NumbersHeading>
           <NumbersExplainer />
-          <PercentageExplainer />
+          <NumbersList />
         </NumbersContainer>
         <NumbersContainer>
           <NumbersHeading>

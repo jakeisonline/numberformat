@@ -53,3 +53,20 @@ export function numberSystemToString(numberSystem: string) {
       return "Unknown"
   }
 }
+
+export function generateRandomNumber(min: number, max: number) {
+  return Math.random() * (max - min) + min
+}
+
+export function generateRandomNumbersArray(
+  length: number,
+  min: number,
+  max: number,
+) {
+  return Array.from({ length }, () => {
+    const randomNum = generateRandomNumber(min, max)
+    return Math.random() < 0.5
+      ? Math.round(randomNum)
+      : parseFloat(randomNum.toFixed(2))
+  })
+}
