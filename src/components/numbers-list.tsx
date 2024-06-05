@@ -1,25 +1,17 @@
 "use client"
 
 import useLocaleContext from "@/hooks/use-selected-locale-context"
-import { generateRandomNumbersArray, styleNumberSeparator } from "@/lib/utils"
 import NumberDecorator from "./number-decorator"
 
-export default function NumbersList() {
+type NumbersListProps = {
+  randomNumbers: number[]
+}
+
+export default function NumbersList({ randomNumbers }: NumbersListProps) {
   const { selectedLocale } = useLocaleContext()
 
-  function getNumber(number: number) {
-    const numberString = new Intl.NumberFormat(selectedLocale.value).format(
-      number,
-    )
-    const formattedNumber = styleNumberSeparator(numberString, "#E8A02B")
-
-    return formattedNumber
-  }
-
-  const randomNumbers = generateRandomNumbersArray(10, -100000, 1000000)
-
   return (
-    <ul className="mt-6">
+    <ul className="margin-auto mt-6 grid grid-cols-2 text-center text-lg">
       {randomNumbers.map((number) => (
         <li key={number}>
           <NumberDecorator className="border-0 px-0">{number}</NumberDecorator>

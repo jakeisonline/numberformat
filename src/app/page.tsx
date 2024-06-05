@@ -4,9 +4,8 @@ import MeasuresList from "@/components/measures-list"
 import NumbersContainer from "@/components/numbers-container"
 import NumbersExplainer from "@/components/numbers-explainer"
 import NumbersHeading from "@/components/numbers-heading"
-import NumbersList from "@/components/numbers-list"
 import NumbersWrapper from "@/components/numbers-wrapper"
-import PercentageExplainer from "@/components/percentage-explainer"
+import NumbersListServer from "@/components/server/numbers-list-server"
 import ThemeToggle from "@/components/theme-toggle"
 import {
   HashtagIcon,
@@ -36,7 +35,7 @@ export default function Home() {
             Numbers
           </NumbersHeading>
           <NumbersExplainer />
-          <NumbersList />
+          <NumbersListServer />
         </NumbersContainer>
         <NumbersContainer>
           <NumbersHeading>
