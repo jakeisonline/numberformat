@@ -41,11 +41,11 @@ export default function LocaleSelection() {
               aria-expanded={open}
               className="text-md w-[400px] justify-between border-black/20 dark:border-white/20"
             >
-              {selectedLocale
-                ? LOCALES.find(
-                    (locale) => locale.value === selectedLocale.value,
-                  )?.label
-                : "Select locale..."}
+              {selectedLocale ? (
+                <PrettyLocale locale={selectedLocale} />
+              ) : (
+                "Select locale..."
+              )}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
@@ -68,10 +68,11 @@ export default function LocaleSelection() {
           variant="outline"
           className="text-md w-[400px] justify-between border-black/20 dark:border-white/20"
         >
-          {selectedLocale
-            ? LOCALES.find((locale) => locale.value === selectedLocale.value)
-                ?.label
-            : "Select locale..."}
+          {selectedLocale ? (
+            <PrettyLocale locale={selectedLocale} />
+          ) : (
+            "Select locale..."
+          )}
         </Button>
       </DrawerTrigger>
       <DrawerContent className="bg-[#ECECE6] dark:bg-[#1B1D23]">
@@ -126,5 +127,14 @@ function LocalesList({
         </CommandGroup>
       </CommandList>
     </Command>
+  )
+}
+
+function PrettyLocale({ locale }: { locale: TLocale }) {
+  return (
+    <div className="flex w-full justify-between">
+      <p className="block">{locale.label}</p>
+      <p className="block text-black/40 dark:text-white/60">{locale.value}</p>
+    </div>
   )
 }
