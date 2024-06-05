@@ -50,7 +50,8 @@ export default function NumbersExplainer() {
         >
           symbol
         </PartDecorator>{" "}
-        position may depend on both locale & currency being displayed.
+        position may depend on <strong>both</strong> locale & currency being
+        displayed.
       </p>
     </div>
   )
