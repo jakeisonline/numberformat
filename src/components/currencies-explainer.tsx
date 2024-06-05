@@ -42,16 +42,16 @@ export default function NumbersExplainer() {
       </NumberExample>
       <NumberCaption>Currency Display: </NumberCaption>
       <p className="mt-3 text-left">
-        Both the locale <em>and</em> the specific currency can influence the
-        currency{" "}
+        Currency{" "}
         <PartDecorator
           type="currency"
           matchTypes={["currency"]}
           className="font-normal"
         >
-          symbols
+          symbol
         </PartDecorator>{" "}
-        position.
+        may shift position depending on the locale & currency combination being
+        displayed.
       </p>
     </div>
   )
