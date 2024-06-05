@@ -7,7 +7,7 @@ import {
   numberSystemToString,
 } from "@/lib/utils"
 import PartDecorator from "./part-decorator"
-import NumberSystem from "./number-system"
+import NumberCaption from "./number-caption"
 import NumberDecorator from "./number-decorator"
 
 export default function NumbersExplainer() {
@@ -32,7 +32,7 @@ export default function NumbersExplainer() {
       <div className="inline-block rounded-sm border border-black/20 px-3 py-2 dark:border-white/20">
         <NumberDecorator className="mx-0.5 text-3xl">{amount}</NumberDecorator>
       </div>
-      <NumberSystem>Number System: {numberSystem}</NumberSystem>
+      <NumberCaption>Number System: {numberSystem}</NumberCaption>
       <p className="mt-3 text-left">
         In {selectedLocale.label}{" "}
         <PartDecorator
