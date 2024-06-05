@@ -41,7 +41,7 @@ export default function NumbersExplainer() {
         })}
       </NumberExample>
       <NumberCaption>Currency Display: </NumberCaption>
-      <p className="mt-3 text-left">
+      <p className="mt-3">
         Currency{" "}
         <PartDecorator
           type="currency"

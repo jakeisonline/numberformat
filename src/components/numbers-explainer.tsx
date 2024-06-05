@@ -34,7 +34,7 @@ export default function NumbersExplainer() {
         <NumberDecorator className="mx-0.5 text-3xl">{amount}</NumberDecorator>
       </NumberExample>
       <NumberCaption>Number System: {numberSystem}</NumberCaption>
-      <p className="mt-3 text-left">
+      <p className="mt-3">
         In {selectedLocale.label}{" "}
         <PartDecorator
           type="group"
