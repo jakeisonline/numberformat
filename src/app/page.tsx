@@ -5,6 +5,7 @@ import NumbersContainer from "@/components/numbers-container"
 import NumbersExplainer from "@/components/numbers-explainer"
 import NumbersHeading from "@/components/numbers-heading"
 import NumbersWrapper from "@/components/numbers-wrapper"
+import CurrenciesListServer from "@/components/server/currencies-list-server"
 import NumbersListServer from "@/components/server/numbers-list-server"
 import ThemeToggle from "@/components/theme-toggle"
 import {
@@ -43,6 +44,7 @@ export default function Home() {
             Currencies
           </NumbersHeading>
           <CurrenciesExplainer />
+          <CurrenciesListServer />
         </NumbersContainer>
         <NumbersContainer>
           <NumbersHeading>

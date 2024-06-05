@@ -3,7 +3,11 @@
 import useLocaleContext from "@/hooks/use-selected-locale-context"
 import { CURRENCIES } from "@/lib/const"
 
-export default function CurrenciesList() {
+type CurrenciesListProps = {
+  randomNumbers: number[]
+}
+
+export default function CurrenciesList({ randomNumbers }: CurrenciesListProps) {
   const { selectedLocale } = useLocaleContext()
 
   function getNumber(number: number, currency: string) {
@@ -18,7 +22,7 @@ export default function CurrenciesList() {
   }
 
   return (
-    <ul className="mt-6">
+    <ul className="margin-auto mt-6 grid grid-cols-2 text-center text-lg">
       {CURRENCIES.map((currency) => (
         <li
           key={1}
