@@ -23,7 +23,6 @@ export default function PartDecorator({
   const isDecoratedPartType =
     type && matchTypes.includes(type) ? validPartTypes.includes(type) : false
 
-  console.log(type)
   let decoratorColor
 
   if (isDecoratedPartType) {
