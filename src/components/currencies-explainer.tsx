@@ -4,6 +4,8 @@ import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { charIsSpace, cn, getNumberPartTypes } from "@/lib/utils"
 import { ExclamationCircleIcon } from "@heroicons/react/16/solid"
 import PartDecorator from "./part-decorator"
+import NumberExample from "./number-example"
+import NumberCaption from "./number-caption"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
@@ -25,7 +27,7 @@ export default function NumbersExplainer() {
 
   return (
     <div className="mt-3 text-center">
-      <div className="inline-block rounded-sm border border-black/20 px-3 py-2 dark:border-white/20">
+      <NumberExample>
         {parts.map((part, index) => {
           return (
             <PartDecorator
@@ -38,7 +40,8 @@ export default function NumbersExplainer() {
             </PartDecorator>
           )
         })}
-      </div>
+      </NumberExample>
+      <NumberCaption>Currency Display: </NumberCaption>
       <p className="mt-3 text-left">
         In {selectedLocale.label} the{" "}
         <PartDecorator

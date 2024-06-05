@@ -9,6 +9,7 @@ import {
 import PartDecorator from "./part-decorator"
 import NumberCaption from "./number-caption"
 import NumberDecorator from "./number-decorator"
+import NumberExample from "./number-example"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
@@ -29,9 +30,9 @@ export default function NumbersExplainer() {
 
   return (
     <div className="mt-3 text-center">
-      <div className="inline-block rounded-sm border border-black/20 px-3 py-2 dark:border-white/20">
+      <NumberExample>
         <NumberDecorator className="mx-0.5 text-3xl">{amount}</NumberDecorator>
-      </div>
+      </NumberExample>
       <NumberCaption>Number System: {numberSystem}</NumberCaption>
       <p className="mt-3 text-left">
         In {selectedLocale.label}{" "}
