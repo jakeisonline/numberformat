@@ -1,8 +1,7 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import { charIsSpace, cn, getNumberPartTypes } from "@/lib/utils"
-import { ExclamationCircleIcon } from "@heroicons/react/16/solid"
+import { getNumberPartTypes } from "@/lib/utils"
 import PartDecorator from "./part-decorator"
 import NumberExample from "./number-example"
 import NumberCaption from "./number-caption"
@@ -43,28 +42,16 @@ export default function NumbersExplainer() {
       </NumberExample>
       <NumberCaption>Currency Display: </NumberCaption>
       <p className="mt-3 text-left">
-        In {selectedLocale.label} the{" "}
+        Both the locale <em>and</em> the specific currency will influence the
+        currency{" "}
         <PartDecorator
           type="currency"
           matchTypes={["currency"]}
           className="font-normal"
         >
-          {selectedCurrency}
+          symbols
         </PartDecorator>{" "}
-        symbol is placed on the{" "}
-        <PartDecorator
-          type="position"
-          matchTypes={["position"]}
-          className="border-none px-0"
-        >
-          {isPartTypeLast(parts, "currency") ? "right" : "left"}
-        </PartDecorator>{" "}
-        of the number.
-      </p>
-      <p className="mt-3 text-left text-xs text-black/50 dark:text-white/60">
-        <ExclamationCircleIcon className="-mt-0.5 mr-0.5 inline-flex size-3 text-[#5BB86A]" />
-        Localising currency symbols can be tricky, as the symbol position can
-        depend on the specific currency being displayed for a given locale.
+        position.
       </p>
     </div>
   )

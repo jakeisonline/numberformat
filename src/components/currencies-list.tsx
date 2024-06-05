@@ -25,7 +25,7 @@ export default function CurrenciesList({ randomNumbers }: CurrenciesListProps) {
     <ul className="margin-auto mt-6 grid grid-cols-2 text-center text-lg">
       {CURRENCIES.map((currency) => (
         <li
-          key={1}
+          key={currency}
           className="text-lg"
           dangerouslySetInnerHTML={{ __html: getNumber(1000, currency) }}
         ></li>
