@@ -42,7 +42,7 @@ export default function NumbersExplainer() {
       </NumberExample>
       <NumberCaption>Currency Display: </NumberCaption>
       <p className="mt-3 text-left">
-        Both the locale <em>and</em> the specific currency will influence the
+        Both the locale <em>and</em> the specific currency can influence the
         currency{" "}
         <PartDecorator
           type="currency"

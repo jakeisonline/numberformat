@@ -24,10 +24,10 @@ export default function CurrenciesList({ randomNumbers }: CurrenciesListProps) {
 
   return (
     <ul className="margin-auto mt-6 grid grid-cols-2 text-center text-lg">
-      {CURRENCIES.map((currency) => (
+      {CURRENCIES.map((currency, index) => (
         <li key={currency}>
           <CurrencyDecorator currency={currency} className="border-0 px-0">
-            {1000}
+            {randomNumbers[index]}
           </CurrencyDecorator>
         </li>
       ))}
