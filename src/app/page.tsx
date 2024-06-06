@@ -1,4 +1,5 @@
 import CurrenciesExplainer from "@/components/currencies-explainer"
+import DatetimeExplainer from "@/components/datetime-explainer"
 import LocaleSelection from "@/components/locale-selection"
 import MeasuresList from "@/components/measures-list"
 import NumbersContainer from "@/components/numbers-container"
@@ -54,11 +55,12 @@ export default function Home() {
           </NumbersHeading>
           <MeasuresList />
         </NumbersContainer>
-        <NumbersContainer className="col-span-full">
+        <NumbersContainer className="md:col-span-full">
           <NumbersHeading>
             <CalendarIcon className="size-10 text-[#4F98CA]" />
             Dates & Times
           </NumbersHeading>
+          <DatetimeExplainer />
         </NumbersContainer>
       </NumbersWrapper>
     </main>

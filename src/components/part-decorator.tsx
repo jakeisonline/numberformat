@@ -19,6 +19,14 @@ export default function PartDecorator({
     "currency",
     "position",
     "percentSign",
+    "weekday",
+    "day",
+    "month",
+    "year",
+    "hour",
+    "minute",
+    "second",
+    "dayPeriod",
   ]
   const isDecoratedPartType =
     type && matchTypes.includes(type) ? validPartTypes.includes(type) : false
@@ -28,15 +36,23 @@ export default function PartDecorator({
   if (isDecoratedPartType) {
     switch (type) {
       case "decimal":
+      case "year":
+      case "second":
         decoratorColor = "#3C73F3"
         break
       case "group":
+      case "month":
+      case "minute":
         decoratorColor = "#E8A02B"
         break
       case "currency":
+      case "day":
+      case "hour":
         decoratorColor = "#5BB86A"
         break
       case "position":
+      case "weekday":
+      case "dayPeriod":
         decoratorColor = "#DE541E"
         break
       case "percentSign":

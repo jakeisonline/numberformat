@@ -5,5 +5,7 @@ type NumbersWrapperProps = {
 }
 
 export default function NumbersWrapper({ children }: NumbersWrapperProps) {
-  return <div className="grid grid-cols-3 gap-6">{children}</div>
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{children}</div>
+  )
 }

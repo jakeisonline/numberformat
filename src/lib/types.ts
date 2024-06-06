@@ -13,3 +13,10 @@ export type TNumberPartType = {
   group: Intl.NumberFormatPart | undefined
   decimal: Intl.NumberFormatPart | undefined
 }
+
+export type TDatetimePartType = {
+  month: Intl.DateTimeFormatPart | undefined
+  day: Intl.DateTimeFormatPart | undefined
+  year: Intl.DateTimeFormatPart | undefined
+  literal: Intl.DateTimeFormatPart | undefined
+}
