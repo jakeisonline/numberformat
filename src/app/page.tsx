@@ -24,7 +24,7 @@ export default function Home() {
       </header>
       <div className="relative mx-auto mt-8 flex w-full flex-auto justify-center">
         <section className="flex w-10/12 flex-col">
-          <h1 className="font-display inline text-center text-6xl font-bold tracking-tight">
+          <h1 className="font-display inline text-center text-2xl font-bold tracking-tight md:text-4xl lg:text-6xl">
             Every <span className="text-[#DE541E]">number format</span>,
             <br /> for every <span className="text-[#3C73F3]">locale</span>
           </h1>
