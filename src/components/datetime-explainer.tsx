@@ -18,7 +18,6 @@ export default function DatetimeExplainer() {
   })
   const dateParts = localisedDate.formatToParts(currentDate)
   const timeParts = localisedTime.formatToParts(currentDate)
-  console.log(timeParts)
 
   useTime()
 
