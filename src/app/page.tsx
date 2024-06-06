@@ -12,6 +12,7 @@ import {
   HashtagIcon,
   BanknotesIcon,
   CubeTransparentIcon,
+  CalendarIcon,
 } from "@heroicons/react/24/outline"
 
 export default function Home() {
@@ -52,6 +53,12 @@ export default function Home() {
             Measures
           </NumbersHeading>
           <MeasuresList />
+        </NumbersContainer>
+        <NumbersContainer className="col-span-full">
+          <NumbersHeading>
+            <CalendarIcon className="size-10 text-[#4F98CA]" />
+            Dates & Times
+          </NumbersHeading>
         </NumbersContainer>
       </NumbersWrapper>
     </main>
