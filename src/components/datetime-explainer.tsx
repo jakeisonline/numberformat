@@ -22,8 +22,8 @@ export default function DatetimeExplainer() {
   useTime()
 
   return (
-    <div className="grid grid-cols-3 gap-x-6 pt-3">
-      <div>
+    <div className="grid grid-cols-1 gap-x-6 pt-3 md:grid-cols-2 lg:grid-cols-3">
+      <div className="md:row-span-3 lg:row-span-1">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in felis
         ut justo molestie imperdiet. Nunc convallis est eu purus finibus
         suscipit. Nulla convallis mattis suscipit.{" "}
