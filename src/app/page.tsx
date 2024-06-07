@@ -1,5 +1,5 @@
 import CurrenciesExplainer from "@/components/currencies-explainer"
-import DatetimeExplainer from "@/components/datetime-explainer"
+import DateExplainer from "@/components/date-explainer"
 import LocaleSelection from "@/components/locale-selection"
 import MeasuresList from "@/components/measures-list"
 import NumberContainer from "@/components/number-container"
@@ -9,11 +9,13 @@ import NumbersWrapper from "@/components/numbers-wrapper"
 import CurrenciesListServer from "@/components/server/currencies-list-server"
 import NumbersListServer from "@/components/server/numbers-list-server"
 import ThemeToggle from "@/components/theme-toggle"
+import TimeExplainer from "@/components/time-explainer"
 import {
   HashtagIcon,
   BanknotesIcon,
   CubeTransparentIcon,
   CalendarIcon,
+  ClockIcon,
 } from "@heroicons/react/24/outline"
 
 export default function Home() {
@@ -50,17 +52,24 @@ export default function Home() {
         </NumberContainer>
         <NumberContainer>
           <NumbersHeading>
+            <CalendarIcon className="size-10 text-[#4F98CA]" />
+            Dates
+          </NumbersHeading>
+          <DateExplainer />
+        </NumberContainer>
+        <NumberContainer>
+          <NumbersHeading>
             <CubeTransparentIcon className="size-10 text-[#9C34CE]" />
             Measures
           </NumbersHeading>
           <MeasuresList />
         </NumberContainer>
-        <NumberContainer className="md:col-span-full">
+        <NumberContainer>
           <NumbersHeading>
-            <CalendarIcon className="size-10 text-[#4F98CA]" />
-            Dates & Times
+            <ClockIcon className="size-10 text-[#4F98CA]" />
+            Times
           </NumbersHeading>
-          <DatetimeExplainer />
+          <TimeExplainer />
         </NumberContainer>
       </NumbersWrapper>
     </main>

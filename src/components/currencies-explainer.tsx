@@ -25,7 +25,7 @@ export default function NumbersExplainer() {
   }
 
   return (
-    <div className="mt-3 text-center">
+    <div className="text-center">
       <NumberExample>
         {parts.map((part, index) => {
           return (

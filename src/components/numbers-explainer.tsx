@@ -29,7 +29,7 @@ export default function NumbersExplainer() {
   }
 
   return (
-    <div className="mt-3 text-center">
+    <div className="text-center">
       <NumberExample>
         <NumberDecorator className="mx-0.5 text-3xl">{amount}</NumberDecorator>
       </NumberExample>

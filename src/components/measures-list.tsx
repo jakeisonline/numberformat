@@ -40,7 +40,7 @@ export default function MeasuresList() {
   }
 
   return (
-    <ul className="mt-6">
+    <ul>
       {MEASURE_UNITS.map((unit) => (
         <li
           key={unit}
