@@ -10,6 +10,7 @@ import PartDecorator from "./part-decorator"
 import NumberCaption from "./number-caption"
 import NumberDecorator from "./number-decorator"
 import NumberExample from "./number-example"
+import NumberDescription from "./number-description"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
@@ -34,7 +35,7 @@ export default function NumbersExplainer() {
         <NumberDecorator className="mx-0.5 text-3xl">{amount}</NumberDecorator>
       </NumberExample>
       <NumberCaption>Number System: {numberSystem}</NumberCaption>
-      <p className="mt-3">
+      <NumberDescription>
         In {selectedLocale.label}{" "}
         <PartDecorator
           type="group"
@@ -67,7 +68,7 @@ export default function NumbersExplainer() {
         >
           {decimal.value}
         </PartDecorator>
-      </p>
+      </NumberDescription>
     </div>
   )
 }

@@ -46,17 +46,17 @@ export default function Home() {
         </NumberContainer>
         <NumberContainer>
           <NumberHeading>
-            <NumberIcon iconName="calendar" />
-            Dates
-          </NumberHeading>
-          <DateExplainer />
-        </NumberContainer>
-        <NumberContainer>
-          <NumberHeading>
             <NumberIcon iconName="clock" />
             Times
           </NumberHeading>
           <TimeExplainer />
+        </NumberContainer>
+        <NumberContainer>
+          <NumberHeading>
+            <NumberIcon iconName="calendar" />
+            Dates
+          </NumberHeading>
+          <DateExplainer />
         </NumberContainer>
         <NumberContainer className="md:col-span-2">
           <NumberHeading>

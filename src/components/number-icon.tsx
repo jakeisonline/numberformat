@@ -42,7 +42,7 @@ export default function NumberIcon({ iconName, className }: NumberIconProps) {
       )
     case "clock":
       return (
-        <ClockIcon className={cn("text-[#4F98CA]", baseIconClass, className)} />
+        <ClockIcon className={cn("text-[#DE541E]", baseIconClass, className)} />
       )
     default:
       throw new Error(`Unknown icon name: ${iconName}`)

@@ -5,11 +5,13 @@ import NumberExample from "./number-example"
 import PartDecorator from "./part-decorator"
 import NumberCaption from "./number-caption"
 import { useTime } from "react-timer-hook"
-import { getDatetimePartTypes } from "@/lib/utils"
+import { cn, getDatetimePartTypes } from "@/lib/utils"
 import { DEFAULT_LOCALE } from "@/lib/const"
+import NumberDescription from "./number-description"
 
 export default function DatetimeExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
+  const selectedLocaleIsEn = selectedLocale.value.includes("en-")
 
   const currentDate = new Date()
   const localisedTime = new Intl.DateTimeFormat(selectedLocale.value, {
@@ -74,16 +76,21 @@ export default function DatetimeExplainer() {
         })}
       </NumberExample>
       <NumberCaption>Style: Medium</NumberCaption>
-      <div className="min-h-[4.5rem]">
-        <p className="mt-3">{selectedLocale.label} prefers</p> the{" "}
-        {dayPeriod?.value ? "12-" : "24-"}hour time format.
-      </div>
-      <ul className="margin-auto mt-6 grid grid-cols-1 text-center text-lg md:grid-cols-2">
+      <NumberDescription>
+        {selectedLocale.label} prefers the {dayPeriod?.value ? "12-" : "24-"}
+        hour time format.
+      </NumberDescription>
+      <ul
+        className={cn(
+          "margin-auto mt-6 grid grid-cols-1 gap-y-0.5 text-center text-lg md:grid-cols-2",
+          selectedLocaleIsEn && "gap-y-4",
+        )}
+      >
         {relativeTimeExamples.map((example) => (
           <li key={example.label}>
             <p>{example.value}</p>
-            {!selectedLocale.value.includes("en-") && (
-              <p className="text-sm text-white/40">{example.label}</p>
+            {!selectedLocaleIsEn && (
+              <p className="text-xs text-white/40">{example.label}</p>
             )}
           </li>
         ))}

@@ -5,6 +5,7 @@ import { getNumberPartTypes } from "@/lib/utils"
 import PartDecorator from "./part-decorator"
 import NumberExample from "./number-example"
 import NumberCaption from "./number-caption"
+import NumberDescription from "./number-description"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
@@ -41,7 +42,7 @@ export default function NumbersExplainer() {
         })}
       </NumberExample>
       <NumberCaption>Currency Display: </NumberCaption>
-      <p className="mt-3">
+      <NumberDescription>
         Currency{" "}
         <PartDecorator
           type="currency"
@@ -52,7 +53,7 @@ export default function NumbersExplainer() {
         </PartDecorator>{" "}
         position may depend on <strong>both</strong> locale & currency being
         displayed.
-      </p>
+      </NumberDescription>
     </div>
   )
 }
