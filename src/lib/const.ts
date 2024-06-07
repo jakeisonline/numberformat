@@ -1,6 +1,6 @@
 export const DEFAULT_LOCALE = {
-  value: "en-GB",
-  label: "English (United Kingdom)",
+  value: "en",
+  label: "English",
 }
 
 export const MEASURE_UNITS = [

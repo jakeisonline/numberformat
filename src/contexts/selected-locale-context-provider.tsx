@@ -11,13 +11,17 @@ export const SelectedLocaleContext = createContext<TSelectedLocaleContextType>({
 })
 
 type SelectedLocaleContextProviderProps = {
+  browserLocale: string
   children: React.ReactNode
 }
 
 export default function SelectedLocaleContextProvider({
+  browserLocale,
   children,
 }: SelectedLocaleContextProviderProps) {
-  const [selectedLocale, setSelectedLocale] = useState<TLocale>(DEFAULT_LOCALE)
+  const [selectedLocale, setSelectedLocale] = useState<TLocale>(
+    getLocaleByValue(browserLocale),
+  )
 
   const handleSelectedLocaleChange = (localeValue: string) => {
     const locale = getLocaleByValue(localeValue)
