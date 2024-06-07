@@ -53,17 +53,17 @@ export default function Home() {
         </NumberContainer>
         <NumberContainer>
           <NumberHeading>
-            <NumberIcon iconName="cube-transparent" />
-            Measures
-          </NumberHeading>
-          <MeasuresList />
-        </NumberContainer>
-        <NumberContainer>
-          <NumberHeading>
             <NumberIcon iconName="clock" />
             Times
           </NumberHeading>
           <TimeExplainer />
+        </NumberContainer>
+        <NumberContainer className="md:col-span-2">
+          <NumberHeading>
+            <NumberIcon iconName="cube-transparent" />
+            Measures
+          </NumberHeading>
+          <MeasuresList />
         </NumberContainer>
       </NumbersWrapper>
     </main>

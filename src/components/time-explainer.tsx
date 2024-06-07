@@ -27,29 +27,25 @@ export default function DatetimeExplainer() {
   useTime()
 
   return (
-    <>
-      <div>
-        <NumberExample>
-          {timeParts.map((part, index) => {
-            return (
-              <PartDecorator
-                key={index}
-                type={part.type}
-                matchTypes={["hour", "minute", "second", "dayPeriod"]}
-                className="mx-0.5 text-3xl"
-              >
-                {part.value}
-              </PartDecorator>
-            )
-          })}
-        </NumberExample>
-        <NumberCaption>Style: Medium</NumberCaption>
-        <p className="mt-3">{selectedLocale.label} prefers</p> the{" "}
-        {dayPeriod?.value ? "12-" : "24-"}hour time format.
-      </div>
-      <div>
-        <NumberExample>{localisedRelativeTime.format(1, "week")}</NumberExample>
-      </div>
-    </>
+    <div className="text-center">
+      <NumberExample>
+        {timeParts.map((part, index) => {
+          return (
+            <PartDecorator
+              key={index}
+              type={part.type}
+              matchTypes={["hour", "minute", "second", "dayPeriod"]}
+              className="mx-0.5 text-3xl"
+            >
+              {part.value}
+            </PartDecorator>
+          )
+        })}
+      </NumberExample>
+      <NumberCaption>Style: Medium</NumberCaption>
+      <p className="mt-3">{selectedLocale.label} prefers</p> the{" "}
+      {dayPeriod?.value ? "12-" : "24-"}hour time format.
+      <NumberExample>{localisedRelativeTime.format(1, "week")}</NumberExample>
+    </div>
   )
 }

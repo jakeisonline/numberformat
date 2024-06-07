@@ -15,7 +15,7 @@ export default function DatetimeExplainer() {
   const dateParts = localisedDate.formatToParts(currentDate)
 
   return (
-    <div>
+    <div className="text-center">
       <NumberExample>
         {dateParts.map((part, index) => {
           return (
