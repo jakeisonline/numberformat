@@ -7,8 +7,11 @@ import NumberCaption from "./number-caption"
 import { useTime } from "react-timer-hook"
 import { cn, getDatetimePartTypes } from "@/lib/utils"
 import NumberDescription from "./number-description"
+import { useEffect, useState } from "react"
+import { Skeleton } from "./ui/skeleton"
 
 export default function DatetimeExplainer() {
+  const [isClient, setIsClient] = useState(false)
   const { selectedLocale } = useSelectedLocaleContext()
   const selectedLocaleIsEn = selectedLocale.value.includes("en-")
 
@@ -58,21 +61,35 @@ export default function DatetimeExplainer() {
 
   useTime()
 
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   return (
     <div className="text-center">
       <NumberExample>
-        {timeParts.map((part, index) => {
-          return (
-            <PartDecorator
-              key={index}
-              type={part.type}
-              matchTypes={["hour", "minute", "second", "dayPeriod"]}
-              className="mx-0.5 text-3xl"
-            >
-              {part.value}
-            </PartDecorator>
-          )
-        })}
+        {!isClient && (
+          <div className="flex items-center space-x-1.5">
+            <Skeleton className="h-9 w-9 bg-white/10" />
+            <Skeleton className="h-6 w-3 bg-white/10" />
+            <Skeleton className="h-9 w-9 bg-white/10" />
+            <Skeleton className="h-6 w-3 bg-white/10" />
+            <Skeleton className="h-9 w-9 bg-white/10" />
+          </div>
+        )}
+        {isClient &&
+          timeParts.map((part, index) => {
+            return (
+              <PartDecorator
+                key={index}
+                type={part.type}
+                matchTypes={["hour", "minute", "second", "dayPeriod"]}
+                className="mx-0.5 text-3xl"
+              >
+                {part.value}
+              </PartDecorator>
+            )
+          })}
       </NumberExample>
       <NumberCaption>Style: Medium</NumberCaption>
       <NumberDescription>
