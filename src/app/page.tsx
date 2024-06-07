@@ -5,7 +5,7 @@ import MeasuresList from "@/components/measures-list"
 import NumberContainer from "@/components/number-container"
 import NumberIcon from "@/components/number-icon"
 import NumbersExplainer from "@/components/numbers-explainer"
-import NumbersHeading from "@/components/numbers-heading"
+import NumberHeading from "@/components/number-heading"
 import NumbersWrapper from "@/components/numbers-wrapper"
 import CurrenciesListServer from "@/components/server/currencies-list-server"
 import NumbersListServer from "@/components/server/numbers-list-server"
@@ -36,40 +36,40 @@ export default function Home() {
       </div>
       <NumbersWrapper>
         <NumberContainer>
-          <NumbersHeading>
+          <NumberHeading>
             <NumberIcon iconName="hashtag" />
             Numbers
-          </NumbersHeading>
+          </NumberHeading>
           <NumbersExplainer />
           <NumbersListServer />
         </NumberContainer>
         <NumberContainer>
-          <NumbersHeading>
+          <NumberHeading>
             <NumberIcon iconName="banknotes" />
             Currencies
-          </NumbersHeading>
+          </NumberHeading>
           <CurrenciesExplainer />
           <CurrenciesListServer />
         </NumberContainer>
         <NumberContainer>
-          <NumbersHeading>
+          <NumberHeading>
             <NumberIcon iconName="calendar" />
             Dates
-          </NumbersHeading>
+          </NumberHeading>
           <DateExplainer />
         </NumberContainer>
         <NumberContainer>
-          <NumbersHeading>
+          <NumberHeading>
             <NumberIcon iconName="cube-transparent" />
             Measures
-          </NumbersHeading>
+          </NumberHeading>
           <MeasuresList />
         </NumberContainer>
         <NumberContainer>
-          <NumbersHeading>
+          <NumberHeading>
             <NumberIcon iconName="clock" />
             Times
-          </NumbersHeading>
+          </NumberHeading>
           <TimeExplainer />
         </NumberContainer>
       </NumbersWrapper>
