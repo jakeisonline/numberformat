@@ -19,4 +19,8 @@ export type TDatetimePartType = {
   day: Intl.DateTimeFormatPart | undefined
   year: Intl.DateTimeFormatPart | undefined
   literal: Intl.DateTimeFormatPart | undefined
+  hour: Intl.DateTimeFormatPart | undefined
+  minute: Intl.DateTimeFormatPart | undefined
+  second: Intl.DateTimeFormatPart | undefined
+  dayPeriod: Intl.DateTimeFormatPart | undefined
 }

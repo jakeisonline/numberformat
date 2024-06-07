@@ -44,7 +44,11 @@ export function getDatetimePartTypes(
   const day = parts.find((part) => part.type === "day")
   const year = parts.find((part) => part.type === "year")
   const literal = parts.find((part) => part.type === "literal")
-  return { month, day, year, literal }
+  const hour = parts.find((part) => part.type === "hour")
+  const minute = parts.find((part) => part.type === "minute")
+  const second = parts.find((part) => part.type === "second")
+  const dayPeriod = parts.find((part) => part.type === "dayPeriod")
+  return { month, day, year, literal, hour, minute, second, dayPeriod }
 }
 
 export function numberSystemToString(numberSystem: string) {
