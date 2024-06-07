@@ -5,7 +5,7 @@ type NumbersContainerProps = {
   className?: string
 }
 
-export default function NumbersContainer({
+export default function NumberContainer({
   className,
   children,
 }: NumbersContainerProps) {

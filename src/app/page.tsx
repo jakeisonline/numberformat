@@ -2,7 +2,7 @@ import CurrenciesExplainer from "@/components/currencies-explainer"
 import DatetimeExplainer from "@/components/datetime-explainer"
 import LocaleSelection from "@/components/locale-selection"
 import MeasuresList from "@/components/measures-list"
-import NumbersContainer from "@/components/numbers-container"
+import NumberContainer from "@/components/number-container"
 import NumbersExplainer from "@/components/numbers-explainer"
 import NumbersHeading from "@/components/numbers-heading"
 import NumbersWrapper from "@/components/numbers-wrapper"
@@ -32,36 +32,36 @@ export default function Home() {
         </section>
       </div>
       <NumbersWrapper>
-        <NumbersContainer>
+        <NumberContainer>
           <NumbersHeading>
             <HashtagIcon className="size-10 text-[#E8A02B]" />
             Numbers
           </NumbersHeading>
           <NumbersExplainer />
           <NumbersListServer />
-        </NumbersContainer>
-        <NumbersContainer>
+        </NumberContainer>
+        <NumberContainer>
           <NumbersHeading>
             <BanknotesIcon className="size-10 text-[#5BB86A]" />
             Currencies
           </NumbersHeading>
           <CurrenciesExplainer />
           <CurrenciesListServer />
-        </NumbersContainer>
-        <NumbersContainer>
+        </NumberContainer>
+        <NumberContainer>
           <NumbersHeading>
             <CubeTransparentIcon className="size-10 text-[#9C34CE]" />
             Measures
           </NumbersHeading>
           <MeasuresList />
-        </NumbersContainer>
-        <NumbersContainer className="md:col-span-full">
+        </NumberContainer>
+        <NumberContainer className="md:col-span-full">
           <NumbersHeading>
             <CalendarIcon className="size-10 text-[#4F98CA]" />
             Dates & Times
           </NumbersHeading>
           <DatetimeExplainer />
-        </NumbersContainer>
+        </NumberContainer>
       </NumbersWrapper>
     </main>
   )
