@@ -11,13 +11,6 @@ import CurrenciesListServer from "@/components/server/currencies-list-server"
 import NumbersListServer from "@/components/server/numbers-list-server"
 import ThemeToggle from "@/components/theme-toggle"
 import TimeExplainer from "@/components/time-explainer"
-import {
-  HashtagIcon,
-  BanknotesIcon,
-  CubeTransparentIcon,
-  CalendarIcon,
-  ClockIcon,
-} from "@heroicons/react/24/outline"
 
 export default function Home() {
   return (
