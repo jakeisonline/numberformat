@@ -51,23 +51,6 @@ export function getDatetimePartTypes(
   return { month, day, year, literal, hour, minute, second, dayPeriod }
 }
 
-export function numberSystemToString(numberSystem: string) {
-  switch (numberSystem) {
-    case "latn":
-      return "Latin"
-    case "arab":
-      return "Arabic"
-    case "beng":
-      return "Bengali"
-    case "deva":
-      return "Devanagari"
-    case "arabext":
-      return "Arabic Extended"
-    default:
-      return "Unknown"
-  }
-}
-
 export function generateRandomNumber(min: number, max: number) {
   return Math.random() * (max - min) + min
 }

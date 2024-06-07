@@ -1,11 +1,7 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import {
-  charIsSpace,
-  getNumberPartTypes,
-  numberSystemToString,
-} from "@/lib/utils"
+import { charIsSpace, getNumberPartTypes } from "@/lib/utils"
 import PartDecorator from "./part-decorator"
 import NumberCaption from "./number-caption"
 import NumberDecorator from "./number-decorator"
@@ -16,10 +12,6 @@ export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
   const amount = 12345.67
   const numberFormatted = new Intl.NumberFormat(selectedLocale.value)
-  const numberSystem = numberSystemToString(
-    // @ts-ignore: numberingSystems is an array returned by Intl.Locale
-    new Intl.Locale(selectedLocale.value).numberingSystems[0],
-  )
   const parts = numberFormatted.formatToParts(amount)
   const { group, decimal } = getNumberPartTypes(parts)
 
@@ -34,7 +26,7 @@ export default function NumbersExplainer() {
       <NumberExample>
         <NumberDecorator className="mx-0.5 text-3xl">{amount}</NumberDecorator>
       </NumberExample>
-      <NumberCaption>Number System: {numberSystem}</NumberCaption>
+      <NumberCaption>&nbsp;</NumberCaption>
       <NumberDescription>
         In {selectedLocale.label}{" "}
         <PartDecorator
