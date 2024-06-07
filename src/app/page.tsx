@@ -3,6 +3,7 @@ import DateExplainer from "@/components/date-explainer"
 import LocaleSelection from "@/components/locale-selection"
 import MeasuresList from "@/components/measures-list"
 import NumberContainer from "@/components/number-container"
+import NumberIcon from "@/components/number-icon"
 import NumbersExplainer from "@/components/numbers-explainer"
 import NumbersHeading from "@/components/numbers-heading"
 import NumbersWrapper from "@/components/numbers-wrapper"
@@ -36,7 +37,7 @@ export default function Home() {
       <NumbersWrapper>
         <NumberContainer>
           <NumbersHeading>
-            <HashtagIcon className="size-10 text-[#E8A02B]" />
+            <NumberIcon iconName="hashtag" />
             Numbers
           </NumbersHeading>
           <NumbersExplainer />
@@ -44,7 +45,7 @@ export default function Home() {
         </NumberContainer>
         <NumberContainer>
           <NumbersHeading>
-            <BanknotesIcon className="size-10 text-[#5BB86A]" />
+            <NumberIcon iconName="banknotes" />
             Currencies
           </NumbersHeading>
           <CurrenciesExplainer />
@@ -52,21 +53,21 @@ export default function Home() {
         </NumberContainer>
         <NumberContainer>
           <NumbersHeading>
-            <CalendarIcon className="size-10 text-[#4F98CA]" />
+            <NumberIcon iconName="calendar" />
             Dates
           </NumbersHeading>
           <DateExplainer />
         </NumberContainer>
         <NumberContainer>
           <NumbersHeading>
-            <CubeTransparentIcon className="size-10 text-[#9C34CE]" />
+            <NumberIcon iconName="cube-transparent" />
             Measures
           </NumbersHeading>
           <MeasuresList />
         </NumberContainer>
         <NumberContainer>
           <NumbersHeading>
-            <ClockIcon className="size-10 text-[#4F98CA]" />
+            <NumberIcon iconName="clock" />
             Times
           </NumbersHeading>
           <TimeExplainer />
