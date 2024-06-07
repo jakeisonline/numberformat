@@ -6,7 +6,6 @@ import PartDecorator from "./part-decorator"
 import NumberCaption from "./number-caption"
 import { useTime } from "react-timer-hook"
 import { cn, getDatetimePartTypes } from "@/lib/utils"
-import { DEFAULT_LOCALE } from "@/lib/const"
 import NumberDescription from "./number-description"
 
 export default function DatetimeExplainer() {
