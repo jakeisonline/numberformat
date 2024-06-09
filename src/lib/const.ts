@@ -3,42 +3,6 @@ export const DEFAULT_LOCALE = {
   label: "English",
 }
 
-export const MEASURE_UNITS = [
-  "acre",
-  "bit",
-  "byte",
-  "celsius",
-  "centimeter",
-  "degree",
-  "fahrenheit",
-  "fluid-ounce",
-  "foot",
-  "gallon",
-  "gigabit",
-  "gigabyte",
-  "gram",
-  "hectare",
-  "inch",
-  "kilobit",
-  "kilobyte",
-  "kilogram",
-  "kilometer",
-  "liter",
-  "megabit",
-  "megabyte",
-  "meter",
-  "mile",
-  "milliliter",
-  "millimeter",
-  "ounce",
-  "petabyte",
-  "pound",
-  "stone",
-  "terabit",
-  "terabyte",
-  "yard",
-]
-
 export const MEASURE_TYPES_UNITS = [
   {
     type: "length",
