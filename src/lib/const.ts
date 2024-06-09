@@ -39,6 +39,43 @@ export const MEASURE_UNITS = [
   "yard",
 ]
 
+export const MEASURE_TYPES_UNITS = [
+  {
+    type: "length",
+    units: [
+      "centimeter",
+      "foot",
+      "inch",
+      "kilometer",
+      "meter",
+      "mile",
+      "millimeter",
+      "yard",
+    ],
+  },
+  { type: "area", units: ["acre", "hectare"] },
+  { type: "volume", units: ["fluid-ounce", "gallon", "liter", "milliliter"] },
+  { type: "mass", units: ["gram", "kilogram", "ounce", "pound", "stone"] },
+  { type: "temperature", units: ["celsius", "fahrenheit"] },
+  {
+    type: "digital storage",
+    units: [
+      "bit",
+      "byte",
+      "gigabit",
+      "gigabyte",
+      "kilobit",
+      "kilobyte",
+      "megabit",
+      "megabyte",
+      "petabyte",
+      "terabit",
+      "terabyte",
+    ],
+  },
+  { type: "angle", units: ["degree"] },
+]
+
 export const LOCALES = [
   {
     value: "af",

@@ -1,10 +1,14 @@
 "use client"
 
 import useLocaleContext from "@/hooks/use-selected-locale-context"
-import { MEASURE_UNITS } from "@/lib/const"
-import { styleNumberSeparator } from "@/lib/utils"
+import { MEASURE_TYPES_UNITS } from "@/lib/const"
+import { getNextRandomNumber, styleNumberSeparator } from "@/lib/utils"
 
-export default function MeasuresList() {
+type MeasuresListProps = {
+  randomNumbers: number[]
+}
+
+export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
   const { selectedLocale } = useLocaleContext()
 
   function getMeasure(
@@ -12,16 +16,18 @@ export default function MeasuresList() {
     unit: string,
     unitDisplay?: "long" | "short" | "narrow",
   ): string {
+    const numberFloor = Math.floor(number)
+
     // Format the measure with the unit
     const measureString = new Intl.NumberFormat(selectedLocale.value, {
       style: "unit",
       unit,
       unitDisplay: unitDisplay ?? "short",
-    }).format(number)
+    }).format(numberFloor)
 
     // Format the number separately to find its exact match in the measureString
     const numberString = new Intl.NumberFormat(selectedLocale.value).format(
-      number,
+      numberFloor,
     )
 
     // Find the part of the string that is not the number
@@ -40,14 +46,26 @@ export default function MeasuresList() {
   }
 
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-      {MEASURE_UNITS.map((unit) => (
-        <li
-          key={unit}
-          className="text-center text-lg"
-          dangerouslySetInnerHTML={{ __html: getMeasure(1000, unit) }}
-        />
-      ))}
-    </ul>
+    <div className="column-1 sm:column-2 break-before-auto md:columns-3">
+      {MEASURE_TYPES_UNITS.map(({ type, units }) => {
+        const randomNumber = getNextRandomNumber(randomNumbers)
+        return (
+          <section key={type} className="mb-3">
+            <h3 className="text-lg font-semibold capitalize">{type}</h3>
+            <ul>
+              {units.map((unit, index) => (
+                <li
+                  key={unit}
+                  className="text-lg"
+                  dangerouslySetInnerHTML={{
+                    __html: getMeasure(randomNumber.next().value, unit),
+                  }}
+                />
+              ))}
+            </ul>
+          </section>
+        )
+      })}
+    </div>
   )
 }

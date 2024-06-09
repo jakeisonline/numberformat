@@ -1,7 +1,6 @@
 import CurrenciesExplainer from "@/components/currencies-explainer"
 import DateExplainer from "@/components/date-explainer"
 import LocaleSelection from "@/components/locale-selection"
-import MeasuresList from "@/components/measures-list"
 import NumberContainer from "@/components/number-container"
 import NumberIcon from "@/components/number-icon"
 import NumbersExplainer from "@/components/numbers-explainer"
@@ -11,6 +10,7 @@ import CurrenciesListServer from "@/components/server/currencies-list-server"
 import NumbersListServer from "@/components/server/numbers-list-server"
 import ThemeToggle from "@/components/theme-toggle"
 import TimeExplainer from "@/components/time-explainer"
+import MeasuresListServer from "@/components/server/measures-list-server"
 
 export default function Home() {
   return (
@@ -63,7 +63,7 @@ export default function Home() {
             <NumberIcon iconName="cube-transparent" />
             Measures
           </NumberHeading>
-          <MeasuresList />
+          <MeasuresListServer />
         </NumberContainer>
       </NumbersWrapper>
     </main>

@@ -69,3 +69,23 @@ export function generateRandomNumbersArray(
       : parseFloat(randomNum.toFixed(2))
   })
 }
+
+export function getNextRandomNumber(randomNumbers: number[]) {
+  let nextIndex = 0
+  let iterationCount = 0
+
+  const randomNumber = {
+    next() {
+      if (nextIndex < Infinity) {
+        let result = { value: randomNumbers[nextIndex], done: false }
+        nextIndex = (nextIndex + 1) % randomNumbers.length
+        nextIndex++
+        iterationCount++
+        return result
+      }
+
+      return { value: iterationCount, done: true }
+    },
+  }
+  return randomNumber
+}
