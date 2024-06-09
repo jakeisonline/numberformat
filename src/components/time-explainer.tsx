@@ -9,55 +9,31 @@ import { cn, getDatetimePartTypes } from "@/lib/utils"
 import NumberDescription from "./number-description"
 import { useEffect, useState } from "react"
 import { Skeleton } from "./ui/skeleton"
+import {
+  relativeIdiomaticTimeFormatter,
+  relativeNumericTimeFormatter,
+} from "@/lib/formatters"
+import { RELATIVE_TIME_EXAMPLES } from "@/lib/const"
 
 export default function DatetimeExplainer() {
   const [isClient, setIsClient] = useState(false)
-  const { selectedLocale } = useSelectedLocaleContext()
+  const { selectedLocale, browserLocale } = useSelectedLocaleContext()
   const selectedLocaleIsEn = selectedLocale.value.includes("en-")
 
   const currentDate = new Date()
   const localisedTime = new Intl.DateTimeFormat(selectedLocale.value, {
     timeStyle: "medium",
   })
-  const localisedRelativeNumbericTime = new Intl.RelativeTimeFormat(
-    selectedLocale.value,
-    {
-      style: "long",
-    },
-  )
-  const localisedRelativeIdiomaticTime = new Intl.RelativeTimeFormat(
-    selectedLocale.value,
-    {
-      numeric: "auto",
-      style: "long",
-    },
-  )
   const timeParts = localisedTime.formatToParts(currentDate)
   const { dayPeriod } = getDatetimePartTypes(timeParts)
 
-  const relativeTimeExamples = [
-    {
-      label: "yesterday",
-      value: localisedRelativeIdiomaticTime.format(-1, "day"),
-    },
-    { label: "today", value: localisedRelativeIdiomaticTime.format(0, "day") },
-    {
-      label: "tomorrow",
-      value: localisedRelativeIdiomaticTime.format(1, "day"),
-    },
-    {
-      label: "1 day ago",
-      value: localisedRelativeNumbericTime.format(-1, "day"),
-    },
-    {
-      label: "in 0 days",
-      value: localisedRelativeNumbericTime.format(0, "day"),
-    },
-    {
-      label: "in 2 days",
-      value: localisedRelativeNumbericTime.format(2, "day"),
-    },
-  ]
+  function getRelativeTime(locale: string, value: number, type: string) {
+    const formatter =
+      type === "idiomatic"
+        ? relativeIdiomaticTimeFormatter(locale)
+        : relativeNumericTimeFormatter(locale)
+    return formatter.format(value, "day")
+  }
 
   useTime()
 
@@ -102,14 +78,27 @@ export default function DatetimeExplainer() {
           selectedLocaleIsEn && "gap-y-4",
         )}
       >
-        {relativeTimeExamples.map((example) => (
-          <li key={example.label}>
-            <p>{example.value}</p>
-            {!selectedLocaleIsEn && (
-              <p className="text-xs text-white/40">{example.label}</p>
-            )}
-          </li>
-        ))}
+        {RELATIVE_TIME_EXAMPLES.map((example) => {
+          const selectedLocaleRelativeTime = getRelativeTime(
+            selectedLocale.value,
+            example.value,
+            example.type,
+          )
+          const browserLocaleRelativeTime = browserLocale
+            ? getRelativeTime(browserLocale, example.value, example.type)
+            : selectedLocaleRelativeTime
+
+          return (
+            <li key={example.label}>
+              <p>{selectedLocaleRelativeTime}</p>
+              {selectedLocaleRelativeTime !== browserLocaleRelativeTime && (
+                <p className="text-xs text-white/40">
+                  {browserLocaleRelativeTime}
+                </p>
+              )}
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

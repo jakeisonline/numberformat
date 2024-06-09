@@ -3,6 +3,39 @@ export const DEFAULT_LOCALE = {
   label: "English",
 }
 
+export const RELATIVE_TIME_EXAMPLES = [
+  {
+    label: "yesterday",
+    type: "idiomatic",
+    value: -1,
+  },
+  {
+    label: "today",
+    type: "idiomatic",
+    value: 0,
+  },
+  {
+    label: "tomorrow",
+    type: "idiomatic",
+    value: 1,
+  },
+  {
+    label: "1 day ago",
+    type: "numeric",
+    value: -1,
+  },
+  {
+    label: "in 0 days",
+    type: "numeric",
+    value: 0,
+  },
+  {
+    label: "in 2 days",
+    type: "numeric",
+    value: 2,
+  },
+]
+
 export const MEASURE_TYPES_UNITS = [
   {
     type: "length",

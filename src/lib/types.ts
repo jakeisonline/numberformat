@@ -1,5 +1,6 @@
 export type TSelectedLocaleContextType = {
   selectedLocale: TLocale
+  browserLocale: string | undefined
   handleSelectedLocaleChange: (localeValue: string) => void
 }
 

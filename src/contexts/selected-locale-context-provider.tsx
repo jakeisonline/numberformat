@@ -7,6 +7,7 @@ import { createContext, useState } from "react"
 
 export const SelectedLocaleContext = createContext<TSelectedLocaleContextType>({
   selectedLocale: DEFAULT_LOCALE,
+  browserLocale: undefined,
   handleSelectedLocaleChange: () => {},
 })
 
@@ -33,7 +34,7 @@ export default function SelectedLocaleContextProvider({
 
   return (
     <SelectedLocaleContext.Provider
-      value={{ selectedLocale, handleSelectedLocaleChange }}
+      value={{ selectedLocale, browserLocale, handleSelectedLocaleChange }}
     >
       {children}
     </SelectedLocaleContext.Provider>
