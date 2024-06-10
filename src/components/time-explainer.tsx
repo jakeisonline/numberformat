@@ -5,15 +5,10 @@ import NumberExample from "./number-example"
 import PartDecorator from "./part-decorator"
 import NumberCaption from "./number-caption"
 import { useTime } from "react-timer-hook"
-import { cn, getDatetimePartTypes } from "@/lib/utils"
+import { getDatetimePartTypes } from "@/lib/utils"
 import NumberDescription from "./number-description"
 import { useEffect, useState } from "react"
 import { Skeleton } from "./ui/skeleton"
-import {
-  relativeIdiomaticTimeFormatter,
-  relativeNumericTimeFormatter,
-} from "@/lib/formatters"
-import { RELATIVE_TIME_EXAMPLES } from "@/lib/const"
 
 export default function DatetimeExplainer() {
   const [isClient, setIsClient] = useState(false)
