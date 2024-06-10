@@ -26,7 +26,7 @@ export function RelativeTimeList() {
 
   return (
     <section className="text-center">
-      <h3 className="mt-4 text-lg font-semibold capitalize">Relative Times</h3>
+      <h3 className="text-lg font-semibold capitalize">Relative Times</h3>
       <ul
         className={cn(
           "margin-auto mt-2 grid grid-cols-1 gap-y-0.5 text-center text-lg md:grid-cols-2",

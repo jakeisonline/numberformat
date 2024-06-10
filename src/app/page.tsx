@@ -15,6 +15,7 @@ import { MeasuresFullToggle } from "@/components/measures-full-toggle"
 import FullMeasuresContextProvider from "@/contexts/full-measures-context-provider"
 import { RelativeDateList } from "@/components/relative-date-list"
 import { RelativeTimeList } from "@/components/relative-time-list"
+import { Separator } from "@/components/ui/separator"
 
 export default function Home() {
   return (
@@ -46,6 +47,7 @@ export default function Home() {
             Dates
           </NumberHeading>
           <DateExplainer />
+          <Separator />
           <RelativeDateList />
         </NumberContainer>
         <NumberContainer>
@@ -54,6 +56,7 @@ export default function Home() {
             Times
           </NumberHeading>
           <TimeExplainer />
+          <Separator />
           <RelativeTimeList />
         </NumberContainer>
         <NumberContainer>
