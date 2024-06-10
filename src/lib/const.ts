@@ -5,34 +5,52 @@ export const DEFAULT_LOCALE = {
 
 export const RELATIVE_TIME_EXAMPLES = [
   {
-    label: "yesterday",
-    type: "idiomatic",
     value: -1,
+    unit: "minute",
+    label: "1 minute ago",
+    type: "idiomatic",
   },
   {
-    label: "today",
-    type: "idiomatic",
     value: 0,
+    unit: "minute",
+    label: "this minute",
+    type: "idiomatic",
   },
   {
-    label: "tomorrow",
-    type: "idiomatic",
     value: 1,
+    unit: "minute",
+    label: "in 1 minute",
+    type: "idiomatic",
   },
   {
-    label: "1 day ago",
-    type: "numeric",
-    value: -1,
-  },
-  {
-    label: "in 0 days",
-    type: "numeric",
-    value: 0,
-  },
-  {
-    label: "in 2 days",
-    type: "numeric",
     value: 2,
+    unit: "minute",
+    label: "in 2 minutes",
+    type: "numeric",
+  },
+  {
+    value: -1,
+    unit: "hour",
+    label: "1 hour ago",
+    type: "idiomatic",
+  },
+  {
+    value: 0,
+    unit: "hour",
+    label: "this hour",
+    type: "idiomatic",
+  },
+  {
+    value: 1,
+    unit: "hour",
+    label: "in 1 hour",
+    type: "idiomatic",
+  },
+  {
+    value: 2,
+    unit: "hour",
+    label: "in 2 hours",
+    type: "numeric",
   },
 ]
 
@@ -56,11 +74,6 @@ export const RELATIVE_DATE_EXAMPLES = [
     label: "1 day ago",
     type: "numeric",
     value: -1,
-  },
-  {
-    label: "in 0 days",
-    type: "numeric",
-    value: 0,
   },
   {
     label: "in 2 days",
