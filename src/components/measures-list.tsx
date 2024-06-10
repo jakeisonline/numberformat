@@ -1,5 +1,6 @@
 "use client"
 
+import useFullMeasureContext from "@/hooks/use-full-measures-context"
 import useLocaleContext from "@/hooks/use-selected-locale-context"
 import { MEASURE_TYPES_UNITS } from "@/lib/const"
 import { getNextRandomNumber, styleNumberSeparator } from "@/lib/utils"
@@ -10,6 +11,7 @@ type MeasuresListProps = {
 
 export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
   const { selectedLocale } = useLocaleContext()
+  const { showFullMeasures } = useFullMeasureContext()
 
   function getMeasure(
     number: number,
@@ -49,19 +51,24 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
     <div className="column-1 sm:column-2 break-before-auto md:columns-3">
       {MEASURE_TYPES_UNITS.map(({ type, units }) => {
         const randomNumber = getNextRandomNumber(randomNumbers)
+
         return (
           <section key={type} className="mb-3">
             <h3 className="text-lg font-semibold capitalize">{type}</h3>
             <ul>
-              {units.map((unit, index) => (
-                <li
-                  key={unit}
-                  className="text-lg"
-                  dangerouslySetInnerHTML={{
-                    __html: getMeasure(randomNumber.next().value, unit),
-                  }}
-                />
-              ))}
+              {units.map((unit, index) => {
+                if (!showFullMeasures && !unit.isShown) return
+
+                return (
+                  <li
+                    key={unit.name}
+                    className="text-lg"
+                    dangerouslySetInnerHTML={{
+                      __html: getMeasure(randomNumber.next().value, unit.name),
+                    }}
+                  />
+                )
+              })}
             </ul>
           </section>
         )

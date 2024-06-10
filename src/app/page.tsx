@@ -11,9 +11,8 @@ import NumbersListServer from "@/components/server/numbers-list-server"
 import ThemeToggle from "@/components/theme-toggle"
 import TimeExplainer from "@/components/time-explainer"
 import MeasuresListServer from "@/components/server/measures-list-server"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
 import { MeasuresFullToggle } from "@/components/measures-full-toggle"
+import FullMeasuresContextProvider from "@/contexts/full-measures-context-provider"
 
 export default function Home() {
   return (
@@ -62,12 +61,14 @@ export default function Home() {
           <DateExplainer />
         </NumberContainer>
         <NumberContainer className="md:col-span-2">
-          <NumberHeading>
-            <NumberIcon iconName="cube-transparent" />
-            Measures
-            <MeasuresFullToggle />
-          </NumberHeading>
-          <MeasuresListServer />
+          <FullMeasuresContextProvider>
+            <NumberHeading>
+              <NumberIcon iconName="cube-transparent" />
+              Measures
+              <MeasuresFullToggle />
+            </NumberHeading>
+            <MeasuresListServer />
+          </FullMeasuresContextProvider>
         </NumberContainer>
       </NumbersWrapper>
     </main>
