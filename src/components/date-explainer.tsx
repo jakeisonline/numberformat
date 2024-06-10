@@ -3,7 +3,6 @@
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import NumberExample from "./number-example"
 import PartDecorator from "./part-decorator"
-import NumberCaption from "./number-caption"
 
 export default function DatetimeExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
@@ -34,7 +33,6 @@ export default function DatetimeExplainer() {
           )
         })}
       </NumberExample>
-      <NumberCaption>&nbsp;</NumberCaption>
       <p className="mt-3">
         In {selectedLocale.label} the short date is written as{" "}
         {shortDateParts.map((part, index) => {

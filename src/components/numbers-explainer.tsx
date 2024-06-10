@@ -3,7 +3,6 @@
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { charIsSpace, getNumberPartTypes } from "@/lib/utils"
 import PartDecorator from "./part-decorator"
-import NumberCaption from "./number-caption"
 import NumberDecorator from "./number-decorator"
 import NumberExample from "./number-example"
 import NumberDescription from "./number-description"
@@ -26,7 +25,6 @@ export default function NumbersExplainer() {
       <NumberExample>
         <NumberDecorator className="mx-0.5 text-3xl">{amount}</NumberDecorator>
       </NumberExample>
-      <NumberCaption>&nbsp;</NumberCaption>
       <NumberDescription>
         In {selectedLocale.label}{" "}
         <PartDecorator

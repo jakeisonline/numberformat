@@ -3,7 +3,6 @@
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import NumberExample from "./number-example"
 import PartDecorator from "./part-decorator"
-import NumberCaption from "./number-caption"
 import { useTime } from "react-timer-hook"
 import { getDatetimePartTypes } from "@/lib/utils"
 import NumberDescription from "./number-description"
@@ -53,7 +52,6 @@ export default function DatetimeExplainer() {
             )
           })}
       </NumberExample>
-      <NumberCaption>Style: Medium</NumberCaption>
       <NumberDescription>
         In {selectedLocale.label} time is written as{" "}
         {timeParts.map((part, index) => {

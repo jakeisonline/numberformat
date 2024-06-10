@@ -4,7 +4,6 @@ import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { getNumberPartTypes } from "@/lib/utils"
 import PartDecorator from "./part-decorator"
 import NumberExample from "./number-example"
-import NumberCaption from "./number-caption"
 import NumberDescription from "./number-description"
 
 export default function NumbersExplainer() {
@@ -41,7 +40,6 @@ export default function NumbersExplainer() {
           )
         })}
       </NumberExample>
-      <NumberCaption>Currency Display: </NumberCaption>
       <NumberDescription>
         Currency{" "}
         <PartDecorator
