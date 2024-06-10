@@ -20,7 +20,7 @@ export function RelativeDateList() {
   }
 
   return (
-    <section className="text-center">
+    <section className="mt-6 rounded-lg bg-[#ECECE6] pb-5 pt-4 text-center dark:bg-[#1B1D23]">
       <h3 className="text-lg font-semibold capitalize">Relative Dates</h3>
       <ul
         className={cn(

@@ -4,7 +4,7 @@ type NumberExampleProps = {
 
 export default function NumberExample({ children }: NumberExampleProps) {
   return (
-    <div className="inline-block rounded-sm border border-black/20 px-3 py-2 dark:border-white/20">
+    <div className="mb-2 inline-block rounded-md border border-black/20 bg-[#ECECE6] px-4 py-3 dark:bg-[#1B1D23]">
       {children}
     </div>
   )

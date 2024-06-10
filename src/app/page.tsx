@@ -47,7 +47,6 @@ export default function Home() {
             Dates
           </NumberHeading>
           <DateExplainer />
-          <Separator />
           <RelativeDateList />
         </NumberContainer>
         <NumberContainer>
@@ -56,7 +55,6 @@ export default function Home() {
             Times
           </NumberHeading>
           <TimeExplainer />
-          <Separator />
           <RelativeTimeList />
         </NumberContainer>
         <NumberContainer>
