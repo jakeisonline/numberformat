@@ -29,7 +29,7 @@ export function RelativeTimeList() {
       <h3 className="text-lg font-semibold capitalize">Relative Times</h3>
       <ul
         className={cn(
-          "margin-auto mt-2 grid grid-cols-1 gap-y-0.5 text-center text-lg md:grid-cols-2",
+          "margin-auto text-md mt-2 grid grid-cols-1 gap-y-0.5 text-center md:grid-cols-2",
           selectedLocale.value === browserLocale && "gap-y-4",
         )}
       >
@@ -50,10 +50,10 @@ export function RelativeTimeList() {
             : selectedLocaleRelativeTime
 
           return (
-            <li key={example.label}>
+            <li key={example.label} className="mb-0.5">
               <p>{selectedLocaleRelativeTime}</p>
               {selectedLocaleRelativeTime !== browserLocaleRelativeTime && (
-                <p className="text-xs text-white/40">
+                <p className="-mt-0.5 text-xs text-white/40">
                   {browserLocaleRelativeTime}
                 </p>
               )}
