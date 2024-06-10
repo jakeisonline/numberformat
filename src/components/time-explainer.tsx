@@ -63,11 +63,13 @@ export default function DatetimeExplainer() {
               className="px-0.5"
             >
               {["hour", "minute", "second", "dayPeriod"].indexOf(part.type) > -1
-                ? part.type
+                ? part.type === "dayPeriod"
+                  ? "am/pm"
+                  : part.type
                 : part.value}
             </PartDecorator>
           )
-        })}
+        })}{" "}
         using the {dayPeriod?.value ? "12-" : "24-"}
         hour time format.
       </NumberDescription>
