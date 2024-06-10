@@ -55,7 +55,22 @@ export default function DatetimeExplainer() {
       </NumberExample>
       <NumberCaption>Style: Medium</NumberCaption>
       <NumberDescription>
-        {selectedLocale.label} prefers the {dayPeriod?.value ? "12-" : "24-"}
+        In {selectedLocale.label} time is written as{" "}
+        {timeParts.map((part, index) => {
+          return (
+            <PartDecorator
+              key={index}
+              type={part.type}
+              matchTypes={["hour", "minute", "second", "dayPeriod"]}
+              className="px-0.5"
+            >
+              {["hour", "minute", "second", "dayPeriod"].indexOf(part.type) > -1
+                ? part.type
+                : part.value}
+            </PartDecorator>
+          )
+        })}
+        using the {dayPeriod?.value ? "12-" : "24-"}
         hour time format.
       </NumberDescription>
     </div>
