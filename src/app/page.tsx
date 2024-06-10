@@ -13,6 +13,7 @@ import TimeExplainer from "@/components/time-explainer"
 import MeasuresListServer from "@/components/server/measures-list-server"
 import { MeasuresFullToggle } from "@/components/measures-full-toggle"
 import FullMeasuresContextProvider from "@/contexts/full-measures-context-provider"
+import { RelativeDateList } from "@/components/relative-date-list"
 
 export default function Home() {
   return (
@@ -44,6 +45,7 @@ export default function Home() {
             Dates
           </NumberHeading>
           <DateExplainer />
+          <RelativeDateList />
         </NumberContainer>
         <NumberContainer>
           <NumberHeading>

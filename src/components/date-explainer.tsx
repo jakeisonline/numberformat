@@ -62,7 +62,9 @@ export default function DatetimeExplainer() {
               matchTypes={["weekday", "day", "month", "year"]}
               className="border-0 px-0"
             >
-              {part.value}
+              {["weekday", "day", "month", "year"].indexOf(part.type) > -1
+                ? part.type
+                : part.value}
             </PartDecorator>
           )
         })}
