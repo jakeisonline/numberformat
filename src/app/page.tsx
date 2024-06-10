@@ -40,11 +40,10 @@ export default function Home() {
         </NumberContainer>
         <NumberContainer>
           <NumberHeading>
-            <NumberIcon iconName="banknotes" />
-            Currencies
+            <NumberIcon iconName="calendar" />
+            Dates
           </NumberHeading>
-          <CurrenciesExplainer />
-          <CurrenciesListServer />
+          <DateExplainer />
         </NumberContainer>
         <NumberContainer>
           <NumberHeading>
@@ -55,10 +54,11 @@ export default function Home() {
         </NumberContainer>
         <NumberContainer>
           <NumberHeading>
-            <NumberIcon iconName="calendar" />
-            Dates
+            <NumberIcon iconName="banknotes" />
+            Currencies
           </NumberHeading>
-          <DateExplainer />
+          <CurrenciesExplainer />
+          <CurrenciesListServer />
         </NumberContainer>
         <NumberContainer className="md:col-span-2">
           <FullMeasuresContextProvider>
