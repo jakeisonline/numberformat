@@ -36,7 +36,7 @@ export default function SelectedLocaleContextProvider({
     if (!locale) throw new Error(`Invalid locale value: ${localeValue}`)
 
     setSelectedLocale(locale)
-    router.push(`/${locale.value.toLowerCase()}`)
+    router.push(`/${locale.value.toLowerCase()}`, { scroll: false })
   }
 
   return (
