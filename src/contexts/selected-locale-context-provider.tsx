@@ -1,6 +1,5 @@
 "use client"
 
-import useLocaleRouter from "@/hooks/use-locale-router"
 import { DEFAULT_LOCALE } from "@/lib/const"
 import { TSelectedLocaleContextType, TLocale } from "@/lib/types"
 import { getLocaleByValue } from "@/lib/utils"
