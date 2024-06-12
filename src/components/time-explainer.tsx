@@ -31,11 +31,11 @@ export default function DatetimeExplainer() {
       <NumberExample>
         {!isClient && (
           <div className="flex items-center space-x-1.5">
-            <Skeleton className="h-9 w-9 bg-white/10" />
-            <Skeleton className="h-6 w-3 bg-white/10" />
-            <Skeleton className="h-9 w-9 bg-white/10" />
-            <Skeleton className="h-6 w-3 bg-white/10" />
-            <Skeleton className="h-9 w-9 bg-white/10" />
+            <Skeleton className="h-9 w-9 bg-black/5 dark:bg-white/10" />
+            <Skeleton className="h-6 w-3 bg-black/5 dark:bg-white/10" />
+            <Skeleton className="h-9 w-9 bg-black/5 dark:bg-white/10" />
+            <Skeleton className="h-6 w-3 bg-black/5 dark:bg-white/10" />
+            <Skeleton className="h-9 w-9 bg-black/5 dark:bg-white/10" />
           </div>
         )}
         {isClient &&
