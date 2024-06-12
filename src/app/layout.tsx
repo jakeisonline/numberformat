@@ -5,7 +5,6 @@ import { Urbanist } from "next/font/google"
 import "./globals.css"
 import ThemeContextProvider from "@/contexts/theme-context-provider"
 import SelectedLanguageContextProvider from "@/contexts/selected-locale-context-provider"
-import { getHeadersLocale } from "@/lib/server-utils"
 
 const googleFont = Urbanist({ subsets: ["latin"] })
 
@@ -30,9 +29,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SelectedLanguageContextProvider browserLocale={getHeadersLocale()}>
-            {children}
-          </SelectedLanguageContextProvider>
+          {children}
         </ThemeContextProvider>
       </body>
     </html>

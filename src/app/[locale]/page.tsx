@@ -1,3 +1,4 @@
+import { LOCALES } from "@/lib/const"
 import CurrenciesExplainer from "@/components/currencies-explainer"
 import DateExplainer from "@/components/date-explainer"
 import LocaleSelection from "@/components/locale-selection"
@@ -18,9 +19,22 @@ import { RelativeTimeList } from "@/components/relative-time-list"
 import SelectedLanguageContextProvider from "@/contexts/selected-locale-context-provider"
 import { getHeadersLocale } from "@/lib/server-utils"
 
-export default function Home() {
+type LocalePageProps = {
+  params: {
+    locale: string
+  }
+}
+
+export default function LocalePage({ params }: LocalePageProps) {
+  if (!LOCALES.find((locale) => locale.value.toLowerCase() === params.locale)) {
+    return <div>Locale not found</div>
+  }
+
   return (
-    <SelectedLanguageContextProvider browserLocale={getHeadersLocale()}>
+    <SelectedLanguageContextProvider
+      browserLocale={getHeadersLocale()}
+      urlLocale={params.locale}
+    >
       <main className="mx-auto w-full max-w-6xl px-2 py-2 md:px-6 md:py-4 lg:py-6">
         <header className="flex justify-end">
           <ThemeToggle />

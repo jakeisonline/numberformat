@@ -22,7 +22,9 @@ export function styleNumberSeparator(
 
 export function getLocaleByValue(localeValue: string): TLocale {
   return (
-    LOCALES.find((locale) => locale.value === localeValue) || DEFAULT_LOCALE
+    LOCALES.find(
+      (locale) => locale.value.toLowerCase() === localeValue.toLowerCase(),
+    ) || DEFAULT_LOCALE
   )
 }
 
