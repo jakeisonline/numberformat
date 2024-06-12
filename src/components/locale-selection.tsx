@@ -39,7 +39,7 @@ export default function LocaleSelection() {
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="text-md w-[400px] justify-between border-black/20 dark:border-white/20"
+              className="text-md min-w-[400px] justify-between border-black/20 dark:border-white/20"
             >
               {selectedLocale ? (
                 <PrettyLocale locale={selectedLocale} />
@@ -66,7 +66,7 @@ export default function LocaleSelection() {
       <DrawerTrigger asChild>
         <Button
           variant="outline"
-          className="text-md w-[400px] justify-between border-black/20 dark:border-white/20"
+          className="text-md w-screen justify-between border-black/20 dark:border-white/20"
         >
           {selectedLocale ? (
             <PrettyLocale locale={selectedLocale} />
@@ -133,7 +133,7 @@ function LocalesList({
 function PrettyLocale({ locale }: { locale: TLocale }) {
   return (
     <div className="flex w-full justify-between">
-      <p className="block">{locale.label}</p>
+      <p className="mr-2 block overflow-hidden text-ellipsis">{locale.label}</p>
       <p className="block text-black/40 dark:text-white/60">{locale.value}</p>
     </div>
   )
