@@ -70,8 +70,8 @@ export default function DatetimeExplainer() {
             </PartDecorator>
           )
         })}{" "}
-        using the {dayPeriod?.value ? "12-" : "24-"}
-        hour time format.
+        and prefers the {dayPeriod?.value ? "12-" : "24-"}
+        hour format
       </NumberDescription>
     </div>
   )
