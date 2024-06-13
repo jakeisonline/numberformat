@@ -4,7 +4,6 @@ import type { Metadata } from "next"
 import { Urbanist } from "next/font/google"
 import "./globals.css"
 import ThemeContextProvider from "@/contexts/theme-context-provider"
-import SelectedLanguageContextProvider from "@/contexts/selected-locale-context-provider"
 
 const googleFont = Urbanist({ subsets: ["latin"] })
 
@@ -21,7 +20,7 @@ export default function RootLayout({
   return (
     <html className="h-full" lang="en" suppressHydrationWarning>
       <body
-        className={`flex min-h-full bg-[#ECECE6] dark:bg-[#1B1D23] ${googleFont.className}`}
+        className={`bg-light dark:bg-dark flex min-h-full ${googleFont.className}`}
       >
         <ThemeContextProvider
           attribute="class"

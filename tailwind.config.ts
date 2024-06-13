@@ -8,6 +8,19 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+  theme: {
+    extend: {
+      colors: {
+        orange: "#DE541E",
+        blue: "#3C73F3",
+        yellow: "#E8A02B",
+        green: "#5BB86A",
+        purple: "#9C34CE",
+        dark: "#1B1D23",
+        light: "#ECECE6",
+      },
+    },
+  },
   darkMode: "class",
   prefix: "",
   plugins: [

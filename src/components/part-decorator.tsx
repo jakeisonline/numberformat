@@ -38,25 +38,25 @@ export default function PartDecorator({
       case "decimal":
       case "year":
       case "second":
-        decoratorColor = "#3C73F3"
+        decoratorColor = "blue"
         break
       case "group":
       case "month":
       case "minute":
-        decoratorColor = "#E8A02B"
+        decoratorColor = "yellow"
         break
       case "currency":
       case "day":
       case "hour":
-        decoratorColor = "#5BB86A"
+        decoratorColor = "green"
         break
       case "position":
       case "weekday":
       case "dayPeriod":
-        decoratorColor = "#DE541E"
+        decoratorColor = "orange"
         break
       case "percentSign":
-        decoratorColor = "#9C34CE"
+        decoratorColor = "purple"
         break
       default:
         decoratorColor = ""
@@ -67,7 +67,7 @@ export default function PartDecorator({
     <span
       className={cn(
         isDecoratedPartType &&
-          `text-[${decoratorColor}] inline-flex rounded-sm border border-slate-400 px-1 font-bold dark:border-white/40`,
+          `text-${decoratorColor} inline-flex rounded-sm border border-slate-400 px-1 font-bold dark:border-white/40`,
         className,
       )}
     >

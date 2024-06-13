@@ -49,7 +49,7 @@ export default function LocaleSelection() {
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-[400px] bg-[#ECECE6] p-0 dark:bg-[#1B1D23]">
+          <PopoverContent className="bg-light dark:bg-dark w-[400px] p-0">
             <LocalesList
               setOpen={setOpen}
               selectedLocale={selectedLocale}
@@ -76,7 +76,7 @@ export default function LocaleSelection() {
             )}
           </Button>
         </DrawerTrigger>
-        <DrawerContent className="bg-[#ECECE6] dark:bg-[#1B1D23]">
+        <DrawerContent className="bg-light dark:bg-dark">
           <div className="mt-4 border-t">
             <LocalesList
               setOpen={setOpen}

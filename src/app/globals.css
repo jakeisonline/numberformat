@@ -4,11 +4,11 @@
 
 :root {
   /* Your default theme */
-  --background: #ecece6;
+  --background: theme("colors.light");
   --foreground: black;
 }
 
 [data-theme="dark"] {
-  --background: #1b1d23;
+  --background: theme("colors.dark");
   --foreground: white;
 }
