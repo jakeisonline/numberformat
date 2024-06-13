@@ -3,7 +3,6 @@
 import { DEFAULT_LOCALE } from "@/lib/const"
 import { TSelectedLocaleContextType, TLocale } from "@/lib/types"
 import { getLocaleByValue } from "@/lib/utils"
-import { useRouter } from "next/navigation"
 import { createContext, useState } from "react"
 
 export const SelectedLocaleContext = createContext<TSelectedLocaleContextType>({
@@ -24,7 +23,6 @@ export default function SelectedLocaleContextProvider({
   urlLocale,
   children,
 }: SelectedLocaleContextProviderProps) {
-  const router = useRouter()
   const displayLocale = urlLocale || browserLocale
   const [selectedLocale, setSelectedLocale] = useState<TLocale>(
     getLocaleByValue(displayLocale),
@@ -35,7 +33,7 @@ export default function SelectedLocaleContextProvider({
     if (!locale) throw new Error(`Invalid locale value: ${localeValue}`)
 
     setSelectedLocale(locale)
-    router.push(`/${locale.value.toLowerCase()}`, { scroll: false })
+    window.history.pushState(null, "", `/${locale.value.toLowerCase()}`)
   }
 
   return (
