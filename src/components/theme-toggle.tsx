@@ -11,10 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Skeleton } from "./ui/skeleton"
+import { cn } from "@/lib/utils"
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
   const { setTheme } = useTheme()
+
+  const buttonSize = "h-8 w-8 md:h-10 md:w-10"
+  const iconSize = "h-[0.9rem] w-[0.9rem] md:h-[1.2rem] md:w-[1.2rem]"
 
   /* We don't want this component to render until it's mounted,
   as the server doesn't understand nor care about a user's theme preference */
@@ -24,7 +28,7 @@ export default function ThemeToggle() {
   }, [])
 
   if (!mounted) {
-    return <Skeleton className="h-10 w-10 rounded-md bg-white/10" />
+    return <Skeleton className={cn("rounded-md bg-white/10")} />
   }
 
   return (
@@ -33,10 +37,20 @@ export default function ThemeToggle() {
         <Button
           variant="outline"
           size="icon"
-          className="border-black/20 dark:border-white/20"
+          className={cn("border-black/20 dark:border-white/20", buttonSize)}
         >
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <Sun
+            className={cn(
+              "rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0",
+              iconSize,
+            )}
+          />
+          <Moon
+            className={cn(
+              "absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100",
+              iconSize,
+            )}
+          />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

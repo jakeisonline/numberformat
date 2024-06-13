@@ -23,12 +23,9 @@ export default function CurrenciesList({ randomNumbers }: CurrenciesListProps) {
   }
 
   return (
-    <ul className="margin-auto mt-6 grid grid-cols-1 rounded-lg bg-[#ECECE6] pb-5 pt-4 text-center text-lg dark:bg-[#1B1D23] md:grid-cols-2">
+    <ul className="margin-auto mt-6 grid grid-cols-1 rounded-lg bg-[#ECECE6] pb-5 pt-4 text-center text-lg dark:bg-[#1B1D23] sm:grid-cols-2">
       {CURRENCIES.map((currency, index) => (
-        <li
-          key={currency}
-          className="[&:nth-child(n+6)]:hidden md:[&:nth-child(n+6)]:block"
-        >
+        <li key={currency}>
           <CurrencyDecorator currency={currency} className="border-0 px-0">
             {randomNumbers[index]}
           </CurrencyDecorator>

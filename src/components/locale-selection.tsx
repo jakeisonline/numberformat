@@ -62,29 +62,31 @@ export default function LocaleSelection() {
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        <Button
-          variant="outline"
-          className="text-md w-screen justify-between border-black/20 dark:border-white/20"
-        >
-          {selectedLocale ? (
-            <PrettyLocale locale={selectedLocale} />
-          ) : (
-            "Select locale..."
-          )}
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent className="bg-[#ECECE6] dark:bg-[#1B1D23]">
-        <div className="mt-4 border-t">
-          <LocalesList
-            setOpen={setOpen}
-            selectedLocale={selectedLocale}
-            setSelectedLocale={handleSelectedLocaleChange}
-          />
-        </div>
-      </DrawerContent>
-    </Drawer>
+    <div className="py-3">
+      <Drawer open={open} onOpenChange={setOpen}>
+        <DrawerTrigger asChild>
+          <Button
+            variant="outline"
+            className="text-md w-full justify-between border-black/20 dark:border-white/20"
+          >
+            {selectedLocale ? (
+              <PrettyLocale locale={selectedLocale} />
+            ) : (
+              "Select locale..."
+            )}
+          </Button>
+        </DrawerTrigger>
+        <DrawerContent className="bg-[#ECECE6] dark:bg-[#1B1D23]">
+          <div className="mt-4 border-t">
+            <LocalesList
+              setOpen={setOpen}
+              selectedLocale={selectedLocale}
+              setSelectedLocale={handleSelectedLocaleChange}
+            />
+          </div>
+        </DrawerContent>
+      </Drawer>
+    </div>
   )
 }
 

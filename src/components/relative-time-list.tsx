@@ -29,7 +29,7 @@ export function RelativeTimeList() {
       <h3 className="text-lg font-semibold capitalize">Relative Times</h3>
       <ul
         className={cn(
-          "margin-auto text-md mt-2 grid grid-cols-1 gap-y-0.5 text-center md:grid-cols-2",
+          "margin-auto text-md mt-2 grid grid-cols-1 gap-y-0.5 text-center sm:grid-cols-2",
           selectedLocale.value === browserLocale && "gap-y-4",
         )}
       >

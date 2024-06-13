@@ -48,7 +48,7 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
   }
 
   return (
-    <div className="column-1 sm:column-2 break-before-auto md:columns-3">
+    <div className="columns-1 break-before-auto text-center sm:columns-2 sm:text-left md:columns-3">
       {MEASURE_TYPES_UNITS.map(({ type, units }) => {
         const randomNumber = getNextRandomNumber(randomNumbers)
 

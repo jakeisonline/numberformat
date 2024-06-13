@@ -13,7 +13,7 @@ type NumberIconProps = {
 }
 
 export default function NumberIcon({ iconName, className }: NumberIconProps) {
-  const baseIconClass = "size-10"
+  const baseIconClass = "size-7 md:size-9 lg:size-10"
 
   switch (iconName) {
     case "hashtag":
