@@ -38,6 +38,7 @@ export default function ThemeToggle() {
           variant="outline"
           size="icon"
           className={cn("border-black/20 dark:border-white/20", buttonSize)}
+          aria-label="Choose between dark and light modes"
         >
           <Sun
             className={cn(

@@ -19,9 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html className="h-full" lang="en" suppressHydrationWarning>
-      <body
-        className={`bg-light dark:bg-dark flex min-h-full ${googleFont.className}`}
-      >
+      <body className={`bg-page flex min-h-full ${googleFont.className}`}>
         <ThemeContextProvider
           attribute="class"
           defaultTheme="system"

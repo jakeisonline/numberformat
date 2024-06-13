@@ -39,6 +39,7 @@ export default function LocaleSelection() {
               variant="outline"
               role="combobox"
               aria-expanded={open}
+              aria-label="Select a locale"
               className="text-md min-w-[400px] justify-between border-black/20 dark:border-white/20"
             >
               {selectedLocale ? (
@@ -49,7 +50,7 @@ export default function LocaleSelection() {
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="bg-light dark:bg-dark w-[400px] p-0">
+          <PopoverContent className="bg-page w-[400px] p-0">
             <LocalesList
               setOpen={setOpen}
               selectedLocale={selectedLocale}
@@ -76,7 +77,7 @@ export default function LocaleSelection() {
             )}
           </Button>
         </DrawerTrigger>
-        <DrawerContent className="bg-light dark:bg-dark">
+        <DrawerContent className="bg-page">
           <div className="mt-4 border-t">
             <LocalesList
               setOpen={setOpen}

@@ -13,6 +13,7 @@ export function MeasuresFullToggle() {
         id="measures-full"
         checked={showFullMeasures}
         onCheckedChange={handleSetShowFullMeasures}
+        aria-label="Toggle between full or compact list of measures"
       />
       <Label htmlFor="measures-full">Full List</Label>
     </div>

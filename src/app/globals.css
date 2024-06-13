@@ -4,11 +4,21 @@
 
 :root {
   /* Your default theme */
-  --background: theme("colors.light");
-  --foreground: black;
+  --background: rgb(236 236 230);
+  --foreground: rgb(0 0 0);
+  --color-orange: rgb(222 84 30);
+  --color-blue: rgb(60 115 243);
+  --color-yellow: rgb(232 160 43);
+  --color-green: rgb(91 184 106);
+  --color-purple: rgb(156 52 206);
 }
 
-[data-theme="dark"] {
-  --background: theme("colors.dark");
-  --foreground: white;
+[class~="dark"] {
+  --background: rgb(27 29 35);
+  --foreground: rgb(255 255 255);
+  --color-orange: rgb(222 84 30);
+  --color-blue: rgb(60 115 243);
+  --color-yellow: rgb(232 160 43);
+  --color-green: rgb(91 184 106);
+  --color-purple: rgb(156 52 206);
 }

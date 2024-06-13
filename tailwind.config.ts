@@ -11,13 +11,14 @@ const config = {
   theme: {
     extend: {
       colors: {
-        orange: "#DE541E",
-        blue: "#3C73F3",
-        yellow: "#E8A02B",
-        green: "#5BB86A",
-        purple: "#9C34CE",
+        orange: "var(--color-orange)",
+        blue: "var(--color-blue)",
+        yellow: "var(--color-yellow)",
+        green: "var(--color-green)",
+        purple: "var(--color-purple)",
         dark: "#1B1D23",
         light: "#ECECE6",
+        page: "var(--background)",
       },
     },
   },
