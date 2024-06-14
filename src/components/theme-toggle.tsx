@@ -55,7 +55,7 @@ export default function ThemeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="bg-light dark:bg-dark">
         {["light", "dark", "system"].map((theme) => (
           <DropdownMenuItem
             className="capitalize hover:cursor-pointer hover:bg-black/10 dark:hover:bg-white/10"
