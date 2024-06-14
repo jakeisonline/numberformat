@@ -69,11 +69,11 @@ export default function LocaleSelection() {
 
   return (
     <div className="py-3">
-      <Drawer open={open} onOpenChange={setOpen}>
+      <Drawer open={open} onOpenChange={setOpen} noBodyStyles>
         <DrawerTrigger asChild>
           <Button
             variant="outline"
-            className="text-md w-full justify-between border-black/20 dark:border-white/20"
+            className="text-md w-screen justify-between border-black/20 dark:border-white/20"
           >
             {selectedLocale ? (
               <PrettyLocale locale={selectedLocale} />
@@ -83,7 +83,7 @@ export default function LocaleSelection() {
           </Button>
         </DrawerTrigger>
         <DrawerContent className="bg-page">
-          <div className="mt-4 border-t">
+          <div className="border-t">
             <LocalesList
               setOpen={setOpen}
               selectedLocale={selectedLocale}
@@ -138,7 +138,7 @@ function LocalesList({
     <Command>
       <CommandInput placeholder="Search locales..." />
       <CommandList className="">
-        <CommandEmpty>No framework found.</CommandEmpty>
+        <CommandEmpty>No matching locale found.</CommandEmpty>
         <CommandGroup>
           {LOCALES.map((locale) => (
             <CommandItem
