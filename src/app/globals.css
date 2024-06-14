@@ -6,11 +6,11 @@
   /* Your default theme */
   --background: rgb(236 236 230);
   --foreground: rgb(0 0 0);
-  --color-orange: rgb(222 84 30);
-  --color-blue: rgb(60 115 243);
-  --color-yellow: rgb(232 160 43);
-  --color-green: rgb(91 184 106);
-  --color-purple: rgb(156 52 206);
+  --color-orange: rgb(197 75 27);
+  --color-blue: rgb(44 103 242);
+  --color-yellow: rgb(202 133 22);
+  --color-green: rgb(55 129 67);
+  --color-purple: rgb(168 74 211);
 }
 
 [class~="dark"] {
@@ -20,5 +20,5 @@
   --color-blue: rgb(60 115 243);
   --color-yellow: rgb(232 160 43);
   --color-green: rgb(91 184 106);
-  --color-purple: rgb(156 52 206);
+  --color-purple: rgb(168 74 211);
 }

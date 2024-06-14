@@ -27,7 +27,7 @@ export default function LocaleSelection() {
     initializeWithValue: false, // avoid hydration error
   })
   const [open, setOpen] = useState(false)
-  const { selectedLocale, handleSelectedLocaleChange } =
+  const { selectedLocale, browserLocale, handleSelectedLocaleChange } =
     useSelectedLocaleContext()
 
   if (!isMobile) {
@@ -58,6 +58,11 @@ export default function LocaleSelection() {
             />
           </PopoverContent>
         </Popover>
+        <p className="mt-1 min-h-4 text-center text-xs dark:text-white/60">
+          {browserLocale &&
+            browserLocale === selectedLocale.value &&
+            "This is your current browser locale"}
+        </p>
       </div>
     )
   }
