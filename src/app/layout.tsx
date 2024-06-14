@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { Urbanist } from "next/font/google"
 import "./globals.css"
 import ThemeContextProvider from "@/contexts/theme-context-provider"
+import Footer from "@/components/footer"
 
 const googleFont = Urbanist({ subsets: ["latin"] })
 
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html className="h-full" lang="en" suppressHydrationWarning>
-      <body className={`bg-page flex min-h-full ${googleFont.className}`}>
+      <body
+        className={`bg-page flex min-h-full flex-col ${googleFont.className}`}
+      >
         <ThemeContextProvider
           attribute="class"
           defaultTheme="system"
@@ -28,6 +31,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeContextProvider>
+        <Footer />
         <Analytics />
         <SpeedInsights />
       </body>
