@@ -3,6 +3,7 @@ export type TSelectedLocaleContextType = {
   browserLocale: string | undefined
   urlLocale?: string
   handleSelectedLocaleChange: (localeValue: string) => void
+  resetSelectedLocale: () => void
 }
 
 export type TLocale = {

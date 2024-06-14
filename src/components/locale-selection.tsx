@@ -27,8 +27,12 @@ export default function LocaleSelection() {
     initializeWithValue: false, // avoid hydration error
   })
   const [open, setOpen] = useState(false)
-  const { selectedLocale, browserLocale, handleSelectedLocaleChange } =
-    useSelectedLocaleContext()
+  const {
+    selectedLocale,
+    browserLocale,
+    handleSelectedLocaleChange,
+    resetSelectedLocale,
+  } = useSelectedLocaleContext()
 
   if (!isMobile) {
     return (
@@ -59,9 +63,11 @@ export default function LocaleSelection() {
           </PopoverContent>
         </Popover>
         <p className="mt-1 min-h-4 text-center text-xs dark:text-white/60">
-          {browserLocale &&
-            browserLocale === selectedLocale.value &&
-            "This is your current browser locale"}
+          {browserLocale && browserLocale === selectedLocale.value ? (
+            "This is your current browser locale"
+          ) : (
+            <ResetLocaleButton />
+          )}
         </p>
       </div>
     )
@@ -100,6 +106,19 @@ type LocalesListProps = {
   setOpen: (open: boolean) => void
   selectedLocale: TLocale
   setSelectedLocale: (locale: string) => void
+}
+
+function ResetLocaleButton() {
+  const { browserLocale, resetSelectedLocale } = useSelectedLocaleContext()
+  return (
+    <Button
+      variant="link"
+      className="text-md hover:text-blue h-auto p-0 text-black/60 underline decoration-dotted"
+      onClick={resetSelectedLocale}
+    >
+      Set to your browser locale ({browserLocale})
+    </Button>
+  )
 }
 
 function LocalesList({

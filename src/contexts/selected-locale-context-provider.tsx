@@ -10,6 +10,7 @@ export const SelectedLocaleContext = createContext<TSelectedLocaleContextType>({
   browserLocale: undefined,
   urlLocale: undefined,
   handleSelectedLocaleChange: () => {},
+  resetSelectedLocale: () => {},
 })
 
 type SelectedLocaleContextProviderProps = {
@@ -33,12 +34,26 @@ export default function SelectedLocaleContextProvider({
     if (!locale) throw new Error(`Invalid locale value: ${localeValue}`)
 
     setSelectedLocale(locale)
-    window.history.pushState(null, "", `/${locale.value.toLowerCase()}`)
+
+    if (locale.value !== browserLocale) {
+      window.history.pushState(null, "", `/${locale.value.toLowerCase()}`)
+    } else {
+      window.history.pushState(null, "", "/")
+    }
+  }
+
+  const resetSelectedLocale = () => {
+    handleSelectedLocaleChange(browserLocale)
   }
 
   return (
     <SelectedLocaleContext.Provider
-      value={{ selectedLocale, browserLocale, handleSelectedLocaleChange }}
+      value={{
+        selectedLocale,
+        browserLocale,
+        handleSelectedLocaleChange,
+        resetSelectedLocale,
+      }}
     >
       {children}
     </SelectedLocaleContext.Provider>
