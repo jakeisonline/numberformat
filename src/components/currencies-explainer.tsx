@@ -55,7 +55,3 @@ export default function NumbersExplainer() {
     </div>
   )
 }
-
-function isPartTypeLast(parts: Intl.NumberFormatPart[], partType: string) {
-  return parts.findIndex((part) => part.type === partType) === parts.length - 1
-}
