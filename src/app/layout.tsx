@@ -28,6 +28,8 @@ export default function RootLayout({
         >
           {children}
         </ThemeContextProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
