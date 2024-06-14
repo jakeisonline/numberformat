@@ -53,7 +53,8 @@ export default function DatetimeExplainer() {
           })}
       </NumberExample>
       <NumberDescription>
-        In {selectedLocale.label} time is written as{" "}
+        Time is written as
+        <br />
         {timeParts.map((part, index) => {
           return (
             <PartDecorator
@@ -70,7 +71,8 @@ export default function DatetimeExplainer() {
             </PartDecorator>
           )
         })}{" "}
-        and prefers the {dayPeriod?.value ? "12-" : "24-"}
+        <br />
+        using the {dayPeriod?.value ? "12-" : "24-"}
         hour format
       </NumberDescription>
     </div>

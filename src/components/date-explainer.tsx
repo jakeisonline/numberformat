@@ -34,7 +34,8 @@ export default function DatetimeExplainer() {
         })}
       </NumberExample>
       <p className="mt-3">
-        In {selectedLocale.label} the short date is written as{" "}
+        Short date is written as
+        <br />
         {shortDateParts.map((part, index) => {
           return (
             <PartDecorator
@@ -51,7 +52,8 @@ export default function DatetimeExplainer() {
         })}
       </p>
       <p className="mt-3">
-        The full date should be written as{" "}
+        Full date should be written as
+        <br />
         {longDateParts.map((part, index) => {
           return (
             <PartDecorator

@@ -26,7 +26,6 @@ export default function NumbersExplainer() {
         <NumberDecorator className="mx-0.5 text-3xl">{amount}</NumberDecorator>
       </NumberExample>
       <NumberDescription>
-        In {selectedLocale.label}{" "}
         <PartDecorator type="group" matchTypes={["group"]}>
           groups
         </PartDecorator>{" "}
