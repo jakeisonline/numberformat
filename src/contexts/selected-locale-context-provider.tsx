@@ -33,13 +33,13 @@ export default function SelectedLocaleContextProvider({
     const locale = getLocaleByValue(localeValue)
     if (!locale) throw new Error(`Invalid locale value: ${localeValue}`)
 
-    setSelectedLocale(locale)
-
     if (locale.value !== browserLocale) {
       window.history.pushState(null, "", `/${locale.value.toLowerCase()}`)
     } else {
       window.history.pushState(null, "", "/")
     }
+
+    setSelectedLocale(locale)
   }
 
   const resetSelectedLocale = () => {
