@@ -27,11 +27,7 @@ export default function NumbersExplainer() {
       </NumberExample>
       <NumberDescription>
         In {selectedLocale.label}{" "}
-        <PartDecorator
-          type="group"
-          matchTypes={["group"]}
-          className="font-normal"
-        >
+        <PartDecorator type="group" matchTypes={["group"]}>
           groups
         </PartDecorator>{" "}
         of numbers are separated by a{" "}
@@ -43,11 +39,7 @@ export default function NumbersExplainer() {
           {charIsSpace(group.value) ? "space" : group.value}
         </PartDecorator>{" "}
         and{" "}
-        <PartDecorator
-          type="decimal"
-          matchTypes={["decimal"]}
-          className="font-normal"
-        >
+        <PartDecorator type="decimal" matchTypes={["decimal"]}>
           decimals
         </PartDecorator>{" "}
         with a{" "}
