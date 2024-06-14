@@ -124,7 +124,7 @@ function ResetLocaleButton() {
       className="text-md hover:text-blue dark:hover:text-blue h-auto p-0 text-black/60 underline decoration-dotted dark:text-white/60"
       onClick={resetSelectedLocale}
     >
-      Set to your browser locale ({browserLocale})
+      Reset to your browser locale ({browserLocale})
     </Button>
   )
 }
