@@ -42,11 +42,7 @@ export default function NumbersExplainer() {
       </NumberExample>
       <NumberDescription>
         Currency{" "}
-        <PartDecorator
-          type="currency"
-          matchTypes={["currency"]}
-          className="font-normal"
-        >
+        <PartDecorator type="currency" matchTypes={["currency"]}>
           symbol
         </PartDecorator>{" "}
         position may depend on <strong>both</strong> locale & currency being

@@ -35,27 +35,24 @@ export default function PartDecorator({
 
   if (isDecoratedPartType) {
     switch (type) {
-      case "decimal":
-      case "year":
-      case "second":
-        decoratorColor = "blue"
-        break
       case "group":
-      case "month":
-      case "minute":
-        decoratorColor = "yellow"
-        break
-      case "currency":
+      case "position":
+      case "dayPeriod":
       case "day":
       case "hour":
-        decoratorColor = "green"
-        break
-      case "position":
-      case "weekday":
-      case "dayPeriod":
         decoratorColor = "orange"
         break
-      case "percentSign":
+      case "decimal":
+      case "month":
+      case "minute":
+        decoratorColor = "blue"
+        break
+      case "second":
+      case "year":
+        decoratorColor = "green"
+        break
+      case "weekday":
+      case "currency":
         decoratorColor = "purple"
         break
       default:

@@ -39,7 +39,7 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
     const formattedMeasure = styleNumberSeparator(
       measureString.replace(
         unitPart,
-        `<strong class="font-bold text-purple">${unitPart}</strong>`,
+        `<strong class="font-bold text-orange">${unitPart}</strong>`,
       ),
       "#9C34CE",
     )
