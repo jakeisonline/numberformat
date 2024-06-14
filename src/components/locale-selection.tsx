@@ -92,6 +92,7 @@ export default function LocaleSelection() {
           </div>
         </DrawerContent>
       </Drawer>
+      <ResetLocale />
     </div>
   )
 }
