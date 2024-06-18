@@ -2,7 +2,16 @@ import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 
 export const config = {
-  matcher: "/:path*",
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - sitemap.xml (sitemap file)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - icon.png (favicon file)
+     */
+    "/((?!sitemap.xml|_next/static|_next/image|icon.png).*)",
+  ],
 }
 
 const Middleware = (req: NextRequest) => {
