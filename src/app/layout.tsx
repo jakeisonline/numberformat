@@ -10,7 +10,14 @@ const googleFont = Urbanist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Number Format - Every number format, for every locale",
-  description: "",
+  description:
+    "Every language and locale has its own special rules when it comes to number formatting. This tool helps you look up the right format for every locale.",
+  openGraph: {
+    title: "Number Format - Every number format, for every locale",
+    description:
+      "Every language and locale has its own special rules when it comes to number formatting. This tool helps you look up the right format for every locale.",
+    url: "https://www.numberformat.app",
+  },
 }
 
 export default function RootLayout({
