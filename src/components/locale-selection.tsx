@@ -1,7 +1,7 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import { ChevronsUpDown } from "lucide-react"
+import { Pencil } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Command,
@@ -16,6 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { PencilIcon } from "@heroicons/react/24/outline"
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import { LOCALES } from "@/lib/const"
 import { useState } from "react"
@@ -60,14 +61,15 @@ function ResponsiveLocaleSelector({}) {
             role="combobox"
             aria-expanded={open}
             aria-label="Select a locale"
-            className="text-md z-10 min-w-96 max-w-fit justify-between border-black/20 dark:border-white/20"
+            className="text-md group z-10 min-w-96 max-w-fit justify-between border-2 border-black/20 hover:bg-slate-800 dark:border-white/20 hover:dark:border-white/50"
           >
             {selectedLocale ? (
               <PrettyLocale locale={selectedLocale} />
             ) : (
               "Select locale..."
             )}
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+
+            <Pencil className="ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="bg-page w-[400px] p-0">
@@ -93,6 +95,7 @@ function ResponsiveLocaleSelector({}) {
           ) : (
             "Select locale..."
           )}
+          <Pencil className="ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
         </Button>
       </DrawerTrigger>
       <DrawerContent className="bg-page">
