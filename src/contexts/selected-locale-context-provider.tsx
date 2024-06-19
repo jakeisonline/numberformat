@@ -1,6 +1,6 @@
 "use client"
 
-import { DEFAULT_LOCALE } from "@/lib/const"
+import { DEFAULT_LOCALE, LOCALES } from "@/lib/const"
 import { TSelectedLocaleContextType, TLocale } from "@/lib/types"
 import { getLocaleByValue } from "@/lib/utils"
 import { createContext, useState } from "react"
@@ -10,6 +10,7 @@ export const SelectedLocaleContext = createContext<TSelectedLocaleContextType>({
   browserLocale: undefined,
   urlLocale: undefined,
   handleSelectedLocaleChange: () => {},
+  randomizeSelectedLocale: () => {},
   resetSelectedLocale: () => {},
 })
 
@@ -42,6 +43,11 @@ export default function SelectedLocaleContextProvider({
     setSelectedLocale(locale)
   }
 
+  const randomizeSelectedLocale = () => {
+    const randomLocale = LOCALES[Math.floor(Math.random() * LOCALES.length)]
+    handleSelectedLocaleChange(randomLocale.value)
+  }
+
   const resetSelectedLocale = () => {
     handleSelectedLocaleChange(browserLocale)
   }
@@ -52,6 +58,7 @@ export default function SelectedLocaleContextProvider({
         selectedLocale,
         browserLocale,
         handleSelectedLocaleChange,
+        randomizeSelectedLocale,
         resetSelectedLocale,
       }}
     >

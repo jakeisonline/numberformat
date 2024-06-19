@@ -1,7 +1,7 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import { Pencil } from "lucide-react"
+import { Pencil, Shuffle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Command,
@@ -16,7 +16,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { PencilIcon } from "@heroicons/react/24/outline"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import { LOCALES } from "@/lib/const"
 import { useState } from "react"
@@ -54,32 +59,35 @@ function ResponsiveLocaleSelector({}) {
 
   if (!isMobile) {
     return (
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            role="combobox"
-            aria-expanded={open}
-            aria-label="Select a locale"
-            className="text-md group z-10 min-w-96 max-w-fit justify-between border-2 border-black/20 hover:bg-slate-800 dark:border-white/20 hover:dark:border-white/50"
-          >
-            {selectedLocale ? (
-              <PrettyLocale locale={selectedLocale} />
-            ) : (
-              "Select locale..."
-            )}
+      <>
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              role="combobox"
+              aria-expanded={open}
+              aria-label="Select a locale"
+              className="text-md group z-10 min-w-96 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 dark:border-white/20 hover:dark:border-white/50 dark:hover:bg-slate-800"
+            >
+              {selectedLocale ? (
+                <PrettyLocale locale={selectedLocale} />
+              ) : (
+                "Select locale..."
+              )}
 
-            <Pencil className="ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="bg-page w-[400px] p-0">
-          <LocalesList
-            setOpen={setOpen}
-            selectedLocale={selectedLocale}
-            setSelectedLocale={handleSelectedLocaleChange}
-          />
-        </PopoverContent>
-      </Popover>
+              <Pencil className="ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="bg-page w-[400px] p-0">
+            <LocalesList
+              setOpen={setOpen}
+              selectedLocale={selectedLocale}
+              setSelectedLocale={handleSelectedLocaleChange}
+            />
+          </PopoverContent>
+        </Popover>
+        <RandomizeLocaleButton />
+      </>
     )
   }
 
@@ -115,6 +123,32 @@ type LocalesListProps = {
   setOpen: (open: boolean) => void
   selectedLocale: TLocale
   setSelectedLocale: (locale: string) => void
+}
+
+function RandomizeLocaleButton() {
+  const { randomizeSelectedLocale } = useSelectedLocaleContext()
+
+  return (
+    <TooltipProvider delayDuration={300}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            onClick={randomizeSelectedLocale}
+            variant="ghost"
+            className="group absolute ml-2 inline-flex hover:bg-neutral-200 dark:hover:bg-slate-800"
+          >
+            <Shuffle className="h-5 w-5 shrink-0 opacity-50 group-hover:opacity-100" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent
+          sideOffset={10}
+          className="border-none bg-neutral-200 dark:bg-slate-800"
+        >
+          <p>Pick a random locale</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
 }
 
 function ResetLocale() {
