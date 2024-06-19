@@ -23,77 +23,88 @@ import { useMediaQuery } from "usehooks-ts"
 import { TLocale } from "@/lib/types"
 
 export default function LocaleSelection() {
+  return (
+    <StickyLocaleWrapper>
+      <ResponsiveLocaleSelector />
+      <ResetLocale />
+    </StickyLocaleWrapper>
+  )
+}
+
+function StickyLocaleWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <div className="bg-page sticky top-0 z-20 mx-auto h-[112px] py-3 text-center">
+        {children}
+      </div>
+      <div className="sticky top-[112px] h-2 w-full bg-gradient-to-b from-neutral-200 dark:from-neutral-900" />
+      <div className="bg-page sticky top-0 z-10 -mt-2 h-2 w-full" />
+    </>
+  )
+}
+
+function ResponsiveLocaleSelector({}) {
   const isMobile = useMediaQuery("(max-width: 768px)", {
     initializeWithValue: false, // avoid hydration error
   })
   const [open, setOpen] = useState(false)
-  const {
-    selectedLocale,
-    browserLocale,
-    handleSelectedLocaleChange,
-    resetSelectedLocale,
-  } = useSelectedLocaleContext()
+  const { selectedLocale, handleSelectedLocaleChange } =
+    useSelectedLocaleContext()
 
   if (!isMobile) {
     return (
-      <div className="mx-auto py-8">
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              role="combobox"
-              aria-expanded={open}
-              aria-label="Select a locale"
-              className="text-md min-w-[400px] justify-between border-black/20 dark:border-white/20"
-            >
-              {selectedLocale ? (
-                <PrettyLocale locale={selectedLocale} />
-              ) : (
-                "Select locale..."
-              )}
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="bg-page w-[400px] p-0">
-            <LocalesList
-              setOpen={setOpen}
-              selectedLocale={selectedLocale}
-              setSelectedLocale={handleSelectedLocaleChange}
-            />
-          </PopoverContent>
-        </Popover>
-        <ResetLocale />
-      </div>
-    )
-  }
-
-  return (
-    <div className="py-3">
-      <Drawer open={open} onOpenChange={setOpen} noBodyStyles>
-        <DrawerTrigger asChild>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className="text-md w-screen justify-between border-black/20 dark:border-white/20"
+            role="combobox"
+            aria-expanded={open}
+            aria-label="Select a locale"
+            className="text-md z-10 min-w-96 max-w-fit justify-between border-black/20 dark:border-white/20"
           >
             {selectedLocale ? (
               <PrettyLocale locale={selectedLocale} />
             ) : (
               "Select locale..."
             )}
+            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
-        </DrawerTrigger>
-        <DrawerContent className="bg-page">
-          <div className="border-t">
-            <LocalesList
-              setOpen={setOpen}
-              selectedLocale={selectedLocale}
-              setSelectedLocale={handleSelectedLocaleChange}
-            />
-          </div>
-        </DrawerContent>
-      </Drawer>
-      <ResetLocale />
-    </div>
+        </PopoverTrigger>
+        <PopoverContent className="bg-page w-[400px] p-0">
+          <LocalesList
+            setOpen={setOpen}
+            selectedLocale={selectedLocale}
+            setSelectedLocale={handleSelectedLocaleChange}
+          />
+        </PopoverContent>
+      </Popover>
+    )
+  }
+
+  return (
+    <Drawer open={open} onOpenChange={setOpen} noBodyStyles>
+      <DrawerTrigger asChild>
+        <Button
+          variant="outline"
+          className="text-md w-screen justify-between border-black/20 dark:border-white/20"
+        >
+          {selectedLocale ? (
+            <PrettyLocale locale={selectedLocale} />
+          ) : (
+            "Select locale..."
+          )}
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent className="bg-page">
+        <div className="border-t">
+          <LocalesList
+            setOpen={setOpen}
+            selectedLocale={selectedLocale}
+            setSelectedLocale={handleSelectedLocaleChange}
+          />
+        </div>
+      </DrawerContent>
+    </Drawer>
   )
 }
 

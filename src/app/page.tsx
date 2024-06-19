@@ -28,15 +28,15 @@ export default function Home() {
           <header className="flex justify-end">
             <ThemeToggle />
           </header>
-          <div className="relative mx-auto flex w-full flex-auto justify-center lg:mt-8">
+          <div className="relative mx-auto flex w-full flex-auto justify-center md:mb-5 lg:mt-8">
             <section className="flex w-screen flex-col md:w-10/12">
               <h1 className="font-display inline text-center text-3xl font-bold tracking-tight md:text-5xl lg:text-6xl">
                 Every <span className="text-orange">number format</span>,
                 <br /> for every <span className="text-blue">locale</span>
               </h1>
-              <LocaleSelection />
             </section>
           </div>
+          <LocaleSelection />
           <NumbersWrapper>
             <NumberContainer>
               <NumberHeading>

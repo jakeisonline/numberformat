@@ -20,6 +20,9 @@ const config = {
         light: "#ECECE6",
         page: "var(--background)",
       },
+      boxShadow: {
+        b: "0 5px 8px -7px var(--foreground)",
+      },
     },
   },
   darkMode: "class",
