@@ -28,6 +28,7 @@ import { LOCALES } from "@/lib/const"
 import { useEffect, useState } from "react"
 import { useMediaQuery } from "usehooks-ts"
 import { TLocale } from "@/lib/types"
+import { usePlausible } from "next-plausible"
 
 export default function LocaleSelection() {
   return (
@@ -129,13 +130,23 @@ type LocalesListProps = {
 
 function RandomizeLocaleButton() {
   const { randomizeSelectedLocale } = useSelectedLocaleContext()
+  const plausible = usePlausible()
+
+  const handleClick = () => {
+    randomizeSelectedLocale()
+    plausible("Randomize Locale", {
+      props: {
+        buttonId: "randomize-main-page",
+      },
+    })
+  }
 
   return (
     <TooltipProvider delayDuration={300}>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
-            onClick={randomizeSelectedLocale}
+            onClick={handleClick}
             variant="ghost"
             className="group absolute ml-2 inline-flex hover:bg-neutral-200 dark:hover:bg-slate-800"
           >
@@ -168,11 +179,18 @@ function ResetLocale() {
 
 function ResetLocaleButton() {
   const { browserLocale, resetSelectedLocale } = useSelectedLocaleContext()
+  const plausible = usePlausible()
+
+  const handleClick = () => {
+    resetSelectedLocale()
+    plausible("action-reset-locale")
+  }
+
   return (
     <Button
       variant="link"
       className="text-md hover:text-blue dark:hover:text-blue h-auto p-0 text-black/60 underline decoration-dotted dark:text-white/60"
-      onClick={resetSelectedLocale}
+      onClick={handleClick}
     >
       Reset to your browser locale ({browserLocale})
     </Button>
