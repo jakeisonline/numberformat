@@ -267,9 +267,9 @@ function LocalesList({ setOpen }: LocalesListProps) {
                 )
                 setOpen(false)
 
-                plausible("Selected Locale", {
+                plausible("Select Locale", {
                   props: {
-                    "button-id": "locale--locale-selection",
+                    "button-id": "select-locale--locale-selection",
                   },
                 })
               }}
