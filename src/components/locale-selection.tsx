@@ -1,7 +1,7 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import { Pencil, Shuffle } from "lucide-react"
+import { Pencil, Shuffle, Undo2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Command,
@@ -10,6 +10,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
 } from "@/components/ui/command"
 import {
   Popover,
@@ -24,7 +25,7 @@ import {
 } from "@/components/ui/tooltip"
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import { LOCALES } from "@/lib/const"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useMediaQuery } from "usehooks-ts"
 import { TLocale } from "@/lib/types"
 
@@ -54,8 +55,19 @@ function ResponsiveLocaleSelector({}) {
     initializeWithValue: false, // avoid hydration error
   })
   const [open, setOpen] = useState(false)
-  const { selectedLocale, handleSelectedLocaleChange } =
-    useSelectedLocaleContext()
+  const { selectedLocale } = useSelectedLocaleContext()
+
+  useEffect(() => {
+    const keydown = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
+
+    document.addEventListener("keydown", keydown)
+    return () => document.removeEventListener("keydown", keydown)
+  }, [])
 
   if (!isMobile) {
     return (
@@ -78,12 +90,8 @@ function ResponsiveLocaleSelector({}) {
               <Pencil className="ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="bg-page w-[400px] p-0">
-            <LocalesList
-              setOpen={setOpen}
-              selectedLocale={selectedLocale}
-              setSelectedLocale={handleSelectedLocaleChange}
-            />
+          <PopoverContent className="bg-page w-full p-0">
+            <LocalesList setOpen={setOpen} />
           </PopoverContent>
         </Popover>
         <RandomizeLocaleButton />
@@ -108,11 +116,7 @@ function ResponsiveLocaleSelector({}) {
       </DrawerTrigger>
       <DrawerContent className="bg-page">
         <div className="border-t">
-          <LocalesList
-            setOpen={setOpen}
-            selectedLocale={selectedLocale}
-            setSelectedLocale={handleSelectedLocaleChange}
-          />
+          <LocalesList setOpen={setOpen} />
         </div>
       </DrawerContent>
     </Drawer>
@@ -121,8 +125,6 @@ function ResponsiveLocaleSelector({}) {
 
 type LocalesListProps = {
   setOpen: (open: boolean) => void
-  selectedLocale: TLocale
-  setSelectedLocale: (locale: string) => void
 }
 
 function RandomizeLocaleButton() {
@@ -177,31 +179,62 @@ function ResetLocaleButton() {
   )
 }
 
-function LocalesList({
-  setOpen,
-  selectedLocale,
-  setSelectedLocale,
-}: LocalesListProps) {
+function LocalesList({ setOpen }: LocalesListProps) {
+  const {
+    selectedLocale,
+    browserLocale,
+    handleSelectedLocaleChange,
+    randomizeSelectedLocale,
+  } = useSelectedLocaleContext()
+
   return (
     <Command>
       <CommandInput placeholder="Search locales..." />
-      <CommandList className="">
+      <CommandList>
         <CommandEmpty>No matching locale found.</CommandEmpty>
         <CommandGroup>
+          <CommandItem
+            onSelect={() => {
+              randomizeSelectedLocale()
+              setOpen(false)
+            }}
+            className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 aria-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:aria-[selected=true]:bg-white/10"
+          >
+            <Shuffle className="h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
+            <p className="block">Pick a random locale</p>
+          </CommandItem>
+          {browserLocale && browserLocale !== selectedLocale.value && (
+            <CommandItem
+              onSelect={() => {
+                handleSelectedLocaleChange(browserLocale)
+                setOpen(false)
+              }}
+              className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 aria-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:aria-[selected=true]:bg-white/10"
+            >
+              <Undo2 className="h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
+              <p className="block">Reset to your browser locale</p>
+            </CommandItem>
+          )}
+        </CommandGroup>
+        <CommandSeparator className="bg-black/20 dark:bg-white/30" />
+        <CommandGroup
+          heading="All Available Locales"
+          className="text-black/60 dark:text-white/60"
+        >
           {LOCALES.map((locale) => (
             <CommandItem
               key={locale.value}
               value={locale.value}
               keywords={[locale.label]}
               onSelect={(currentValue) => {
-                setSelectedLocale(
+                handleSelectedLocaleChange(
                   currentValue === selectedLocale.value ? "" : currentValue,
                 )
                 setOpen(false)
               }}
-              className="flex-col items-start hover:cursor-pointer hover:bg-black/10 dark:hover:bg-white/10"
+              className="flex-col items-start hover:cursor-pointer hover:bg-black/10 aria-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:aria-[selected=true]:bg-white/10"
             >
-              <p className="block">{locale.label}</p>
+              <p className="block text-black dark:text-white">{locale.label}</p>
               <p className="block text-black/40 dark:text-white/60">
                 {locale.value}
               </p>
