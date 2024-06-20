@@ -136,7 +136,7 @@ function RandomizeLocaleButton() {
     randomizeSelectedLocale()
     plausible("Randomize Locale", {
       props: {
-        "button-id": "randomize-main-page",
+        "button-id": "randomize--main-page",
       },
     })
   }
@@ -183,7 +183,11 @@ function ResetLocaleButton() {
 
   const handleClick = () => {
     resetSelectedLocale()
-    plausible("action-reset-locale")
+    plausible("Reset Locale", {
+      props: {
+        "button-id": "reset--main-page",
+      },
+    })
   }
 
   return (
@@ -219,11 +223,11 @@ function LocalesList({ setOpen }: LocalesListProps) {
 
               plausible("Randomize Locale", {
                 props: {
-                  "button-id": "randomize-locale-selection",
+                  "button-id": "randomize--locale-selection",
                 },
               })
             }}
-            className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 aria-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:aria-[selected=true]:bg-white/10"
+            className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
           >
             <Shuffle className="h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
             <p className="block">Pick a random locale</p>
@@ -233,8 +237,14 @@ function LocalesList({ setOpen }: LocalesListProps) {
               onSelect={() => {
                 handleSelectedLocaleChange(browserLocale)
                 setOpen(false)
+
+                plausible("Reset Locale", {
+                  props: {
+                    "button-id": "reset--locale-selection",
+                  },
+                })
               }}
-              className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 aria-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:aria-[selected=true]:bg-white/10"
+              className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
             >
               <Undo2 className="h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
               <p className="block">Reset to your browser locale</p>
@@ -256,8 +266,14 @@ function LocalesList({ setOpen }: LocalesListProps) {
                   currentValue === selectedLocale.value ? "" : currentValue,
                 )
                 setOpen(false)
+
+                plausible("Selected Locale", {
+                  props: {
+                    "button-id": "locale--locale-selection",
+                  },
+                })
               }}
-              className="flex-col items-start hover:cursor-pointer hover:bg-black/10 aria-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:aria-[selected=true]:bg-white/10"
+              className="flex-col items-start hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
             >
               <p className="block text-black dark:text-white">{locale.label}</p>
               <p className="block text-black/40 dark:text-white/60">
