@@ -270,6 +270,7 @@ function LocalesList({ setOpen }: LocalesListProps) {
                 plausible("Select Locale", {
                   props: {
                     "button-id": "select-locale--locale-selection",
+                    "selected-locale": currentValue.toString(),
                   },
                 })
               }}
