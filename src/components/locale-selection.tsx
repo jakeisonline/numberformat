@@ -219,7 +219,7 @@ function LocalesList({ setOpen }: LocalesListProps) {
 
               plausible("Randomize Locale", {
                 props: {
-                  "button-id": "randomize-main-page",
+                  "button-id": "randomize-locale-selection",
                 },
               })
             }}
