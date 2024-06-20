@@ -136,7 +136,7 @@ function RandomizeLocaleButton() {
     randomizeSelectedLocale()
     plausible("Randomize Locale", {
       props: {
-        buttonId: "randomize-main-page",
+        "button-id": "randomize-main-page",
       },
     })
   }
@@ -204,6 +204,7 @@ function LocalesList({ setOpen }: LocalesListProps) {
     handleSelectedLocaleChange,
     randomizeSelectedLocale,
   } = useSelectedLocaleContext()
+  const plausible = usePlausible()
 
   return (
     <Command>
@@ -215,6 +216,12 @@ function LocalesList({ setOpen }: LocalesListProps) {
             onSelect={() => {
               randomizeSelectedLocale()
               setOpen(false)
+
+              plausible("Randomize Locale", {
+                props: {
+                  "button-id": "randomize-main-page",
+                },
+              })
             }}
             className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 aria-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:aria-[selected=true]:bg-white/10"
           >
