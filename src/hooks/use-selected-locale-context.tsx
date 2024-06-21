@@ -1,4 +1,6 @@
-import { SelectedLocaleContext } from "@/contexts/selected-locale-context-provider"
+"use client"
+
+import { SelectedLocaleContext } from "../contexts/selected-locale-context-provider"
 import { useContext } from "react"
 
 export default function useSelectedLocaleContext() {

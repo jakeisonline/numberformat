@@ -1,5 +1,5 @@
 import { LOCALES } from "@/lib/const"
-import SelectedLanguageContextProvider from "@/contexts/selected-locale-context-provider"
+import SelectedLocaleContextProvider from "@/contexts/selected-locale-context-provider"
 import { getHeadersLocale } from "@/lib/server-utils"
 import type { ResolvingMetadata, Metadata } from "next"
 import { getLocaleByValue } from "@/lib/utils"
@@ -35,12 +35,12 @@ export default function LocalePage({ params }: LocalePageProps) {
 
   return (
     <>
-      <SelectedLanguageContextProvider
+      <SelectedLocaleContextProvider
         browserLocale={browserLocale}
         urlLocale={params.locale}
       >
         <IndexTemplate />
-      </SelectedLanguageContextProvider>
+      </SelectedLocaleContextProvider>
       <PlausibleProvider
         domain="numberformat.app"
         pageviewProps={{ "browser-locale": browserLocale }}

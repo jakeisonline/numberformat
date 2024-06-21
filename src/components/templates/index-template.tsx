@@ -2,7 +2,7 @@ import FullMeasuresContextProvider from "@/contexts/full-measures-context-provid
 import CurrenciesExplainer from "../currencies-explainer"
 import NumbersExplainer from "../numbers-explainer"
 import DateExplainer from "../date-explainer"
-import LocaleSelection from "../locale-selection"
+import LocaleSelector from "@/components/locale-selector"
 import NumberContainer from "../number-container"
 import NumberHeading from "../number-heading"
 import NumberIcon from "../number-icon"
@@ -30,7 +30,7 @@ export default function IndexTemplate() {
           </h1>
         </section>
       </div>
-      <LocaleSelection />
+      <LocaleSelector />
       <NumbersWrapper>
         <NumberContainer>
           <NumberHeading>
