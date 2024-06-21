@@ -1,7 +1,7 @@
 "use client"
 
 import useFullMeasureContext from "@/hooks/use-full-measures-context"
-import useLocaleContext from "@/hooks/use-selected-locale-context"
+import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { MEASURE_TYPES_UNITS } from "@/lib/const"
 import { getNextRandomNumber, styleNumberSeparator } from "@/lib/utils"
 
@@ -10,7 +10,7 @@ type MeasuresListProps = {
 }
 
 export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
-  const { selectedLocale } = useLocaleContext()
+  const { selectedLocale } = useSelectedLocaleContext()
   const { showFullMeasures } = useFullMeasureContext()
 
   function getMeasure(
@@ -31,6 +31,8 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
     const numberString = new Intl.NumberFormat(selectedLocale.value).format(
       numberFloor,
     )
+
+    console.log(measureString)
 
     // Find the part of the string that is not the number
     const unitPart = measureString.replace(numberString, "").trim()
