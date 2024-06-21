@@ -55,7 +55,7 @@ export default function Selector({}) {
               <Pencil className="ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="bg-page w-full p-0">
+          <PopoverContent className="min-w-full bg-page p-0">
             <LocalesList setOpen={setOpen} />
           </PopoverContent>
         </Popover>
