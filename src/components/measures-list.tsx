@@ -32,8 +32,6 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
       numberFloor,
     )
 
-    console.log(measureString)
-
     // Find the part of the string that is not the number
     const unitPart = measureString.replace(numberString, "").trim()
 
