@@ -18,8 +18,45 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
     browserLocale,
     handleSelectedLocaleChange,
     randomizeSelectedLocale,
+    resetSelectedLocale,
   } = useSelectedLocaleContext()
   const plausible = usePlausible()
+
+  const handleResetLocale = () => {
+    resetSelectedLocale()
+    setOpen(false)
+    plausible("Reset Locale", {
+      props: {
+        "button-id": "reset--locale-selection",
+      },
+    })
+  }
+
+  const handleRandomLocale = () => {
+    randomizeSelectedLocale()
+    setOpen(false)
+    plausible("Randomize Locale", {
+      props: {
+        "button-id": "randomize--locale-selection",
+      },
+    })
+  }
+
+  const handleSelectLocale = (currentValue: string) => {
+    if (currentValue === selectedLocale.value) {
+      setOpen(false)
+      return
+    } else {
+      handleSelectedLocaleChange(currentValue)
+      setOpen(false)
+      plausible("Select Locale", {
+        props: {
+          "button-id": "select-locale--locale-selection",
+          "selected-locale": currentValue.toString(),
+        },
+      })
+    }
+  }
 
   return (
     <Command>
@@ -28,16 +65,7 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
         <CommandEmpty>No matching locale found.</CommandEmpty>
         <CommandGroup>
           <CommandItem
-            onSelect={() => {
-              randomizeSelectedLocale()
-              setOpen(false)
-
-              plausible("Randomize Locale", {
-                props: {
-                  "button-id": "randomize--locale-selection",
-                },
-              })
-            }}
+            onSelect={handleRandomLocale}
             className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
           >
             <Shuffle className="h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
@@ -45,16 +73,7 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
           </CommandItem>
           {browserLocale && browserLocale !== selectedLocale.value && (
             <CommandItem
-              onSelect={() => {
-                handleSelectedLocaleChange(browserLocale)
-                setOpen(false)
-
-                plausible("Reset Locale", {
-                  props: {
-                    "button-id": "reset--locale-selection",
-                  },
-                })
-              }}
+              onSelect={handleResetLocale}
               className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
             >
               <Undo2 className="h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
@@ -72,19 +91,7 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
               key={locale.value}
               value={locale.value}
               keywords={[locale.label]}
-              onSelect={(currentValue) => {
-                handleSelectedLocaleChange(
-                  currentValue === selectedLocale.value ? "" : currentValue,
-                )
-                setOpen(false)
-
-                plausible("Select Locale", {
-                  props: {
-                    "button-id": "select-locale--locale-selection",
-                    "selected-locale": currentValue.toString(),
-                  },
-                })
-              }}
+              onSelect={handleSelectLocale}
               className="flex-col items-start hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
             >
               <p className="block text-black dark:text-white">{locale.label}</p>
