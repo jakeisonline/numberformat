@@ -9,6 +9,7 @@ import Footer from "@/components/footer"
 const googleFont = Urbanist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.numberformat.app"),
   title: "Number Format - Every number format, for every locale",
   description:
     "Every language and locale has its own special rules when it comes to number formatting. This tool helps you look up the right format for every locale.",
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html className="h-full" lang="en" suppressHydrationWarning>
       <body
-        className={`bg-page flex min-h-full flex-col ${googleFont.className}`}
+        className={`flex min-h-full flex-col bg-page ${googleFont.className}`}
       >
         <ThemeContextProvider
           attribute="class"
