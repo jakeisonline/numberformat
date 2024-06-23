@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html className="h-full" lang="en" suppressHydrationWarning>
       <body
-        className={`flex min-h-full flex-col bg-page ${googleFont.className}`}
+        className={`flex min-h-full max-w-full flex-col overflow-x-hidden bg-page ${googleFont.className}`}
       >
         <ThemeContextProvider
           attribute="class"

@@ -14,6 +14,7 @@ import { useEffect, useState } from "react"
 import { useMediaQuery } from "usehooks-ts"
 import { PrettyLocale } from "./pretty-locale"
 import { RandomizeLocaleButton } from "./randomize-locale-button"
+import { TLocale } from "@/lib/types"
 
 export default function Selector({}) {
   const isMobile = useMediaQuery("(max-width: 768px)", {
@@ -44,7 +45,7 @@ export default function Selector({}) {
               role="combobox"
               aria-expanded={open}
               aria-label="Select a locale"
-              className="text-md group z-10 min-w-96 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 dark:border-white/20 hover:dark:border-white/50 dark:hover:bg-slate-800"
+              className="text-md group z-10 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 dark:border-white/20 hover:dark:border-white/50 dark:hover:bg-slate-800 md:min-w-96"
             >
               {selectedLocale ? (
                 <PrettyLocale locale={selectedLocale} />
@@ -52,7 +53,7 @@ export default function Selector({}) {
                 "Select locale..."
               )}
 
-              <Pencil className="ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
+              <Pencil className="display-none sm:display ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="min-w-full bg-page p-0">
@@ -69,14 +70,14 @@ export default function Selector({}) {
       <DrawerTrigger asChild>
         <Button
           variant="outline"
-          className="text-md w-screen justify-between border-black/20 dark:border-white/20"
+          className="text-md group z-10 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 dark:border-white/20 hover:dark:border-white/50 dark:hover:bg-slate-800 md:min-w-96"
         >
           {selectedLocale ? (
             <PrettyLocale locale={selectedLocale} />
           ) : (
             "Select locale..."
           )}
-          <Pencil className="ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
+          <Pencil className="display-none sm:display ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
         </Button>
       </DrawerTrigger>
       <DrawerContent className="bg-page">

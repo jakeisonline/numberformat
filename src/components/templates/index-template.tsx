@@ -18,12 +18,12 @@ import MeasuresListServer from "../server/measures-list-server"
 
 export default function IndexTemplate() {
   return (
-    <main className="mx-auto max-w-6xl px-2 py-2 md:px-6 md:py-4 lg:py-6">
+    <main className="max-w-screen mx-auto px-2 py-2 md:px-6 md:py-4 lg:max-w-6xl lg:py-6">
       <header className="flex justify-end">
         <ThemeToggle />
       </header>
       <div className="relative mx-auto flex w-full flex-auto justify-center md:mb-5 lg:mt-8">
-        <section className="flex w-screen flex-col md:w-10/12">
+        <section className="flex w-full flex-col md:w-10/12">
           <h1 className="font-display inline text-center text-3xl font-bold tracking-tight md:text-5xl lg:text-6xl">
             Every <span className="text-orange">number format</span>,
             <br /> for every <span className="text-blue">locale</span>

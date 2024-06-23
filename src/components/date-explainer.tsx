@@ -26,7 +26,7 @@ export default function DatetimeExplainer() {
               key={index}
               type={part.type}
               matchTypes={["weekday", "day", "month", "year"]}
-              className="mx-0.5 text-3xl"
+              className="[:not(:first-child):not(:last-child)]:mx-0.5 text-3xl sm:mx-0.5"
             >
               {part.value}
             </PartDecorator>
