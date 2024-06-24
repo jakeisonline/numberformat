@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="mx-auto my-6">
+    <footer className="mx-auto mt-auto py-8">
       <Link
         href="https://github.com/jakeisonline/number-format"
         rel="noreferrer"
