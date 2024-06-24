@@ -5,6 +5,7 @@ import type { ResolvingMetadata, Metadata } from "next"
 import { getLocaleByValue } from "@/lib/utils"
 import PlausibleProvider from "next-plausible"
 import IndexTemplate from "@/components/templates/index-template"
+import { notFound } from "next/navigation"
 
 type LocalePageProps = {
   params: {
@@ -28,7 +29,7 @@ export async function generateMetadata(
 
 export default function LocalePage({ params }: LocalePageProps) {
   if (!LOCALES.find((locale) => locale.value.toLowerCase() === params.locale)) {
-    return <div>Locale not found</div>
+    throw notFound()
   }
 
   const browserLocale = getHeadersLocale()
