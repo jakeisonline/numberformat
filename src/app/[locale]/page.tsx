@@ -29,7 +29,7 @@ export async function generateMetadata(
 
 export default function LocalePage({ params }: LocalePageProps) {
   if (!LOCALES.find((locale) => locale.value.toLowerCase() === params.locale)) {
-    throw notFound()
+    notFound()
   }
 
   const browserLocale = getHeadersLocale()
