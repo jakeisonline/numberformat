@@ -70,7 +70,7 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
   }, [])
 
   return (
-    <Command>
+    <Command loop>
       <CommandInput
         placeholder="Search locales..."
         onValueChange={handleSearch}
