@@ -11,8 +11,13 @@ import {
 } from "@/components/ui/command"
 import { LOCALES } from "@/lib/const"
 import { Shuffle, Undo2 } from "lucide-react"
+import { useCallback, useRef } from "react"
 
 export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
+  // We're going to override the scroll behavior of cmdk
+  // cf. https://github.com/pacocoursey/cmdk/issues/234#issuecomment-2105098199
+  const listRef = useRef<HTMLDivElement>(null)
+
   const {
     selectedLocale,
     browserLocale,
@@ -58,10 +63,19 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
     }
   }
 
+  const handleSearch = useCallback((value: string) => {
+    requestAnimationFrame(() => {
+      listRef.current?.scrollTo({ top: 0 })
+    })
+  }, [])
+
   return (
     <Command>
-      <CommandInput placeholder="Search locales..." />
-      <CommandList>
+      <CommandInput
+        placeholder="Search locales..."
+        onValueChange={handleSearch}
+      />
+      <CommandList ref={listRef}>
         <CommandEmpty>No matching locale found.</CommandEmpty>
         <CommandGroup>
           <CommandItem
