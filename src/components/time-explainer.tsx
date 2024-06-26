@@ -45,7 +45,7 @@ export default function DatetimeExplainer() {
                 key={index}
                 type={part.type}
                 matchTypes={["hour", "minute", "second", "dayPeriod"]}
-                className="mx-0.5 text-3xl"
+                className={`mx-0.5 text-3xl`}
               >
                 {part.value}
               </PartDecorator>

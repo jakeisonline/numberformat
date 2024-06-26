@@ -1,12 +1,12 @@
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
-import type { Metadata } from "next"
 import { Urbanist } from "next/font/google"
+import type { Metadata } from "next"
 import "./globals.css"
 import ThemeContextProvider from "@/contexts/theme-context-provider"
 import Footer from "@/components/footer"
 
-const googleFont = Urbanist({ subsets: ["latin"] })
+const font = Urbanist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.numberformat.app"),
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html className="h-full" lang="en" suppressHydrationWarning>
       <body
-        className={`flex min-h-full max-w-full flex-col overflow-x-hidden bg-page ${googleFont.className}`}
+        className={`flex min-h-full max-w-full flex-col overflow-x-hidden bg-page ${font.className}`}
       >
         <ThemeContextProvider
           attribute="class"

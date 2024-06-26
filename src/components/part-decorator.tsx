@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils"
+import Monospace from "./monospace"
 
 type PartDecoratorProps = {
-  type?: string
+  type: string
   matchTypes: string[]
   className?: string
   children: React.ReactNode
@@ -28,6 +29,7 @@ export default function PartDecorator({
     "second",
     "dayPeriod",
   ]
+  const nonMonoSpacedTypes = ["literal"]
   const isDecoratedPartType =
     type && matchTypes.includes(type) ? validPartTypes.includes(type) : false
 
@@ -68,7 +70,11 @@ export default function PartDecorator({
         className,
       )}
     >
-      {children}
+      {nonMonoSpacedTypes.includes(type) ? (
+        children
+      ) : (
+        <Monospace>{children}</Monospace>
+      )}
     </span>
   )
 }

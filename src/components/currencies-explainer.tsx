@@ -33,7 +33,7 @@ export default function NumbersExplainer() {
               key={index}
               type={part.type}
               matchTypes={["currency"]}
-              className="mx-0.5 text-3xl"
+              className="text-3xl"
             >
               {part.value}
             </PartDecorator>
