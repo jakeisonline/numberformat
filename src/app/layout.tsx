@@ -10,7 +10,7 @@ const font = Urbanist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.numberformat.app"),
-  title: "Number Format - Every number format, for every locale",
+  title: "Every number format, for every locale",
   description:
     "Every language and locale has its own special rules when it comes to number formatting. This tool helps you look up the right format for every locale.",
   openGraph: {

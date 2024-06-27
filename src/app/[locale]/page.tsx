@@ -19,6 +19,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const locale = getLocaleByValue(params.locale)
   return {
+    title: `Every number format for ${locale.label} (${locale.value})`,
     description: `See the special formatting rules for numbers in ${locale.label} (${locale.value}). This tool helps you look up the right format for every locale.`,
     openGraph: {
       description: `See the special formatting rules for numbers in ${locale.label} (${locale.value}). This tool helps you look up the right format for every locale.`,
