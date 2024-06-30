@@ -7,7 +7,7 @@ import {
   getDatetimePartTypes,
   generateRandomNumber,
   generateRandomNumbersArray,
-  getNextRandomNumber,
+  getNextNumberInArray,
 } from "@/lib/utils"
 
 describe("cn", () => {
@@ -120,26 +120,23 @@ describe("generateRandomNumbersArray", () => {
   })
 })
 
-describe("getNextRandomNumber", () => {
+describe("getNextNumberInArray", () => {
   it("should return an object with a next method", () => {
-    const randomNumbers = generateRandomNumbersArray(5, 1, 10)
-    const nextRandomNumber = getNextRandomNumber(randomNumbers)
-    expect(typeof nextRandomNumber.next).toBe("function")
+    const nextNumber = getNextNumberInArray([1, 2])
+    expect(typeof nextNumber.next).toBe("function")
   })
 
-  it("should return the next random number in the array", () => {
-    const randomNumbers = generateRandomNumbersArray(5, 1, 10)
-    const nextRandomNumber = getNextRandomNumber(randomNumbers)
-    const nextRandomNumberValue = nextRandomNumber.next().value
-    expect(nextRandomNumberValue).toBeGreaterThanOrEqual(1)
-    expect(nextRandomNumberValue).toBeLessThanOrEqual(10)
+  it("should return the next random number(s) in the array", () => {
+    const nextNumber = getNextNumberInArray([1, 2, 3])
+    expect(nextNumber.next().value).toBe(1)
+    expect(nextNumber.next().value).toBe(2)
+    expect(nextNumber.next().value).toBe(3)
   })
 
-  // TODO: Fix this test
-  // it("should return the iteration count when the end of the array is reached, and done should be true", () => {
-  //   const randomNumbers = generateRandomNumbersArray(5, 1, 10)
-  //   const nextRandomNumber = getNextRandomNumber(randomNumbers)
-  //   const nextRandomNumberValue = nextRandomNumber.next().value
-  //   expect(nextRandomNumberValue).toBe(5)
-  // })
+  it("should return the iteration count when the end of the array is reached, and done should be true", () => {
+    const nextNumber = getNextNumberInArray([1, 2])
+    nextNumber.next()
+    expect(nextNumber.next().value).toBe(2)
+    expect(nextNumber.next().done).toBe(true)
+  })
 })

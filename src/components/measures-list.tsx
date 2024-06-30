@@ -3,7 +3,7 @@
 import useFullMeasureContext from "@/hooks/use-full-measures-context"
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { MEASURE_TYPES_UNITS } from "@/lib/const"
-import { getNextRandomNumber, styleNumberSeparator } from "@/lib/utils"
+import { getNextNumberInArray, styleNumberSeparator } from "@/lib/utils"
 
 type MeasuresListProps = {
   randomNumbers: number[]
@@ -50,7 +50,7 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
   return (
     <div className="columns-1 break-before-auto text-center sm:columns-2 sm:text-left md:columns-3">
       {MEASURE_TYPES_UNITS.map(({ type, units }) => {
-        const randomNumber = getNextRandomNumber(randomNumbers)
+        const randomNumber = getNextNumberInArray(randomNumbers)
 
         return (
           <section key={type} className="mb-3">
