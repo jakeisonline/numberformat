@@ -1,36 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# numberformat.app &nbsp;![Vercel Deploy](https://deploy-badge.vercel.app/vercel/number-format-jakeisonlines-projects) ![Built on next.js](https://img.shields.io/github/package-json/dependency-version/jakeisonline/number-format/next)
 
-## Getting Started
+[numberformat.app](http://www.numberformat.app) is a tiny web-based tool that helps you visualise the various number formats of almost every locale. Every language and locale has its own special rules when it comes to number formatting, such as the symbol used for decimal points, or how numberical dates are displayed.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* Shows examples and rules for number formatting, date and time formatting (including relative), currencies formatting, and measures formatting
+* Easily lookup any language or locale currently supported by the ECMAScript Internationalization API
+* Feeling lucky? Randomly select a locale to take a look at
+* Automatically detects your current browser's locale
+* Dark mode to help those midnight formatting sessions
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How this app works
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This app make extensive use of the [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) JavaScript global object in order to display the various number formats of the app. This magical object makes string formatting for number, date, and time formatting a breeze.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+It also means this app runs without any database, instead relying on your browser almost entirely to render the formatting examples.
