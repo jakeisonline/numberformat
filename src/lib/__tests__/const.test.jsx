@@ -12,8 +12,7 @@ describe("LOCALES", () => {
   it("should have only valid locales for Intl", () => {
     expect(
       LOCALES.every(
-        (example) =>
-          Intl.DateTimeFormat.supportedLocalesOf(example.value).length > 0,
+        (locale) => Intl.getCanonicalLocales(locale.value).length > 0,
       ),
     ).toBe(true)
   })
