@@ -9,7 +9,6 @@ import {
   getRandomNumbersSeed,
   getNextNumberInArray,
 } from "@/lib/utils"
-import { SEEDS } from "@/lib/numbers-seeds"
 
 describe("cn", () => {
   it("should return a className string with the provided class values", () => {
