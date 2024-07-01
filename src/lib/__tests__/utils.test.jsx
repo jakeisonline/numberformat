@@ -6,9 +6,10 @@ import {
   getNumberPartTypes,
   getDatetimePartTypes,
   generateRandomNumber,
-  generateRandomNumbersArray,
+  getRandomNumbersSeed,
   getNextNumberInArray,
 } from "@/lib/utils"
+import { SEEDS } from "@/lib/numbers-seeds"
 
 describe("cn", () => {
   it("should return a className string with the provided class values", () => {
@@ -109,13 +110,13 @@ describe("generateRandomNumber", () => {
   })
 })
 
-describe("generateRandomNumbersArray", () => {
-  it("should return an array of random numbers between the provided min and max", () => {
-    const randomNumbers = generateRandomNumbersArray(5, 1, 10)
-    expect(randomNumbers.length).toBe(5)
+describe("getRandomNumbersSeed", () => {
+  it("should return an array of numbers from the provided seed", () => {
+    const randomNumbers = getRandomNumbersSeed("numbers")
+    expect(randomNumbers).toBeDefined()
+    expect(randomNumbers).toBeInstanceOf(Array)
     randomNumbers.forEach((randomNumber) => {
-      expect(randomNumber).toBeGreaterThanOrEqual(1)
-      expect(randomNumber).toBeLessThanOrEqual(10)
+      expect(typeof randomNumber).toBe("number")
     })
   })
 })
