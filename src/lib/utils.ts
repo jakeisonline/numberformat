@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { DEFAULT_LOCALE, LOCALES } from "./const"
 import { TDatetimePartType, TLocale, TNumberPartType } from "./types"
+import { SEEDS } from "./numbers-seeds"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -59,19 +60,14 @@ export function generateRandomNumber(min: number, max: number) {
   return Math.random() * (max - min) + min
 }
 
-export function generateRandomNumbersArray(
-  length: number,
-  min: number,
-  max: number,
+export function getRandomNumbersSeed(
+  type: "numbers" | "currencies" | "measures",
 ) {
-  return Array.from({ length }, () => {
-    const randomNum = generateRandomNumber(min, max)
-    return Math.random() < 0.5
-      ? Math.round(randomNum)
-      : parseFloat(randomNum.toFixed(2))
-  })
+  const maxSeed = SEEDS[type].length - 1
+  const randomSeed = Math.round(generateRandomNumber(0, maxSeed))
+  return SEEDS[type][randomSeed]
 }
-// getNextRandomNumber
+
 export function getNextNumberInArray(numbers: number[]) {
   let nextIndex = 0
   let iterationCount = 0
