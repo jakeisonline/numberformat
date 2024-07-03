@@ -41,7 +41,7 @@ export function RelativeDateList() {
             <li key={example.label} className="mb-0.5">
               <p>{selectedLocaleRelativeTime}</p>
               {selectedLocaleRelativeTime !== browserLocaleRelativeTime && (
-                <p className="-mt-0.5 text-xs text-black/45 dark:text-white/40">
+                <p className="-mt-0.5 text-xs text-black/60 dark:text-white/50">
                   {browserLocaleRelativeTime}
                 </p>
               )}
