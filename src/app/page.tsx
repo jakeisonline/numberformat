@@ -2,7 +2,6 @@ import SelectedLocaleContextProvider from "@/contexts/selected-locale-context-pr
 import { getHeadersLocale } from "@/lib/server-utils"
 import PlausibleProvider from "next-plausible"
 import FullMeasuresContextProvider from "@/contexts/full-measures-context-provider"
-import CurrenciesExplainer from "@/components/cards/currencies/currencies-explainer"
 import NumbersExplainer from "@/components/cards/numbers/numbers-explainer"
 import DateExplainer from "@/components/cards/dates/date-explainer"
 import LocaleSelector from "@/components/locale-selector"
@@ -12,13 +11,17 @@ import NumberIcon from "@/components/number-card/number-icon"
 import NumbersWrapper from "@/components/cards/numbers/numbers-wrapper"
 import { RelativeDateList } from "@/components/cards/dates/relative-date-list"
 import { RelativeTimeList } from "@/components/cards/times/relative-time-list"
-import CurrenciesListServer from "@/components/server/currencies-list-server"
 import NumbersListServer from "@/components/server/numbers-list-server"
 import ThemeToggle from "@/components/theme-toggle"
 import TimeExplainer from "@/components/cards/times/time-explainer"
 import { MeasuresFullToggle } from "@/components/cards/measures/measures-full-toggle"
 import MeasuresListServer from "@/components/server/measures-list-server"
 import Hero from "@/components/hero"
+import CurrenciesCard from "@/components/cards/currencies"
+import DatesCard from "@/components/cards/dates"
+import MeasuresCard from "@/components/cards/measures"
+import NumbersCard from "@/components/cards/numbers"
+import TimesCard from "@/components/cards/times"
 
 type HomeProps = {
   localeOverride: string
@@ -37,48 +40,11 @@ export default function Home({ localeOverride }: HomeProps) {
           <Hero />
           <LocaleSelector />
           <NumbersWrapper>
-            <NumberContainer>
-              <NumberHeading>
-                <NumberIcon iconName="hashtag" />
-                Numbers
-              </NumberHeading>
-              <NumbersExplainer />
-              <NumbersListServer />
-            </NumberContainer>
-            <NumberContainer>
-              <NumberHeading>
-                <NumberIcon iconName="calendar" />
-                Dates
-              </NumberHeading>
-              <DateExplainer />
-              <RelativeDateList />
-            </NumberContainer>
-            <NumberContainer>
-              <NumberHeading>
-                <NumberIcon iconName="clock" />
-                Times
-              </NumberHeading>
-              <TimeExplainer />
-              <RelativeTimeList />
-            </NumberContainer>
-            <NumberContainer>
-              <NumberHeading>
-                <NumberIcon iconName="banknotes" />
-                Currencies
-              </NumberHeading>
-              <CurrenciesExplainer />
-              <CurrenciesListServer />
-            </NumberContainer>
-            <NumberContainer className="md:col-span-2">
-              <FullMeasuresContextProvider>
-                <NumberHeading>
-                  <NumberIcon iconName="cube-transparent" />
-                  Measures
-                  <MeasuresFullToggle />
-                </NumberHeading>
-                <MeasuresListServer />
-              </FullMeasuresContextProvider>
-            </NumberContainer>
+            <NumbersCard />
+            <DatesCard />
+            <TimesCard />
+            <CurrenciesCard />
+            <MeasuresCard />
           </NumbersWrapper>
         </main>
       </SelectedLocaleContextProvider>
