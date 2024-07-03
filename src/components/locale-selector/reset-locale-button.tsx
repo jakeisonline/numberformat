@@ -17,8 +17,9 @@ export default function ResetLocaleButton() {
 
   return (
     <Button
+      aria-label={`Reset to your browser locale: ${browserLocale}`}
       variant="link"
-      className="text-md hover:text-blue dark:hover:text-blue h-auto p-0 text-black/60 underline decoration-dotted dark:text-white/60"
+      className="text-md h-auto p-0 text-black/60 underline decoration-dotted hover:text-blue dark:text-white/60 dark:hover:text-blue"
       onClick={handleClick}
     >
       Reset to your browser locale ({browserLocale})

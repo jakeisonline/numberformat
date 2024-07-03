@@ -27,6 +27,7 @@ export function RandomizeLocaleButton() {
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
+            aria-label="Pick a random locale"
             onClick={handleClick}
             variant="ghost"
             className="group absolute ml-2 inline-flex hover:bg-neutral-200 dark:hover:bg-slate-800"
