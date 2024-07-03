@@ -18,6 +18,7 @@ import ThemeToggle from "@/components/theme-toggle"
 import TimeExplainer from "@/components/cards/times/time-explainer"
 import { MeasuresFullToggle } from "@/components/cards/measures/measures-full-toggle"
 import MeasuresListServer from "@/components/server/measures-list-server"
+import Hero from "@/components/hero"
 
 type HomeProps = {
   localeOverride: string
@@ -35,14 +36,7 @@ export default function Home({ localeOverride }: HomeProps) {
           <header className="flex justify-end">
             <ThemeToggle />
           </header>
-          <div className="relative mx-auto flex w-full flex-auto justify-center md:mb-5 lg:mt-8">
-            <section className="flex w-full flex-col md:w-10/12">
-              <h1 className="font-display inline text-center text-3xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-                Every <span className="text-orange">number format</span>,
-                <br /> for every <span className="text-blue">locale</span>
-              </h1>
-            </section>
-          </div>
+          <Hero />
           <LocaleSelector />
           <NumbersWrapper>
             <NumberContainer>
