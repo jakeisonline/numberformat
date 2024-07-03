@@ -1,13 +1,13 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import NumberExample from "./number-card/number-example"
-import PartDecorator from "./part-decorator"
+import NumberExample from "../../number-card/number-example"
+import PartDecorator from "../../part-decorator"
 import { useTime } from "react-timer-hook"
 import { getDatetimePartTypes } from "@/lib/utils"
-import NumberDescription from "./number-card/number-description"
+import NumberDescription from "../../number-card/number-description"
 import { useEffect, useState } from "react"
-import { Skeleton } from "./ui/skeleton"
+import { Skeleton } from "../../ui/skeleton"
 
 export default function DatetimeExplainer() {
   const [isClient, setIsClient] = useState(false)

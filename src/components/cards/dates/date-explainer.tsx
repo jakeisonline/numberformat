@@ -1,8 +1,8 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import NumberExample from "./number-card/number-example"
-import PartDecorator from "./part-decorator"
+import NumberExample from "../../number-card/number-example"
+import PartDecorator from "../../part-decorator"
 
 export default function DatetimeExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()

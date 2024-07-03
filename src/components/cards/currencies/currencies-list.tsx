@@ -3,9 +3,9 @@
 import useLocaleContext from "@/hooks/use-selected-locale-context"
 import { CURRENCIES } from "@/lib/const"
 import CurrencyDecorator from "./currency-decorator"
-import ExamplesList from "./example-list/examples-list"
-import ExamplesListHeading from "./example-list/examples-list-heading"
-import ExamplesListContent from "./example-list/examples-list-content"
+import ExamplesList from "../../example-list/examples-list"
+import ExamplesListHeading from "../../example-list/examples-list-heading"
+import ExamplesListContent from "../../example-list/examples-list-content"
 
 type CurrenciesListProps = {
   randomNumbers: number[]

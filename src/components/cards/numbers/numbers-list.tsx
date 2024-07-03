@@ -1,9 +1,9 @@
 "use client"
 
-import ExamplesList from "./example-list/examples-list"
-import ExamplesListContent from "./example-list/examples-list-content"
-import ExamplesListHeading from "./example-list/examples-list-heading"
-import NumberDecorator from "./number-card/number-decorator"
+import ExamplesList from "../../example-list/examples-list"
+import ExamplesListContent from "../../example-list/examples-list-content"
+import ExamplesListHeading from "../../example-list/examples-list-heading"
+import NumberDecorator from "../../number-card/number-decorator"
 
 type NumbersListProps = {
   randomNumbers: number[]

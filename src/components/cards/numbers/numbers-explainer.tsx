@@ -2,10 +2,10 @@
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { charIsSpace, getNumberPartTypes } from "@/lib/utils"
-import PartDecorator from "./part-decorator"
-import NumberDecorator from "./number-card/number-decorator"
-import NumberExample from "./number-card/number-example"
-import NumberDescription from "./number-card/number-description"
+import PartDecorator from "../../part-decorator"
+import NumberDecorator from "../../number-card/number-decorator"
+import NumberExample from "../../number-card/number-example"
+import NumberDescription from "../../number-card/number-description"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()

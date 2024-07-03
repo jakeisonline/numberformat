@@ -1,8 +1,8 @@
 "use client"
 
 import useFullMeasuresContext from "@/hooks/use-full-measures-context"
-import { Label } from "./ui/label"
-import { Switch } from "./ui/switch"
+import { Label } from "../../ui/label"
+import { Switch } from "../../ui/switch"
 
 export function MeasuresFullToggle() {
   const { showFullMeasures, handleSetShowFullMeasures } =

@@ -5,47 +5,36 @@ import {
   relativeIdiomaticTimeFormatter,
   relativeNumericTimeFormatter,
 } from "@/lib/formatters"
-import { RELATIVE_TIME_EXAMPLES } from "@/lib/const"
-import ExamplesList from "./example-list/examples-list"
-import ExamplesListHeading from "./example-list/examples-list-heading"
-import ExamplesListContent from "./example-list/examples-list-content"
+import { RELATIVE_DATE_EXAMPLES } from "@/lib/const"
+import ExamplesList from "../../example-list/examples-list"
+import ExamplesListHeading from "../../example-list/examples-list-heading"
+import ExamplesListContent from "../../example-list/examples-list-content"
 
-export function RelativeTimeList() {
+export function RelativeDateList() {
   const { selectedLocale, browserLocale } = useSelectedLocaleContext()
 
-  function getRelativeTime(
-    locale: string,
-    value: number,
-    type: string,
-    unit: string,
-  ): string {
+  function getRelativeTime(locale: string, value: number, type: string) {
     const formatter =
       type === "idiomatic"
         ? relativeIdiomaticTimeFormatter(locale)
         : relativeNumericTimeFormatter(locale)
-    return formatter.format(value, unit as Intl.RelativeTimeFormatUnit)
+    return formatter.format(value, "day")
   }
 
   return (
     <ExamplesList>
-      <ExamplesListHeading>Relative Times</ExamplesListHeading>
+      <ExamplesListHeading>Relative Dates</ExamplesListHeading>
       <ExamplesListContent
         className={selectedLocale.value === browserLocale ? "gap-y-4" : ""}
       >
-        {RELATIVE_TIME_EXAMPLES.map((example) => {
+        {RELATIVE_DATE_EXAMPLES.map((example) => {
           const selectedLocaleRelativeTime = getRelativeTime(
             selectedLocale.value,
             example.value,
             example.type,
-            example.unit,
           )
           const browserLocaleRelativeTime = browserLocale
-            ? getRelativeTime(
-                browserLocale,
-                example.value,
-                example.type,
-                example.unit,
-              )
+            ? getRelativeTime(browserLocale, example.value, example.type)
             : selectedLocaleRelativeTime
 
           return (
