@@ -1,11 +1,8 @@
 import { LOCALES } from "@/lib/const"
-import SelectedLocaleContextProvider from "@/contexts/selected-locale-context-provider"
-import { getHeadersLocale } from "@/lib/server-utils"
 import type { ResolvingMetadata, Metadata } from "next"
 import { getLocaleByValue } from "@/lib/utils"
-import PlausibleProvider from "next-plausible"
-import IndexTemplate from "@/components/templates/index-template"
 import { notFound } from "next/navigation"
+import Home from "@/app/page"
 
 type LocalePageProps = {
   params: {
@@ -33,20 +30,5 @@ export default function LocalePage({ params }: LocalePageProps) {
     notFound()
   }
 
-  const browserLocale = getHeadersLocale()
-
-  return (
-    <>
-      <SelectedLocaleContextProvider
-        browserLocale={browserLocale}
-        urlLocale={params.locale}
-      >
-        <IndexTemplate />
-      </SelectedLocaleContextProvider>
-      <PlausibleProvider
-        domain="numberformat.app"
-        pageviewProps={{ "browser-locale": browserLocale }}
-      />
-    </>
-  )
+  return <Home localeOverride={params.locale} />
 }

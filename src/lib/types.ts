@@ -1,7 +1,7 @@
 export type TSelectedLocaleContextType = {
   selectedLocale: TLocale
   browserLocale: string | undefined
-  urlLocale?: string
+  localeOverride?: string
   handleSelectedLocaleChange: (localeValue: string) => void
   randomizeSelectedLocale: () => void
   resetSelectedLocale: () => void

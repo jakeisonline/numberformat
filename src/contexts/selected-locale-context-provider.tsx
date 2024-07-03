@@ -8,7 +8,7 @@ import { createContext, useState } from "react"
 export const SelectedLocaleContext = createContext<TSelectedLocaleContextType>({
   selectedLocale: DEFAULT_LOCALE,
   browserLocale: undefined,
-  urlLocale: undefined,
+  localeOverride: undefined,
   handleSelectedLocaleChange: () => {},
   randomizeSelectedLocale: () => {},
   resetSelectedLocale: () => {},
@@ -16,16 +16,16 @@ export const SelectedLocaleContext = createContext<TSelectedLocaleContextType>({
 
 type SelectedLocaleContextProviderProps = {
   browserLocale: string
-  urlLocale?: string
+  localeOverride?: string
   children: React.ReactNode
 }
 
 export default function SelectedLocaleContextProvider({
   browserLocale,
-  urlLocale,
+  localeOverride,
   children,
 }: SelectedLocaleContextProviderProps) {
-  const displayLocale = urlLocale || browserLocale
+  const displayLocale = localeOverride || browserLocale
   const [selectedLocale, setSelectedLocale] = useState<TLocale>(
     getLocaleByValue(displayLocale),
   )
