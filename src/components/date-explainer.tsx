@@ -1,7 +1,7 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import NumberExample from "./number-example"
+import NumberExample from "./number-card/number-example"
 import PartDecorator from "./part-decorator"
 
 export default function DatetimeExplainer() {

@@ -1,5 +1,5 @@
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import PartDecorator from "./part-decorator"
+import PartDecorator from "../part-decorator"
 
 export default function NumberDecorator({ className, children }: any) {
   if (typeof children !== "number") {
