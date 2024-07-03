@@ -3,7 +3,7 @@
 import useFullMeasureContext from "@/hooks/use-full-measures-context"
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { MEASURE_TYPES_UNITS } from "@/lib/const"
-import { getNextNumberInArray, styleNumberSeparator } from "@/lib/utils"
+import { getNextNumberInArray } from "@/lib/utils"
 
 type MeasuresListProps = {
   randomNumbers: number[]
@@ -36,12 +36,9 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
     const unitPart = measureString.replace(numberString, "").trim()
 
     // Replace the unit part with the strong-wrapped unit part
-    const formattedMeasure = styleNumberSeparator(
-      measureString.replace(
-        unitPart,
-        `<strong class="font-bold text-orange">${unitPart}</strong>`,
-      ),
-      "#9C34CE",
+    const formattedMeasure = measureString.replace(
+      unitPart,
+      `<strong class="font-bold text-orange">${unitPart}</strong>`,
     )
 
     return formattedMeasure

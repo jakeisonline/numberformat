@@ -22,15 +22,6 @@ describe("cn", () => {
   })
 })
 
-describe("stlyeNumberSeparator", () => {
-  it("should return a formatted number with the provided color", () => {
-    const formattedNumber = styleNumberSeparator("123.45", "red")
-    expect(formattedNumber).toBe(
-      `123<strong class=\"text-[red] font-medium text-2xl\">.</strong>45`,
-    )
-  })
-})
-
 describe("getLocaleByValue", () => {
   it("should return the locale object for the provided value", () => {
     const locale = getLocaleByValue("en")
