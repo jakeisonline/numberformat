@@ -3,7 +3,10 @@
 import useFullMeasureContext from "@/hooks/use-full-measures-context"
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { MEASURE_TYPES_UNITS } from "@/lib/const"
-import { getNextNumberInArray } from "@/lib/utils"
+import { cn, getNextNumberInArray } from "@/lib/utils"
+import { Inconsolata } from "next/font/google"
+
+const font = Inconsolata({ subsets: ["latin"] })
 
 type MeasuresListProps = {
   randomNumbers: number[]
@@ -36,9 +39,15 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
     const unitPart = measureString.replace(numberString, "").trim()
 
     // Replace the unit part with the strong-wrapped unit part
-    const formattedMeasure = measureString.replace(
+    const formattedUnit = measureString.replace(
       unitPart,
       `<strong class="font-bold text-orange">${unitPart}</strong>`,
+    )
+
+    // Replace the number part with <Monospace> tag
+    const formattedMeasure = formattedUnit.replace(
+      numberString,
+      `<span class="${"text-[1.1em] " + font.className}">${numberString}</span>`,
     )
 
     return formattedMeasure
