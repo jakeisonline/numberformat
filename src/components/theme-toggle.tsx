@@ -13,11 +13,13 @@ import {
 import { Skeleton } from "./ui/skeleton"
 import { cn } from "@/lib/utils"
 
+const buttonHeight = "h-8 md:h-10"
+const buttonWidth = "w-8 md:w-10"
+
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
   const { setTheme } = useTheme()
 
-  const buttonSize = "h-8 w-8 md:h-10 md:w-10"
   const iconSize = "h-[0.9rem] w-[0.9rem] md:h-[1.2rem] md:w-[1.2rem]"
 
   /* We don't want this component to render until it's mounted,
@@ -42,7 +44,11 @@ export default function ThemeToggle() {
           <Button
             variant="outline"
             size="icon"
-            className={cn("border-black/20 dark:border-white/20", buttonSize)}
+            className={cn(
+              "border-black/20 dark:border-white/20",
+              buttonHeight,
+              buttonWidth,
+            )}
             aria-label="Choose between dark and light modes"
           >
             <Sun
@@ -77,5 +83,5 @@ export default function ThemeToggle() {
 }
 
 function ThemeToggleWrapper({ children }: { children: React.ReactNode }) {
-  return <div className="flex justify-end">{children}</div>
+  return <div className={cn(`flex justify-end`, buttonHeight)}>{children}</div>
 }
