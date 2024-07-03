@@ -28,44 +28,54 @@ export default function ThemeToggle() {
   }, [])
 
   if (!mounted) {
-    return <Skeleton className={cn("rounded-md bg-white/10")} />
+    return (
+      <ThemeToggleWrapper>
+        <Skeleton className={cn("rounded-md bg-white/10")} />
+      </ThemeToggleWrapper>
+    )
   }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          className={cn("border-black/20 dark:border-white/20", buttonSize)}
-          aria-label="Choose between dark and light modes"
-        >
-          <Sun
-            className={cn(
-              "rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0",
-              iconSize,
-            )}
-          />
-          <Moon
-            className={cn(
-              "absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100",
-              iconSize,
-            )}
-          />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-light dark:bg-dark">
-        {["light", "dark", "system"].map((theme) => (
-          <DropdownMenuItem
-            className="capitalize hover:cursor-pointer hover:bg-black/10 dark:hover:bg-white/10"
-            key={theme}
-            onClick={() => setTheme(theme)}
+    <ThemeToggleWrapper>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="outline"
+            size="icon"
+            className={cn("border-black/20 dark:border-white/20", buttonSize)}
+            aria-label="Choose between dark and light modes"
           >
-            {theme}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+            <Sun
+              className={cn(
+                "rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0",
+                iconSize,
+              )}
+            />
+            <Moon
+              className={cn(
+                "absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100",
+                iconSize,
+              )}
+            />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="bg-light dark:bg-dark">
+          {["light", "dark", "system"].map((theme) => (
+            <DropdownMenuItem
+              className="capitalize hover:cursor-pointer hover:bg-black/10 dark:hover:bg-white/10"
+              key={theme}
+              onClick={() => setTheme(theme)}
+            >
+              {theme}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </ThemeToggleWrapper>
   )
+}
+
+function ThemeToggleWrapper({ children }: { children: React.ReactNode }) {
+  return <div className="flex justify-end">{children}</div>
 }

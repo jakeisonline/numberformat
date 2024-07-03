@@ -33,9 +33,7 @@ export default function Home({ localeOverride }: HomeProps) {
         localeOverride={localeOverride}
       >
         <main className="max-w-screen mx-auto px-2 py-2 md:px-6 md:py-4 lg:max-w-6xl lg:py-6">
-          <header className="flex justify-end">
-            <ThemeToggle />
-          </header>
+          <ThemeToggle />
           <Hero />
           <LocaleSelector />
           <NumbersWrapper>
