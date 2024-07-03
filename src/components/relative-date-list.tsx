@@ -1,12 +1,14 @@
 "use client"
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import { cn } from "@/lib/utils"
 import {
   relativeIdiomaticTimeFormatter,
   relativeNumericTimeFormatter,
 } from "@/lib/formatters"
 import { RELATIVE_DATE_EXAMPLES } from "@/lib/const"
+import ExamplesList from "./example-list/examples-list"
+import ExamplesListHeading from "./example-list/examples-list-heading"
+import ExamplesListContent from "./example-list/examples-list-content"
 
 export function RelativeDateList() {
   const { selectedLocale, browserLocale } = useSelectedLocaleContext()
@@ -20,13 +22,10 @@ export function RelativeDateList() {
   }
 
   return (
-    <section className="bg-page mt-6 rounded-lg pb-5 pt-4 text-center">
-      <h3 className="text-lg font-semibold capitalize">Relative Dates</h3>
-      <ul
-        className={cn(
-          "margin-auto text-md mt-2 grid grid-cols-1 gap-y-0.5 text-center sm:grid-cols-2",
-          selectedLocale.value === browserLocale && "gap-y-4",
-        )}
+    <ExamplesList>
+      <ExamplesListHeading>Relative Dates</ExamplesListHeading>
+      <ExamplesListContent
+        className={selectedLocale.value === browserLocale ? "gap-y-4" : ""}
       >
         {RELATIVE_DATE_EXAMPLES.map((example) => {
           const selectedLocaleRelativeTime = getRelativeTime(
@@ -49,7 +48,7 @@ export function RelativeDateList() {
             </li>
           )
         })}
-      </ul>
-    </section>
+      </ExamplesListContent>
+    </ExamplesList>
   )
 }

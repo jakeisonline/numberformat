@@ -6,7 +6,7 @@ export default function NumberDescription({
   children,
 }: NumberDescriptionProps) {
   return (
-    <div className="min-h-[5rem]">
+    <div className="">
       <p className="mt-3">{children}</p>
     </div>
   )
