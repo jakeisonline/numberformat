@@ -1,14 +1,14 @@
 # numberformat.app &nbsp;![Vercel Deploy](https://deploy-badge.vercel.app/vercel/number-format-jakeisonlines-projects) ![Built on next.js](https://img.shields.io/github/package-json/dependency-version/jakeisonline/number-format/next)
 
-[numberformat.app](http://www.numberformat.app) is a tiny web-based tool that helps you visualise the various number formats of almost every locale. Every language and locale has its own special rules when it comes to number formatting, such as the symbol used for decimal points, or how numberical dates are displayed.
+[numberformat.app](https://numberformat.app) is a tiny web-based tool that helps you visualise the various number formats of almost every locale. Every language and locale has its own special rules when it comes to number formatting, such as the symbol used for decimal points, or how numberical dates are displayed.
 
 ## Features
 
-* Shows examples and rules for number formatting, date and time formatting (including relative), currencies formatting, and measures formatting
-* Easily lookup any language or locale currently supported by the ECMAScript Internationalization API
-* Feeling lucky? Randomly select a locale to take a look at
-* Automatically detects your current browser's locale
-* Dark mode to help those midnight formatting sessions
+- Shows examples and rules for number formatting, date and time formatting (including relative), currencies formatting, and measures formatting
+- Easily lookup any language or locale currently supported by the ECMAScript Internationalization API
+- Feeling lucky? Randomly select a locale to take a look at
+- Automatically detects your current browser's locale
+- Dark mode to help those midnight formatting sessions
 
 ## How this app works
 

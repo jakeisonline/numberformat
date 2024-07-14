@@ -20,7 +20,7 @@ export async function generateMetadata(
     description: `See the special formatting rules for numbers in ${locale.label} (${locale.value}). This tool helps you look up the right format for every locale.`,
     openGraph: {
       description: `See the special formatting rules for numbers in ${locale.label} (${locale.value}). This tool helps you look up the right format for every locale.`,
-      url: `https://www.numberformat.app/${locale.value.toLocaleLowerCase()}/`,
+      url: `${process.env.BASE_URL}/${locale.value.toLocaleLowerCase()}/`,
     },
   }
 }
