@@ -1,6 +1,5 @@
 import SelectedLocaleContextProvider from "@/contexts/selected-locale-context-provider"
 import { getHeadersLocale } from "@/lib/server-utils"
-import PlausibleProvider from "next-plausible"
 import LocaleSelector from "@/components/locale-selector"
 import NumbersWrapper from "@/components/cards/cards-wrapper"
 import ThemeToggle from "@/components/theme-toggle"
@@ -36,10 +35,6 @@ export default function Home({ localeOverride }: HomeProps) {
           </NumbersWrapper>
         </main>
       </SelectedLocaleContextProvider>
-      <PlausibleProvider
-        domain="numberformat.app"
-        pageviewProps={{ "browser-locale": browserLocale }}
-      />
     </>
   )
 }

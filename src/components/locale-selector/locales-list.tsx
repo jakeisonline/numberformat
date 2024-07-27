@@ -1,4 +1,3 @@
-import { usePlausible } from "next-plausible"
 import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
 import {
   Command,
@@ -25,26 +24,15 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
     randomizeSelectedLocale,
     resetSelectedLocale,
   } = useSelectedLocaleContext()
-  const plausible = usePlausible()
 
   const handleResetLocale = () => {
     resetSelectedLocale()
     setOpen(false)
-    plausible("Reset Locale", {
-      props: {
-        "button-id": "reset--locale-selection",
-      },
-    })
   }
 
   const handleRandomLocale = () => {
     randomizeSelectedLocale()
     setOpen(false)
-    plausible("Randomize Locale", {
-      props: {
-        "button-id": "randomize--locale-selection",
-      },
-    })
   }
 
   const handleSelectLocale = (currentValue: string) => {
@@ -54,12 +42,6 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
     } else {
       handleSelectedLocaleChange(currentValue)
       setOpen(false)
-      plausible("Select Locale", {
-        props: {
-          "button-id": "select-locale--locale-selection",
-          "selected-locale": currentValue.toString(),
-        },
-      })
     }
   }
 

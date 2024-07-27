@@ -1,4 +1,3 @@
-import { usePlausible } from "next-plausible"
 import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
 import {
   Tooltip,
@@ -11,15 +10,9 @@ import { Shuffle } from "lucide-react"
 
 export function RandomizeLocaleButton() {
   const { randomizeSelectedLocale } = useSelectedLocaleContext()
-  const plausible = usePlausible()
 
   const handleClick = () => {
     randomizeSelectedLocale()
-    plausible("Randomize Locale", {
-      props: {
-        "button-id": "randomize--main-page",
-      },
-    })
   }
 
   return (
