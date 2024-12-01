@@ -5,15 +5,13 @@ import { notFound } from "next/navigation"
 import Home from "@/app/page"
 
 type LocalePageProps = {
-  params: {
+  params: Promise<{
     locale: string
-  }
+  }>
 }
 
-export async function generateMetadata(
-  { params }: LocalePageProps,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(props: LocalePageProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const locale = getLocaleByValue(params.locale)
   return {
     title: `Every number format for ${locale.label} (${locale.value})`,
@@ -25,7 +23,8 @@ export async function generateMetadata(
   }
 }
 
-export default function LocalePage({ params }: LocalePageProps) {
+export default async function LocalePage(props: LocalePageProps) {
+  const params = await props.params;
   if (!LOCALES.find((locale) => locale.value.toLowerCase() === params.locale)) {
     notFound()
   }
