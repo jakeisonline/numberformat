@@ -8,8 +8,8 @@ jest.mock("next/headers", () => ({
 }))
 
 describe("getHeadersLocale", () => {
-  it("should return the first locale in the Accept-Language header", () => {
-    const headersLocale = getHeadersLocale()
+  it("should return the first locale in the Accept-Language header", async () => {
+    const headersLocale = await getHeadersLocale()
     expect(headersLocale).toBe("en-GB")
   })
 })
