@@ -14,8 +14,8 @@ type HomeProps = {
   localeOverride: string
 }
 
-export default function Home({ localeOverride }: HomeProps) {
-  const browserLocale = getHeadersLocale()
+export default async function Home({ localeOverride }: HomeProps) {
+  const browserLocale = await getHeadersLocale()
   return (
     <>
       <SelectedLocaleContextProvider

@@ -1,9 +1,11 @@
 "server only"
 
-import { headers, type UnsafeUnwrappedHeaders } from "next/headers";
+import { headers, type UnsafeUnwrappedHeaders } from "next/headers"
 
-export function getHeadersLocale() {
-  const headersLocaleString = (headers() as unknown as UnsafeUnwrappedHeaders).get("Accept-Language")
+export async function getHeadersLocale() {
+  const headersLocaleString = (
+    (await headers()) as unknown as UnsafeUnwrappedHeaders
+  ).get("Accept-Language")
 
   if (!headersLocaleString) {
     console.log(`No Accept-Language header found`)
