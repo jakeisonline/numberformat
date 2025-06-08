@@ -20,6 +20,13 @@ import {
   GetTimeFormatResponse,
 } from "@/mcp/tools/get-time-format"
 import { getTimeFormatArgsSchema } from "@/mcp/tools/get-time-format"
+import {
+  getCurrencyFormat,
+  GetCurrencyFormatArg,
+  getCurrencyFormatArgsSchema,
+  getCurrencyFormatMeta,
+  GetCurrencyFormatResponse,
+} from "@/mcp/tools/get-currency-format"
 
 interface GetNumberFormatArgs {
   locale: string
@@ -69,6 +76,21 @@ const handler = createMcpHandler(
         style,
       }: GetTimeFormatArg): Promise<GetTimeFormatResponse> => {
         return getTimeFormat({ locale, time, style })
+      },
+    )
+
+    server.tool(
+      getCurrencyFormatMeta.name,
+      getCurrencyFormatMeta.description,
+      {
+        ...getCurrencyFormatArgsSchema.shape,
+      },
+      async ({
+        locale,
+        currency,
+        amount,
+      }: GetCurrencyFormatArg): Promise<GetCurrencyFormatResponse> => {
+        return getCurrencyFormat({ locale, currency, amount })
       },
     )
   },
