@@ -24,7 +24,7 @@ export const getDateFormatArgsSchema = z.object({
   locale: z
     .string()
     .describe("The BCP 47 language tag that was used to format the number"),
-  date: z.string().describe("The date to format"),
+  date: z.string().datetime().describe("The ISO 8601 date to format"),
   style: z
     .enum(["short", "medium", "long", "full"])
     .optional()
