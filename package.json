@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@modelcontextprotocol/sdk": "^1.12.1",
     "@next/bundle-analyzer": "15.0.3",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-dropdown-menu": "^2.1.15",
@@ -24,6 +25,7 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "@sentry/nextjs": "^9.1.0",
     "@vercel/analytics": "^1.5.0",
+    "@vercel/mcp-adapter": "^0.9.1",
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -36,11 +38,13 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-timer-hook": "^3.0.8",
+    "redis": "^5.5.6",
     "server-only": "^0.0.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
-    "vaul": "^0.9.9"
+    "vaul": "^0.9.9",
+    "zod": "^3.25.56"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
