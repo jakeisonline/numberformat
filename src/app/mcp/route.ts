@@ -1,50 +1,30 @@
 import { createMcpHandler } from "@vercel/mcp-adapter"
-import { z } from "zod"
+import {
+  getNumberFormat,
+  getNumberFormatArgsSchema,
+  getNumberFormatMeta,
+  type GetNumberFormatArg,
+  type GetNumberFormatResponse,
+} from "@/mcp/tools/get-number-format"
 
 interface GetNumberFormatArgs {
   locale: string
   number: number
 }
 
-interface NumberFormatParts {
-  groups: string
-  decimals: string
-}
-
-interface NumberFormatResponse {
-  value: string
-  description: string
-  parts: NumberFormatParts
-}
-
 const handler = createMcpHandler(
   async (server) => {
     server.tool(
-      "get-number-format",
-      "Returns the number format for a given locale",
+      getNumberFormatMeta.name,
+      getNumberFormatMeta.description,
       {
-        locale: z.string(),
-        number: z.number(),
+        ...getNumberFormatArgsSchema.shape,
       },
-      async ({ locale, number }: GetNumberFormatArgs) => {
-        const numberFormat = new Intl.NumberFormat(locale)
-        const numberParts = numberFormat.formatToParts(number)
-        const groupPart =
-          numberParts.find((part) => part.type === "group")?.value || " "
-        const decimalPart =
-          numberParts.find((part) => part.type === "decimal")?.value || "."
-        const formatDescription = `groups of numbers are separated by ${groupPart === " " ? "a space" : groupPart} and decimals with ${decimalPart}`
-
-        const content: NumberFormatResponse = {
-          value: numberFormat.format(number),
-          description: formatDescription,
-          parts: {
-            groups: groupPart,
-            decimals: decimalPart,
-          },
-        }
-
-        return content
+      async ({
+        locale,
+        number,
+      }: GetNumberFormatArg): Promise<GetNumberFormatResponse> => {
+        return getNumberFormat({ locale, number })
       },
     )
   },
@@ -60,43 +40,42 @@ const handler = createMcpHandler(
             },
           },
         },
-        "get-number-format": {
-          description: "Returns the number format for a given locale",
+        [getNumberFormatMeta.name]: {
+          description: getNumberFormatMeta.description,
           parameters: {
             type: "object",
             properties: {
-              number: { type: "string" },
-              locale: { type: "string" },
+              ...getNumberFormatArgsSchema.shape,
             },
           },
           response: {
             type: "object",
             properties: {
-              formattedValue: {
+              value: {
                 type: "string",
                 description:
                   "The number formatted according to the requested locale.",
                 example: "12 345,67",
               },
-              formatDescription: {
+              description: {
                 type: "string",
                 description:
                   "A human-readable description of how numbers are formatted in this locale.",
                 example:
                   "groups of numbers are separated by a space and decimals with a ,",
               },
-              formatParts: {
+              parts: {
                 type: "object",
                 description:
                   "Symbols used for grouping and decimal separation.",
                 properties: {
-                  groups: {
+                  group: {
                     type: "string",
                     description:
                       "The symbol used to separate groups of digits (e.g., thousands).",
                     example: " ",
                   },
-                  decimals: {
+                  decimal: {
                     type: "string",
                     description: "The symbol used for the decimal separator.",
                     example: ",",
@@ -106,10 +85,10 @@ const handler = createMcpHandler(
             },
             examples: [
               {
-                formattedValue: "12 345,67",
-                formatDescription:
-                  "groups of numbers are separated by a space and decimals with a ,",
-                formatParts: { groups: " ", decimals: "," },
+                value: "12,345.67",
+                description:
+                  "groups of numbers are separated by a `,` and decimals with a `.`",
+                formatParts: { groups: ",", decimals: "." },
               },
             ],
           },
