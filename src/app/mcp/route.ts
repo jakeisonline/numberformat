@@ -57,10 +57,10 @@ const handler = createMcpHandler(
       },
       async ({
         locale,
-        date,
+        datetime,
         style,
       }: GetDateFormatArg): Promise<GetDateFormatResponse> => {
-        return getDateFormat({ locale, date, style })
+        return getDateFormat({ locale, datetime, style })
       },
     )
 
@@ -72,10 +72,10 @@ const handler = createMcpHandler(
       },
       async ({
         locale,
-        time,
+        datetime,
         style,
       }: GetTimeFormatArg): Promise<GetTimeFormatResponse> => {
-        return getTimeFormat({ locale, time, style })
+        return getTimeFormat({ locale, datetime, style })
       },
     )
 

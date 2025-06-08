@@ -1,5 +1,4 @@
 import { z } from "zod"
-import { getDatetimePartTypes } from "@/lib/utils"
 
 /**
  * Schema defining the complete date format data structure
@@ -24,11 +23,11 @@ export const getDateFormatArgsSchema = z.object({
   locale: z
     .string()
     .describe("The BCP 47 language tag that was used to format the number"),
-  date: z.string().datetime().describe("The ISO 8601 date to format"),
+  datetime: z.string().datetime().describe("The ISO 8601 date to format"),
   style: z
     .enum(["short", "medium", "long", "full"])
     .optional()
-    .default("short")
+    .default("medium")
     .describe("The style of the date format"),
 })
 
@@ -65,19 +64,28 @@ export const getDateFormatMeta = {
 
 export function getDateFormat({
   locale,
-  date,
-  style = "short",
+  datetime,
+  style = "medium",
 }: GetDateFormatArg) {
   const dateFormat = new Intl.DateTimeFormat(locale, {
     dateStyle: style,
   })
-  const dateParts = dateFormat.formatToParts(new Date(date))
-  const { year, month, day } = getDatetimePartTypes(dateParts)
-  // TODO: add literal parts, account for multiple styles, and dynamically generate the description
-  const formatDescription = `The date is written as ${year?.value} ${month?.value} ${day?.value}`
+  const dateParts = dateFormat.formatToParts(new Date(datetime))
+  let decoratedDatetimeParts = ""
+
+  // We want to wrap anything other than a literal in code markdown
+  dateParts.forEach((part) => {
+    if (part.type !== "literal") {
+      decoratedDatetimeParts += `\`${part.type === "dayPeriod" ? "am/pm" : part.type}\``
+    } else {
+      decoratedDatetimeParts += `${part.value}`
+    }
+  })
+
+  const formatDescription = `The ${style} date is written as ${decoratedDatetimeParts}`
   const data = dateFormatDataSchema.parse({
     locale,
-    value: dateFormat.format(new Date(date)),
+    value: dateFormat.format(new Date(datetime)),
     description: formatDescription,
   })
   return {

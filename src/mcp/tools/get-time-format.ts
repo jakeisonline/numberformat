@@ -1,5 +1,4 @@
 import { z } from "zod"
-import { getDatetimePartTypes } from "@/lib/utils"
 
 /**
  * Schema defining the complete time format data structure
@@ -15,6 +14,9 @@ const timeFormatDataSchema = z.object({
     .describe(
       "A human-readable description of the time format, in Markdown format",
     ),
+  prefers24HourTime: z
+    .boolean()
+    .describe("Whether the time format prefers 24 hour time"),
 })
 
 /**
@@ -24,11 +26,11 @@ export const getTimeFormatArgsSchema = z.object({
   locale: z
     .string()
     .describe("The BCP 47 language tag that was used to format the time"),
-  time: z.string().describe("The time to format"),
+  datetime: z.string().datetime().describe("The ISO 8601 date to format"),
   style: z
     .enum(["short", "medium", "long", "full"])
     .optional()
-    .default("short")
+    .default("medium")
     .describe("The style of the time format"),
 })
 
@@ -63,17 +65,36 @@ export const getTimeFormatMeta = {
   description: "Returns the time format for a given locale",
 }
 
-export function getTimeFormat({ locale, time, style }: GetTimeFormatArg) {
+export function getTimeFormat({
+  locale,
+  datetime,
+  style = "medium",
+}: GetTimeFormatArg) {
   const timeFormat = new Intl.DateTimeFormat(locale, {
     timeStyle: style,
   })
-  const timeParts = timeFormat.formatToParts(new Date(time))
-  const { hour, minute, second, dayPeriod } = getDatetimePartTypes(timeParts)
-  const formatDescription = `The time is written as ${hour?.value} ${minute?.value} ${second?.value} ${dayPeriod?.value}`
+  const timeParts = timeFormat.formatToParts(new Date(datetime))
+
+  let decoratedDatetimeParts = ""
+
+  // We want to wrap anything other than a literal in code markdown
+  timeParts.forEach((part) => {
+    if (part.type !== "literal") {
+      decoratedDatetimeParts += `\`${part.type === "dayPeriod" ? "am/pm" : part.type}\``
+    } else {
+      decoratedDatetimeParts += `${part.value}`
+    }
+  })
+
+  const prefers24HourTime = !timeParts.some((part) => part.type === "dayPeriod")
+
+  const formatDescription = `The ${style} time is written as ${decoratedDatetimeParts}`
+
   const data = timeFormatDataSchema.parse({
     locale,
-    value: timeFormat.format(new Date(time)),
+    value: timeFormat.format(new Date(datetime)),
     description: formatDescription,
+    prefers24HourTime,
   })
   return {
     content: [{ type: "text", text: JSON.stringify(data) }],
