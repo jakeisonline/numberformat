@@ -6,6 +6,13 @@ import {
   type GetNumberFormatArg,
   type GetNumberFormatResponse,
 } from "@/mcp/tools/get-number-format"
+import {
+  getDateFormat,
+  getDateFormatArgsSchema,
+  getDateFormatMeta,
+  type GetDateFormatArg,
+  type GetDateFormatResponse,
+} from "@/mcp/tools/get-date-format"
 
 interface GetNumberFormatArgs {
   locale: string
@@ -25,6 +32,21 @@ const handler = createMcpHandler(
         number,
       }: GetNumberFormatArg): Promise<GetNumberFormatResponse> => {
         return getNumberFormat({ locale, number })
+      },
+    )
+
+    server.tool(
+      getDateFormatMeta.name,
+      getDateFormatMeta.description,
+      {
+        ...getDateFormatArgsSchema.shape,
+      },
+      async ({
+        locale,
+        date,
+        style,
+      }: GetDateFormatArg): Promise<GetDateFormatResponse> => {
+        return getDateFormat({ locale, date, style })
       },
     )
   },
