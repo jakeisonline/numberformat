@@ -1,6 +1,10 @@
 import { z } from "zod"
 import { getNumberPartTypes } from "@/lib/utils"
 
+/**
+ * Schema defining the structure of number format parts (group and decimal separators)
+ * @internal
+ */
 const numberFormatPartsSchema = z.object({
   group: z
     .string()
@@ -12,6 +16,10 @@ const numberFormatPartsSchema = z.object({
     .describe("The symbol used for the decimal separator"),
 })
 
+/**
+ * Schema defining the complete number format data structure
+ * @internal
+ */
 const numberFormatDataSchema = z.object({
   locale: z
     .string()
@@ -25,6 +33,9 @@ const numberFormatDataSchema = z.object({
   parts: numberFormatPartsSchema,
 })
 
+/**
+ * Schema for the arguments required by the getNumberFormat tool
+ */
 export const getNumberFormatArgsSchema = z.object({
   locale: z
     .string()
@@ -32,6 +43,9 @@ export const getNumberFormatArgsSchema = z.object({
   number: z.number().describe("The number to format"),
 })
 
+/**
+ * Schema for the response returned by the getNumberFormat tool
+ */
 export const getNumberFormatResponseSchema = z.object({
   content: z.array(
     z.object({
@@ -52,16 +66,29 @@ export const getNumberFormatResponseSchema = z.object({
   ),
 })
 
-export type GetNumberFormatArg = z.infer<typeof getNumberFormatArgsSchema>
-export type GetNumberFormatResponse = z.infer<
-  typeof getNumberFormatResponseSchema
->
-
+/**
+ * Metadata for the getNumberFormat tool
+ */
 export const getNumberFormatMeta = {
   name: "get-number-format",
   description: "Returns the number format for a given locale",
 }
 
+/**
+ * Formats a number according to the specified locale and returns information about the formatting.
+ *
+ * @param args - The arguments for number formatting
+ * @param args.locale - A BCP 47 language tag (e.g., "en-US", "fr-FR")
+ * @param args.number - The number to be formatted
+ *
+ * @returns An object containing the formatted number and formatting details
+ *
+ * @example
+ * ```ts
+ * const result = getNumberFormat({ locale: "en-US", number: 1234.56 });
+ * // Returns information about how numbers are formatted in US English
+ * ```
+ */
 export function getNumberFormat({ locale, number }: GetNumberFormatArg) {
   const numberFormat = new Intl.NumberFormat(locale)
   const numberParts = numberFormat.formatToParts(number)
@@ -87,3 +114,8 @@ export function getNumberFormat({ locale, number }: GetNumberFormatArg) {
     ],
   } as GetNumberFormatResponse
 }
+
+export type GetNumberFormatArg = z.infer<typeof getNumberFormatArgsSchema>
+export type GetNumberFormatResponse = z.infer<
+  typeof getNumberFormatResponseSchema
+>
