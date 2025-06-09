@@ -1,7 +1,12 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { DEFAULT_LOCALE, LOCALES } from "./const"
-import { TDatetimePartType, TLocale, TNumberPartType } from "./types"
+import {
+  TCurrencyPartType,
+  TDatetimePartType,
+  TLocale,
+  TNumberPartType,
+} from "./types"
 import { SEEDS } from "./numbers-seeds"
 
 export function cn(...inputs: ClassValue[]) {
@@ -41,6 +46,25 @@ export function getDatetimePartTypes(
   const second = parts.find((part) => part.type === "second")
   const dayPeriod = parts.find((part) => part.type === "dayPeriod")
   return { month, day, year, literal, hour, minute, second, dayPeriod }
+}
+
+export function getCurrencyPartTypes(
+  parts: Intl.NumberFormatPart[],
+): TCurrencyPartType {
+  const currencyIndex = parts.findIndex((item) => item.type === "currency")
+  const isPrefix = currencyIndex === 0
+
+  // Look one position ahead for prefix, or one position behind for suffix
+  const adjacentIndex = isPrefix ? currencyIndex + 1 : currencyIndex - 1
+  const hasSpace = parts[adjacentIndex]?.type === "literal"
+
+  const currency = parts.find((part) => part.type === "currency")
+  const currencyPos = isPrefix ? "prefix" : "suffix"
+  const currencySpace = hasSpace ? true : false
+  const group = parts.find((part) => part.type === "group")
+  const decimal = parts.find((part) => part.type === "decimal")
+  const compact = parts.find((part) => part.type === "compact")
+  return { currency, currencyPos, currencySpace, group, decimal, compact }
 }
 
 export function generateRandomNumber(min: number, max: number) {

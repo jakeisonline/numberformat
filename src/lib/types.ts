@@ -28,3 +28,10 @@ export type TDatetimePartType = {
   second: Intl.DateTimeFormatPart | undefined
   dayPeriod: Intl.DateTimeFormatPart | undefined
 }
+
+export type TCurrencyPartType = TNumberPartType & {
+  currency: Intl.NumberFormatPart | undefined
+  currencyPos: "prefix" | "suffix"
+  currencySpace: boolean
+  compact: Intl.NumberFormatPart | undefined
+}

@@ -88,9 +88,10 @@ const handler = createMcpHandler(
       async ({
         locale,
         currency,
+        currencyDisplay = "symbol",
         amount,
       }: GetCurrencyFormatArg): Promise<GetCurrencyFormatResponse> => {
-        return getCurrencyFormat({ locale, currency, amount })
+        return getCurrencyFormat({ locale, currency, currencyDisplay, amount })
       },
     )
   },
