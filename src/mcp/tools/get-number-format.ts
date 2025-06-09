@@ -91,7 +91,8 @@ export const getNumberFormatMeta = {
  */
 export function getNumberFormat({ locale, number }: GetNumberFormatArg) {
   const numberFormat = new Intl.NumberFormat(locale)
-  const numberParts = numberFormat.formatToParts(number)
+  // We hardcode the number here because we want all possible groups and decimals
+  const numberParts = numberFormat.formatToParts(1000.1)
   const { group, decimal } = getNumberPartTypes(numberParts)
   const formatDescription = `Groups of numbers are separated by \`${group?.value || "a space"}\` and decimals with \`${decimal?.value || "."}\``
 
