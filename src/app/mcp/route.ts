@@ -97,16 +97,7 @@ const handler = createMcpHandler(
   },
   {
     capabilities: {
-      "tools": {
-        "get-all-formats": {
-          description: "Returns all formats for a given locale",
-          parameters: {
-            type: "object",
-            properties: {
-              locale: { type: "string" },
-            },
-          },
-        },
+      tools: {
         [getNumberFormatMeta.name]: {
           description: getNumberFormatMeta.description,
           parameters: {
@@ -160,44 +151,31 @@ const handler = createMcpHandler(
             ],
           },
         },
-        "get-date-format": {
-          description: "Returns the date format for a given locale",
+        [getDateFormatMeta.name]: {
+          description: getDateFormatMeta.description,
           parameters: {
             type: "object",
             properties: {
-              date: { type: "string" },
-              locale: { type: "string" },
+              ...getDateFormatArgsSchema.shape,
             },
           },
         },
-      },
-      "get-time-format": {
-        description: "Returns the time format for a given locale",
-        parameters: {
-          type: "object",
-          properties: {
-            time: { type: "string" },
-            locale: { type: "string" },
+        [getTimeFormatMeta.name]: {
+          description: getTimeFormatMeta.description,
+          parameters: {
+            type: "object",
+            properties: {
+              ...getTimeFormatArgsSchema.shape,
+            },
           },
         },
-      },
-      "get-currency-format": {
-        description: "Returns the currency format for a given locale",
-        parameters: {
-          type: "object",
-          properties: {
-            currency: { type: "string" },
-            locale: { type: "string" },
-          },
-        },
-      },
-      "get-measurement-format": {
-        description: "Returns the measurement format for a given locale",
-        parameters: {
-          type: "object",
-          properties: {
-            measurement: { type: "string" },
-            locale: { type: "string" },
+        [getCurrencyFormatMeta.name]: {
+          description: getCurrencyFormatMeta.description,
+          parameters: {
+            type: "object",
+            properties: {
+              ...getCurrencyFormatArgsSchema.shape,
+            },
           },
         },
       },
