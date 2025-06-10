@@ -27,6 +27,13 @@ import {
   getCurrencyFormatMeta,
   GetCurrencyFormatResponse,
 } from "@/mcp/tools/get-currency-format"
+import {
+  getAllFormats,
+  GetAllFormatsArg,
+  getAllFormatsArgsSchema,
+  getAllFormatsMeta,
+  GetAllFormatsResponse,
+} from "@/mcp/tools/get-all-formats"
 
 interface GetNumberFormatArgs {
   locale: string
@@ -35,6 +42,16 @@ interface GetNumberFormatArgs {
 
 const handler = createMcpHandler(
   async (server) => {
+    server.tool(
+      getAllFormatsMeta.name,
+      getAllFormatsMeta.description,
+      {
+        ...getAllFormatsArgsSchema.shape,
+      },
+      async ({ locale }: GetAllFormatsArg): Promise<GetAllFormatsResponse> => {
+        return getAllFormats({ locale })
+      },
+    )
     server.tool(
       getNumberFormatMeta.name,
       getNumberFormatMeta.description,
