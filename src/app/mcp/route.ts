@@ -20,6 +20,10 @@ const handler = createMcpHandler(
   {
     capabilities: generateCapabilities(),
   },
+  {
+    disableSse: true,
+    maxDuration: 10,
+  },
 )
 
 export { handler as GET, handler as POST }
