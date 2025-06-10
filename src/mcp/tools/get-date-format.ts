@@ -29,6 +29,43 @@ export const getDateFormatMeta = {
   description: "Returns the date format for a given locale",
 }
 
+/**
+ * Formats a date according to the specified locale and style preferences.
+ *
+ * This function uses the Intl.DateTimeFormat API to format date values and provides
+ * a human-readable description of the date format pattern used by the locale.
+ *
+ * @param args - The date formatting arguments
+ * @param args.locale - A BCP 47 language tag (e.g., "en-US", "fr-FR", "ja-JP")
+ * @param args.datetime - An ISO 8601 datetime string to format (e.g., "2023-12-25T10:30:00Z")
+ * @param args.style - The formatting style: "full", "long", "medium", or "short"
+ *
+ * @returns An MCP-formatted response containing the formatted date string and formatting description
+ *
+ * @example
+ * ```ts
+ * const result = getDateFormat({
+ *   locale: "en-US",
+ *   datetime: "2023-12-25T10:30:00Z",
+ *   style: "medium"
+ * });
+ * // Returns formatted value: "Dec 25, 2023"
+ * ```
+ *
+ * @example
+ * ```ts
+ * const result = getDateFormat({
+ *   locale: "ja-JP",
+ *   datetime: "2023-12-25T10:30:00Z",
+ *   style: "long"
+ * });
+ * // Returns formatted value: "2023年12月25日"
+ * ```
+ *
+ * @throws {Error} When the datetime string is not a valid ISO 8601 format
+ *
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat | Intl.DateTimeFormat}
+ */
 export function getDateFormat({
   locale,
   datetime,

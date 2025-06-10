@@ -32,6 +32,46 @@ export const getCurrencyFormatMeta = {
   description: "Returns the currency format for a given locale",
 }
 
+/**
+ * Formats a currency amount according to the specified locale and currency settings.
+ *
+ * This function uses the Intl.NumberFormat API to format currency values and extracts
+ * detailed information about how the currency formatting is applied, including symbol
+ * placement, spacing, and separator characters.
+ *
+ * @param args - The currency formatting arguments
+ * @param args.locale - A BCP 47 language tag (e.g., "en-US", "fr-FR", "ja-JP")
+ * @param args.currency - The ISO 4217 currency code (e.g., "USD", "EUR", "GBP")
+ * @param args.currencyDisplay - How the currency should be displayed (symbol, code, name, or narrowSymbol)
+ * @param args.amount - The numeric amount to format
+ *
+ * @returns An MCP-formatted response containing the formatted currency string and detailed formatting information
+ *
+ * @example
+ * ```ts
+ * const result = getCurrencyFormat({
+ *   locale: "en-US",
+ *   currency: "USD",
+ *   currencyDisplay: "symbol",
+ *   amount: 1234.56
+ * });
+ * // Returns: { content: [{ type: "text", text: "..." }] }
+ * // With formatted value: "$1,234.56"
+ * ```
+ *
+ * @example
+ * ```ts
+ * const result = getCurrencyFormat({
+ *   locale: "de-DE",
+ *   currency: "EUR",
+ *   currencyDisplay: "symbol",
+ *   amount: 1234.56
+ * });
+ * // Returns formatted value: "1.234,56 €"
+ * ```
+ *
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat | Intl.NumberFormat}
+ */
 export function getCurrencyFormat({
   locale,
   currency,

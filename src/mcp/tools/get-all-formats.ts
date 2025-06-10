@@ -6,6 +6,9 @@ import { getCurrencyFormat } from "@/mcp/tools/get-currency-format"
 import { allFormatsDataSchema, localeSchema } from "@/mcp/tools/schemas"
 import { createMcpResponseSchema } from "@/lib/schema-to-mcp"
 
+/**
+ * Schema for the arguments required by the getAllFormats tool
+ */
 export const getAllFormatsArgsSchema = z.object({
   locale: localeSchema,
 })
@@ -17,7 +20,7 @@ export const getAllFormatsResponseSchema =
   createMcpResponseSchema(allFormatsDataSchema)
 
 /**
- * Metadata for the getDateFormat tool
+ * Metadata for the getAllFormats tool
  */
 export const getAllFormatsMeta = {
   name: "get-all-formats",
@@ -25,9 +28,46 @@ export const getAllFormatsMeta = {
     "Returns all formats for a given locale, but doesn't allow you to provide a value to format",
 }
 
+/**
+ * Retrieves all formatting information for a given locale using standardised example values.
+ *
+ * This function combines date, time, number, and currency formatting by calling individual
+ * format functions with predefined example values. It provides a comprehensive overview
+ * of how different data types are formatted in the specified locale.
+ *
+ * @param args - The formatting arguments
+ * @param args.locale - A BCP 47 language tag (e.g., "en-US", "fr-FR", "ja-JP")
+ *
+ * @returns An MCP-formatted response containing all format types with their descriptions
+ *
+ * @example
+ * ```ts
+ * const result = getAllFormats({ locale: "en-US" });
+ * // Returns combined formatting info for:
+ * // - Date: "6/10/25" (short style)
+ * // - Time: "8:58 PM" (short style)
+ * // - Number: "1,234,567,890.123"
+ * // - Currency: "$1,234,567,890.12" (USD)
+ * ```
+ *
+ * @example
+ * ```ts
+ * const result = getAllFormats({ locale: "de-DE" });
+ * // Returns German formatting:
+ * // - Date: "10.06.25"
+ * // - Time: "20:58"
+ * // - Number: "1.234.567.890,123"
+ * // - Currency: "1.234.567.890,12 $"
+ * ```
+ *
+ * @see {@link getDateFormat} - For detailed date formatting
+ * @see {@link getTimeFormat} - For detailed time formatting
+ * @see {@link getNumberFormat} - For detailed number formatting
+ * @see {@link getCurrencyFormat} - For detailed currency formatting
+ */
 export function getAllFormats({ locale }: GetAllFormatsArg) {
   const exampleDateTime = "2025-06-10T20:58:00Z"
-  const exampleNumber = 1234567890.123
+  const exampleNumber = 1234567.89
   const exampleCurrency = "USD"
 
   const dateFormat = getDateFormat({
