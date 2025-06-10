@@ -1,202 +1,24 @@
 import { createMcpHandler } from "@vercel/mcp-adapter"
-import {
-  getNumberFormat,
-  getNumberFormatArgsSchema,
-  getNumberFormatMeta,
-  type GetNumberFormatArg,
-  type GetNumberFormatResponse,
-} from "@/mcp/tools/get-number-format"
-import {
-  getDateFormat,
-  getDateFormatArgsSchema,
-  getDateFormatMeta,
-  type GetDateFormatArg,
-  type GetDateFormatResponse,
-} from "@/mcp/tools/get-date-format"
-import {
-  getTimeFormat,
-  GetTimeFormatArg,
-  getTimeFormatMeta,
-  GetTimeFormatResponse,
-} from "@/mcp/tools/get-time-format"
-import { getTimeFormatArgsSchema } from "@/mcp/tools/get-time-format"
-import {
-  getCurrencyFormat,
-  GetCurrencyFormatArg,
-  getCurrencyFormatArgsSchema,
-  getCurrencyFormatMeta,
-  GetCurrencyFormatResponse,
-} from "@/mcp/tools/get-currency-format"
-import {
-  getAllFormats,
-  GetAllFormatsArg,
-  getAllFormatsArgsSchema,
-  getAllFormatsMeta,
-  GetAllFormatsResponse,
-} from "@/mcp/tools/get-all-formats"
-
-interface GetNumberFormatArgs {
-  locale: string
-  number: number
-}
+import { tools, generateCapabilities } from "@/mcp/tool-registry"
 
 const handler = createMcpHandler(
   async (server) => {
-    server.tool(
-      getAllFormatsMeta.name,
-      getAllFormatsMeta.description,
-      {
-        ...getAllFormatsArgsSchema.shape,
-      },
-      async ({ locale }: GetAllFormatsArg): Promise<GetAllFormatsResponse> => {
-        return getAllFormats({ locale })
-      },
-    )
-    server.tool(
-      getNumberFormatMeta.name,
-      getNumberFormatMeta.description,
-      {
-        ...getNumberFormatArgsSchema.shape,
-      },
-      async ({
-        locale,
-        number,
-      }: GetNumberFormatArg): Promise<GetNumberFormatResponse> => {
-        return getNumberFormat({ locale, number })
-      },
-    )
-
-    server.tool(
-      getDateFormatMeta.name,
-      getDateFormatMeta.description,
-      {
-        ...getDateFormatArgsSchema.shape,
-      },
-      async ({
-        locale,
-        datetime,
-        style,
-      }: GetDateFormatArg): Promise<GetDateFormatResponse> => {
-        return getDateFormat({ locale, datetime, style })
-      },
-    )
-
-    server.tool(
-      getTimeFormatMeta.name,
-      getTimeFormatMeta.description,
-      {
-        ...getTimeFormatArgsSchema.shape,
-      },
-      async ({
-        locale,
-        datetime,
-        style,
-      }: GetTimeFormatArg): Promise<GetTimeFormatResponse> => {
-        return getTimeFormat({ locale, datetime, style })
-      },
-    )
-
-    server.tool(
-      getCurrencyFormatMeta.name,
-      getCurrencyFormatMeta.description,
-      {
-        ...getCurrencyFormatArgsSchema.shape,
-      },
-      async ({
-        locale,
-        currency,
-        currencyDisplay = "symbol",
-        amount,
-      }: GetCurrencyFormatArg): Promise<GetCurrencyFormatResponse> => {
-        return getCurrencyFormat({ locale, currency, currencyDisplay, amount })
-      },
-    )
+    // Register each tool with the server
+    for (const tool of tools) {
+      server.tool(
+        tool.meta.name,
+        tool.meta.description,
+        {
+          ...tool.argsSchema.shape,
+        },
+        async (args: any) => {
+          return tool.handler(args)
+        },
+      )
+    }
   },
   {
-    capabilities: {
-      tools: {
-        [getNumberFormatMeta.name]: {
-          description: getNumberFormatMeta.description,
-          parameters: {
-            type: "object",
-            properties: {
-              ...getNumberFormatArgsSchema.shape,
-            },
-          },
-          response: {
-            type: "object",
-            properties: {
-              value: {
-                type: "string",
-                description:
-                  "The number formatted according to the requested locale.",
-                example: "12 345,67",
-              },
-              description: {
-                type: "string",
-                description:
-                  "A human-readable description of how numbers are formatted in this locale.",
-                example:
-                  "groups of numbers are separated by a space and decimals with a ,",
-              },
-              parts: {
-                type: "object",
-                description:
-                  "Symbols used for grouping and decimal separation.",
-                properties: {
-                  group: {
-                    type: "string",
-                    description:
-                      "The symbol used to separate groups of digits (e.g., thousands).",
-                    example: " ",
-                  },
-                  decimal: {
-                    type: "string",
-                    description: "The symbol used for the decimal separator.",
-                    example: ",",
-                  },
-                },
-              },
-            },
-            examples: [
-              {
-                value: "12,345.67",
-                description:
-                  "groups of numbers are separated by a `,` and decimals with a `.`",
-                formatParts: { groups: ",", decimals: "." },
-              },
-            ],
-          },
-        },
-        [getDateFormatMeta.name]: {
-          description: getDateFormatMeta.description,
-          parameters: {
-            type: "object",
-            properties: {
-              ...getDateFormatArgsSchema.shape,
-            },
-          },
-        },
-        [getTimeFormatMeta.name]: {
-          description: getTimeFormatMeta.description,
-          parameters: {
-            type: "object",
-            properties: {
-              ...getTimeFormatArgsSchema.shape,
-            },
-          },
-        },
-        [getCurrencyFormatMeta.name]: {
-          description: getCurrencyFormatMeta.description,
-          parameters: {
-            type: "object",
-            properties: {
-              ...getCurrencyFormatArgsSchema.shape,
-            },
-          },
-        },
-      },
-    },
+    capabilities: generateCapabilities(),
   },
 )
 

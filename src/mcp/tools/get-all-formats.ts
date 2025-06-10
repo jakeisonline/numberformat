@@ -3,73 +3,18 @@ import { getDateFormat } from "@/mcp/tools/get-date-format"
 import { getTimeFormat } from "@/mcp/tools/get-time-format"
 import { getNumberFormat } from "@/mcp/tools/get-number-format"
 import { getCurrencyFormat } from "@/mcp/tools/get-currency-format"
-
-const allFormatsDataSchema = z.object({
-  locale: z
-    .string()
-    .describe("The BCP 47 language tag that was used for each format example"),
-  date: z.object({
-    value: z.string().describe("The formatted date as a string"),
-    description: z
-      .string()
-      .describe(
-        "A human-readable description of the date format, in Markdown format",
-      ),
-  }),
-  time: z.object({
-    value: z.string().describe("The formatted time as a string"),
-    description: z
-      .string()
-      .describe(
-        "A human-readable description of the time format, in Markdown format",
-      ),
-  }),
-  number: z.object({
-    value: z.string().describe("The formatted number as a string"),
-    description: z
-      .string()
-      .describe(
-        "A human-readable description of the number format, in Markdown format",
-      ),
-  }),
-  currency: z.object({
-    value: z.string().describe("The formatted currency as a string"),
-    description: z
-      .string()
-      .describe(
-        "A human-readable description of the currency format, in Markdown format",
-      ),
-  }),
-})
+import { allFormatsDataSchema, localeSchema } from "@/mcp/tools/schemas"
+import { createMcpResponseSchema } from "@/lib/schema-to-mcp"
 
 export const getAllFormatsArgsSchema = z.object({
-  locale: z
-    .string()
-    .describe("The BCP 47 language tag that was used to format the number"),
+  locale: localeSchema,
 })
 
 /**
  * Schema for the response returned by the getAllFormats tool
  */
-export const getAllFormatsResponseSchema = z.object({
-  content: z.array(
-    z.object({
-      type: z.literal("text"),
-      text: z.string().refine(
-        (str) => {
-          try {
-            const parsed = JSON.parse(str)
-            allFormatsDataSchema.parse(parsed)
-            return true
-          } catch {
-            return false
-          }
-        },
-        { message: "Text must be a valid serialised DateFormatData" },
-      ),
-    }),
-  ),
-})
+export const getAllFormatsResponseSchema =
+  createMcpResponseSchema(allFormatsDataSchema)
 
 /**
  * Metadata for the getDateFormat tool
@@ -102,17 +47,38 @@ export function getAllFormats({ locale }: GetAllFormatsArg) {
     currencyDisplay: "symbol",
     amount: exampleNumber,
   })
+
+  // Extract the data from each format response
+  const dateData = JSON.parse(dateFormat.content[0].text)
+  const timeData = JSON.parse(timeFormat.content[0].text)
+  const numberData = JSON.parse(numberFormat.content[0].text)
+  const currencyData = JSON.parse(currencyFormat.content[0].text)
+
+  const data = allFormatsDataSchema.parse({
+    locale,
+    date: {
+      value: dateData.value,
+      description: dateData.description,
+    },
+    time: {
+      value: timeData.value,
+      description: timeData.description,
+    },
+    number: {
+      value: numberData.value,
+      description: numberData.description,
+    },
+    currency: {
+      value: currencyData.value,
+      description: currencyData.description,
+    },
+  })
+
   return {
     content: [
       {
         type: "text",
-        text: JSON.stringify({
-          locale,
-          date: dateFormat,
-          time: timeFormat,
-          number: numberFormat,
-          currency: currencyFormat,
-        }),
+        text: JSON.stringify(data),
       },
     ],
   } as GetAllFormatsResponse

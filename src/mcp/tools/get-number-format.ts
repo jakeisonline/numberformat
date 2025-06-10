@@ -1,70 +1,22 @@
 import { z } from "zod"
 import { getNumberPartTypes } from "@/lib/utils"
-
-/**
- * Schema defining the structure of number format parts (group and decimal separators)
- * @internal
- */
-const numberFormatPartsSchema = z.object({
-  group: z
-    .string()
-    .optional()
-    .describe("The symbol used to separate groups of digits (e.g., thousands)"),
-  decimal: z
-    .string()
-    .optional()
-    .describe("The symbol used for the decimal separator"),
-})
-
-/**
- * Schema defining the complete number format data structure
- * @internal
- */
-const numberFormatDataSchema = z.object({
-  locale: z
-    .string()
-    .describe("The BCP 47 language tag that was used to format the number"),
-  value: z.string().describe("The formatted number as a string"),
-  description: z
-    .string()
-    .describe(
-      "A human-readable description of the number format, in Markdown format",
-    ),
-  parts: numberFormatPartsSchema,
-})
+import { numberFormatDataSchema, localeSchema } from "@/mcp/tools/schemas"
+import { createMcpResponseSchema } from "@/lib/schema-to-mcp"
 
 /**
  * Schema for the arguments required by the getNumberFormat tool
  */
 export const getNumberFormatArgsSchema = z.object({
-  locale: z
-    .string()
-    .describe("A string with a BCP 47 language tag (e.g. en-US)"),
+  locale: localeSchema,
   number: z.number().describe("The number to format"),
 })
 
 /**
  * Schema for the response returned by the getNumberFormat tool
  */
-export const getNumberFormatResponseSchema = z.object({
-  content: z.array(
-    z.object({
-      type: z.literal("text"),
-      text: z.string().refine(
-        (str) => {
-          try {
-            const parsed = JSON.parse(str)
-            numberFormatDataSchema.parse(parsed)
-            return true
-          } catch {
-            return false
-          }
-        },
-        { message: "Text must be a valid serialised NumberFormatData" },
-      ),
-    }),
-  ),
-})
+export const getNumberFormatResponseSchema = createMcpResponseSchema(
+  numberFormatDataSchema,
+)
 
 /**
  * Metadata for the getNumberFormat tool

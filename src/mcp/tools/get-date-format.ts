@@ -1,58 +1,25 @@
 import { z } from "zod"
-
-/**
- * Schema defining the complete date format data structure
- * @internal
- */
-const dateFormatDataSchema = z.object({
-  locale: z
-    .string()
-    .describe("The BCP 47 language tag that was used to format the date"),
-  value: z.string().describe("The formatted date as a string"),
-  description: z
-    .string()
-    .describe(
-      "A human-readable description of the date format, in Markdown format",
-    ),
-})
+import {
+  dateFormatDataSchema,
+  localeSchema,
+  formatStyleSchema,
+} from "@/mcp/tools/schemas"
+import { createMcpResponseSchema } from "@/lib/schema-to-mcp"
 
 /**
  * Schema for the arguments required by the getDateFormat tool
  */
 export const getDateFormatArgsSchema = z.object({
-  locale: z
-    .string()
-    .describe("The BCP 47 language tag that was used to format the number"),
+  locale: localeSchema,
   datetime: z.string().datetime().describe("The ISO 8601 date to format"),
-  style: z
-    .enum(["short", "medium", "long", "full"])
-    .optional()
-    .default("medium")
-    .describe("The style of the date format"),
+  style: formatStyleSchema.describe("The style of the date format"),
 })
 
 /**
  * Schema for the response returned by the getDateFormat tool
  */
-export const getDateFormatResponseSchema = z.object({
-  content: z.array(
-    z.object({
-      type: z.literal("text"),
-      text: z.string().refine(
-        (str) => {
-          try {
-            const parsed = JSON.parse(str)
-            dateFormatDataSchema.parse(parsed)
-            return true
-          } catch {
-            return false
-          }
-        },
-        { message: "Text must be a valid serialised DateFormatData" },
-      ),
-    }),
-  ),
-})
+export const getDateFormatResponseSchema =
+  createMcpResponseSchema(dateFormatDataSchema)
 
 /**
  * Metadata for the getDateFormat tool

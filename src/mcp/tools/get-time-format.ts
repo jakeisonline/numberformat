@@ -1,61 +1,25 @@
 import { z } from "zod"
-
-/**
- * Schema defining the complete time format data structure
- * @internal
- */
-const timeFormatDataSchema = z.object({
-  locale: z
-    .string()
-    .describe("The BCP 47 language tag that was used to format the time"),
-  value: z.string().describe("The formatted time as a string"),
-  description: z
-    .string()
-    .describe(
-      "A human-readable description of the time format, in Markdown format",
-    ),
-  prefers24HourTime: z
-    .boolean()
-    .describe("Whether the time format prefers 24 hour time"),
-})
+import {
+  timeFormatDataSchema,
+  localeSchema,
+  formatStyleSchema,
+} from "@/mcp/tools/schemas"
+import { createMcpResponseSchema } from "@/lib/schema-to-mcp"
 
 /**
  * Schema for the arguments required by the getTimeFormat tool
  */
 export const getTimeFormatArgsSchema = z.object({
-  locale: z
-    .string()
-    .describe("The BCP 47 language tag that was used to format the time"),
+  locale: localeSchema,
   datetime: z.string().datetime().describe("The ISO 8601 date to format"),
-  style: z
-    .enum(["short", "medium", "long", "full"])
-    .optional()
-    .default("medium")
-    .describe("The style of the time format"),
+  style: formatStyleSchema.describe("The style of the time format"),
 })
 
 /**
  * Schema for the response returned by the getTimeFormat tool
  */
-export const getTimeFormatResponseSchema = z.object({
-  content: z.array(
-    z.object({
-      type: z.literal("text"),
-      text: z.string().refine(
-        (str) => {
-          try {
-            const parsed = JSON.parse(str)
-            timeFormatDataSchema.parse(parsed)
-            return true
-          } catch {
-            return false
-          }
-        },
-        { message: "Text must be a valid serialised TimeFormatData" },
-      ),
-    }),
-  ),
-})
+export const getTimeFormatResponseSchema =
+  createMcpResponseSchema(timeFormatDataSchema)
 
 /**
  * Metadata for the getTimeFormat tool
