@@ -19,9 +19,10 @@ export const contentType = "image/png"
 export default async function Image({
   params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
-  const locale = getLocaleByValue(params.locale)
+  const { locale: localeValue } = await params
+  const locale = getLocaleByValue(localeValue)
 
   return new ImageResponse(<LocaleCard locale={locale} />, {
     ...size,

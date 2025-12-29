@@ -3,7 +3,9 @@ import { withSentryConfig } from "@sentry/nextjs"
 import withBundleAnalyzer from "@next/bundle-analyzer"
 import { Config } from "next-recompose-plugins"
 
-const nextConfig = new Config({})
+const nextConfig = new Config({
+  cacheComponents: true,
+})
   .applyPlugin((phase, args, nextConfig) => {
     return withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })(
       nextConfig,

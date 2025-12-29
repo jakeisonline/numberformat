@@ -2,6 +2,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import { Urbanist } from "next/font/google"
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import "./globals.css"
 import ThemeContextProvider from "@/contexts/theme-context-provider"
 import Footer from "@/components/footer"
@@ -31,14 +32,16 @@ export default function RootLayout({
       <body
         className={`flex min-h-full max-w-full flex-col overflow-x-hidden bg-page ${font.className}`}
       >
-        <ThemeContextProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeContextProvider>
+        <Suspense fallback={null}>
+          <ThemeContextProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeContextProvider>
+        </Suspense>
         <Footer />
         <Analytics />
         <SpeedInsights />

@@ -14,7 +14,7 @@ export const config = {
   ],
 }
 
-const Middleware = (req: NextRequest) => {
+const proxy = (req: NextRequest) => {
   const { pathname, origin } = req.nextUrl
 
   // Always lowercase the pathname
@@ -25,4 +25,5 @@ const Middleware = (req: NextRequest) => {
   return NextResponse.redirect(new URL(origin + pathname.toLowerCase()))
 }
 
-export default Middleware
+export default proxy
+
