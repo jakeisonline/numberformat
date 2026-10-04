@@ -1,6 +1,6 @@
+import { withSentryConfig } from "@sentry/nextjs/config";
 /** @type {import('next').NextConfig} */
 import withBundleAnalyzer from "@next/bundle-analyzer"
-import { withSentryConfig } from "@sentry/nextjs"
 import { Config } from "next-recompose-plugins"
 
 const nextConfig = new Config({
@@ -14,7 +14,11 @@ const nextConfig = new Config({
 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options
+  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
+
+  org: "jake-holman",
+
+  project: "numberformat",
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
@@ -31,15 +35,17 @@ export default withSentryConfig(nextConfig, {
   // side errors will fail.
   // tunnelRoute: "/monitoring",
 
-  // Hides source maps from generated client bundles
-  hideSourceMaps: true,
+  webpack: {
+    // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
+    // See the following for more information:
+    // https://docs.sentry.io/product/crons/
+    // https://vercel.com/docs/cron-jobs
+    automaticVercelMonitors: true,
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-
-  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true,
-})
+    // Tree-shaking options for reducing bundle size
+    treeshake: {
+      // Automatically tree-shake Sentry logger statements to reduce bundle size
+      removeDebugLogging: true,
+    },
+  },
+});
