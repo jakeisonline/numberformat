@@ -5,6 +5,7 @@ import { Config } from "next-recompose-plugins"
 
 const nextConfig = new Config({
   cacheComponents: true,
+  agentRules: false,
 })
   .applyPlugin((phase, args, nextConfig) => {
     return withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })(nextConfig)

@@ -2,9 +2,6 @@ import { ImageResponse } from "next/og"
 import LocaleCard from "@/components/open-graph/locale-card"
 import { getLocaleByValue } from "@/lib/utils"
 
-// Route segment config
-export const runtime = "edge"
-
 // Image metadata
 export const alt = "Every number format for every locale"
 export const size = {
