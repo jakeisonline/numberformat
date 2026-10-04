@@ -1,42 +1,29 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { DEFAULT_LOCALE, LOCALES } from "./const"
-import {
-  TCurrencyPartType,
-  TDatetimePartType,
-  TLocale,
-  TNumberPartType,
-} from "./types"
 import { SEEDS } from "./numbers-seeds"
+import { TCurrencyPartType, TDatetimePartType, TLocale, TNumberPartType } from "./types"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
 export function getLocaleByValue(localeValue: string): TLocale {
-  return (
-    LOCALES.find(
-      (locale) => locale.value.toLowerCase() === localeValue.toLowerCase(),
-    ) || DEFAULT_LOCALE
-  )
+  return LOCALES.find((locale) => locale.value.toLowerCase() === localeValue.toLowerCase()) || DEFAULT_LOCALE
 }
 
 export function charIsSpace(char: string) {
   return char === " " || char === " " || char === " "
 }
 
-export function getNumberPartTypes(
-  parts: Intl.NumberFormatPart[],
-): TNumberPartType {
+export function getNumberPartTypes(parts: Intl.NumberFormatPart[]): TNumberPartType {
   const currency = parts.find((part) => part.type === "currency")
   const group = parts.find((part) => part.type === "group")
   const decimal = parts.find((part) => part.type === "decimal")
   return { currency, group, decimal }
 }
 
-export function getDatetimePartTypes(
-  parts: Intl.DateTimeFormatPart[],
-): TDatetimePartType {
+export function getDatetimePartTypes(parts: Intl.DateTimeFormatPart[]): TDatetimePartType {
   const month = parts.find((part) => part.type === "month")
   const day = parts.find((part) => part.type === "day")
   const year = parts.find((part) => part.type === "year")
@@ -48,9 +35,7 @@ export function getDatetimePartTypes(
   return { month, day, year, literal, hour, minute, second, dayPeriod }
 }
 
-export function getCurrencyPartTypes(
-  parts: Intl.NumberFormatPart[],
-): TCurrencyPartType {
+export function getCurrencyPartTypes(parts: Intl.NumberFormatPart[]): TCurrencyPartType {
   const currencyIndex = parts.findIndex((item) => item.type === "currency")
   const isPrefix = currencyIndex === 0
 
@@ -71,11 +56,10 @@ export function generateRandomNumber(min: number, max: number) {
   return Math.random() * (max - min) + min
 }
 
-export function getRandomNumbersSeed(
-  type: "numbers" | "currencies" | "measures",
-) {
+export function getRandomNumbersSeed(type: "numbers" | "currencies" | "measures") {
   const maxSeed = SEEDS[type].length - 1
   const randomSeed = Math.round(generateRandomNumber(0, maxSeed))
+
   return SEEDS[type][randomSeed]
 }
 

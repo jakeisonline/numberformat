@@ -1,15 +1,13 @@
 "use client"
 
-import { SelectedLocaleContext } from "../contexts/selected-locale-context-provider"
 import { useContext } from "react"
+import { SelectedLocaleContext } from "../contexts/selected-locale-context-provider"
 
 export default function useSelectedLocaleContext() {
   const context = useContext(SelectedLocaleContext)
 
   if (!context) {
-    throw new Error(
-      "useSelectedLocaleContext must be used within a SelectedLocaleContextProvider",
-    )
+    throw new Error("useSelectedLocaleContext must be used within a SelectedLocaleContextProvider")
   }
 
   return context

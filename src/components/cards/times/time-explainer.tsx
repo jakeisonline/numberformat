@@ -1,18 +1,19 @@
 "use client"
 
-import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
-import NumberExample from "../../number-card/number-example"
-import PartDecorator from "../../part-decorator"
+import { useEffect, useState } from "react"
 import { useTime } from "react-timer-hook"
+import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { getDatetimePartTypes } from "@/lib/utils"
 import NumberDescription from "../../number-card/number-description"
-import { useEffect, useState } from "react"
+import NumberExample from "../../number-card/number-example"
+import PartDecorator from "../../part-decorator"
 import { Skeleton } from "../../ui/skeleton"
 
 export default function DatetimeExplainer() {
   const [isClient, setIsClient] = useState(false)
   const { selectedLocale } = useSelectedLocaleContext()
-
+  // Fix me: this is impure.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const currentDate = new Date()
   const localisedTime = new Intl.DateTimeFormat(selectedLocale.value, {
     timeStyle: "medium",

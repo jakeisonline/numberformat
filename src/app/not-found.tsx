@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
   return (
@@ -8,8 +8,8 @@ export default function NotFound() {
         Uh oh, wrong number.
       </h1>
       <p className="my-8">
-        The page you{"'"}re looking for doesn{"'"}t exist. Maybe it did once, or
-        it never did, but it certainly doesn{"'"}t now.
+        The page you{"'"}re looking for doesn{"'"}t exist. Maybe it did once, or it never did, but it certainly doesn
+        {"'"}t now.
       </p>
 
       <Button

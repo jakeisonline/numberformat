@@ -2,12 +2,7 @@ import type { Config } from "tailwindcss"
 import plugin from "tailwindcss/plugin"
 
 const config = {
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -29,7 +24,8 @@ const config = {
   prefix: "",
   plugins: [
     require("tailwindcss-animate"),
-    plugin(function ({ addBase }) {
+    // eslint-disable-next-line
+    plugin(({ addBase }) => {
       addBase({
         html: { fontSize: "22px" },
       })

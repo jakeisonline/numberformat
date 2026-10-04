@@ -1,10 +1,10 @@
 "use client"
 
+import { Inconsolata } from "next/font/google"
 import useFullMeasureContext from "@/hooks/use-full-measures-context"
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { MEASURE_TYPES_UNITS } from "@/lib/const"
-import { cn, getNextNumberInArray } from "@/lib/utils"
-import { Inconsolata } from "next/font/google"
+import { getNextNumberInArray } from "@/lib/utils"
 
 const font = Inconsolata({ subsets: ["latin"] })
 
@@ -16,11 +16,7 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
   const { selectedLocale } = useSelectedLocaleContext()
   const { showFullMeasures } = useFullMeasureContext()
 
-  function getMeasure(
-    number: number,
-    unit: string,
-    unitDisplay?: "long" | "short" | "narrow",
-  ): string {
+  function getMeasure(number: number, unit: string, unitDisplay?: "long" | "short" | "narrow"): string {
     const numberFloor = Math.floor(number)
 
     // Format the measure with the unit
@@ -31,18 +27,13 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
     }).format(numberFloor)
 
     // Format the number separately to find its exact match in the measureString
-    const numberString = new Intl.NumberFormat(selectedLocale.value).format(
-      numberFloor,
-    )
+    const numberString = new Intl.NumberFormat(selectedLocale.value).format(numberFloor)
 
     // Find the part of the string that is not the number
     const unitPart = measureString.replace(numberString, "").trim()
 
     // Replace the unit part with the strong-wrapped unit part
-    const formattedUnit = measureString.replace(
-      unitPart,
-      `<strong class="font-bold text-orange">${unitPart}</strong>`,
-    )
+    const formattedUnit = measureString.replace(unitPart, `<strong class="font-bold text-orange">${unitPart}</strong>`)
 
     // Replace the number part with <Monospace> tag
     const formattedMeasure = formattedUnit.replace(
@@ -62,7 +53,7 @@ export default function MeasuresList({ randomNumbers }: MeasuresListProps) {
           <section key={type} className="mb-3">
             <h3 className="text-lg font-semibold capitalize">{type}</h3>
             <ul>
-              {units.map((unit, index) => {
+              {units.map((unit) => {
                 if (!showFullMeasures && !unit.isShown) return
 
                 return (

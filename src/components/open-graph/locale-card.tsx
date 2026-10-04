@@ -1,15 +1,9 @@
-import { TLocale } from "@/lib/types"
 import { Urbanist } from "next/font/google"
+import { TLocale } from "@/lib/types"
 
 const googleFont = Urbanist({ subsets: ["latin"], weight: "700" })
 
-export default function LocaleCard({
-  fontSize = "16",
-  locale,
-}: {
-  fontSize?: string
-  locale: TLocale
-}) {
+export default function LocaleCard({ fontSize = "16", locale }: { fontSize?: string; locale: TLocale }) {
   return (
     <div
       className={googleFont.className}
@@ -82,16 +76,12 @@ export default function LocaleCard({
         </div>
         <div style={{ display: "flex", fontSize: "5em" }}>
           <div style={{}}>Every</div>
-          <div style={{ marginLeft: "1rem", color: "#c54b1b" }}>
-            number format
-          </div>
+          <div style={{ marginLeft: "1rem", color: "#c54b1b" }}>number format</div>
           <div style={{}}>,</div>
         </div>
         <div style={{ display: "flex", fontSize: "5em" }}>
           <div style={{}}>for</div>
-          <div style={{ marginLeft: "1rem", color: "#2c67f2" }}>
-            {locale.label}
-          </div>
+          <div style={{ marginLeft: "1rem", color: "#2c67f2" }}>{locale.label}</div>
         </div>
       </div>
     </div>

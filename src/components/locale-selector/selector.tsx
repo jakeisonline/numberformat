@@ -1,22 +1,17 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { DrawerTrigger, DrawerContent, Drawer } from "@/components/ui/drawer"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
-import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
-import { LocalesList } from "./locales-list"
 import { Pencil } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useMediaQuery } from "usehooks-ts"
+import { Button } from "@/components/ui/button"
+import { DrawerTrigger, DrawerContent, Drawer } from "@/components/ui/drawer"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
+import { LocalesList } from "./locales-list"
 import { PrettyLocale } from "./pretty-locale"
 import { RandomizeLocaleButton } from "./randomize-locale-button"
-import { TLocale } from "@/lib/types"
 
-export default function Selector({}) {
+export default function Selector() {
   const isMobile = useMediaQuery("(max-width: 768px)", {
     initializeWithValue: false, // avoid hydration error
   })
@@ -47,11 +42,7 @@ export default function Selector({}) {
               aria-label="Select a locale"
               className="text-md group z-10 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 dark:border-white/20 hover:dark:border-white/50 dark:hover:bg-slate-800 md:min-w-96"
             >
-              {selectedLocale ? (
-                <PrettyLocale locale={selectedLocale} />
-              ) : (
-                "Select locale..."
-              )}
+              {selectedLocale ? <PrettyLocale locale={selectedLocale} /> : "Select locale..."}
 
               <Pencil className="display-none sm:display ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
             </Button>
@@ -72,11 +63,7 @@ export default function Selector({}) {
           variant="outline"
           className="text-md group z-10 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 dark:border-white/20 hover:dark:border-white/50 dark:hover:bg-slate-800 md:min-w-96"
         >
-          {selectedLocale ? (
-            <PrettyLocale locale={selectedLocale} />
-          ) : (
-            "Select locale..."
-          )}
+          {selectedLocale ? <PrettyLocale locale={selectedLocale} /> : "Select locale..."}
           <Pencil className="display-none sm:display ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
         </Button>
       </DrawerTrigger>

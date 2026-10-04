@@ -1,8 +1,8 @@
-import { LOCALES } from "@/lib/const"
-import type { ResolvingMetadata, Metadata } from "next"
-import { getLocaleByValue } from "@/lib/utils"
+import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Home from "@/app/page"
+import { LOCALES } from "@/lib/const"
+import { getLocaleByValue } from "@/lib/utils"
 
 type LocalePageProps = {
   params: Promise<{
@@ -10,8 +10,8 @@ type LocalePageProps = {
   }>
 }
 
-export async function generateMetadata(props: LocalePageProps, parent: ResolvingMetadata): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata(props: LocalePageProps): Promise<Metadata> {
+  const params = await props.params
   const locale = getLocaleByValue(params.locale)
   return {
     title: `Every number format for ${locale.label} (${locale.value})`,
@@ -24,7 +24,7 @@ export async function generateMetadata(props: LocalePageProps, parent: Resolving
 }
 
 export default async function LocalePage(props: LocalePageProps) {
-  const params = await props.params;
+  const params = await props.params
   if (!LOCALES.find((locale) => locale.value.toLowerCase() === params.locale)) {
     notFound()
   }

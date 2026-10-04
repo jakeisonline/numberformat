@@ -1,9 +1,9 @@
 "server only"
 
-import { getRandomNumbersSeed } from "@/lib/utils"
 import NumbersList from "@/components/cards/numbers/numbers-list"
+import { getRandomNumbersSeed } from "@/lib/utils"
 
-export default async function NumbersListServer() {
-  const randomNumbers = await getRandomNumbersSeed("numbers")
+export default function NumbersListServer() {
+  const randomNumbers = getRandomNumbersSeed("numbers")
   return <NumbersList randomNumbers={randomNumbers} />
 }

@@ -1,9 +1,9 @@
 "server only"
 
-import { getRandomNumbersSeed } from "@/lib/utils"
 import MeasuresList from "@/components/cards/measures/measures-list"
+import { getRandomNumbersSeed } from "@/lib/utils"
 
-export default async function CurrenciesListServer() {
-  const randomNumbers = await getRandomNumbersSeed("measures")
+export default function CurrenciesListServer() {
+  const randomNumbers = getRandomNumbersSeed("measures")
   return <MeasuresList randomNumbers={randomNumbers} />
 }

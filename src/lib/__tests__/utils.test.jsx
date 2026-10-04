@@ -1,6 +1,5 @@
 import {
   cn,
-  styleNumberSeparator,
   getLocaleByValue,
   charIsSpace,
   getNumberPartTypes,
@@ -54,11 +53,7 @@ describe("charIsSpace", () => {
 
 describe("getnumberPartTypes", () => {
   it("should return the currency, group, and decimal part types", () => {
-    const numberPartTypes = getNumberPartTypes([
-      { type: "currency" },
-      { type: "group" },
-      { type: "decimal" },
-    ])
+    const numberPartTypes = getNumberPartTypes([{ type: "currency" }, { type: "group" }, { type: "decimal" }])
     expect(numberPartTypes).toEqual({
       currency: { type: "currency" },
       group: { type: "group" },

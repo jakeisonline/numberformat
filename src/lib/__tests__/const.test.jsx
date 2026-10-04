@@ -10,10 +10,6 @@ describe("LOCALES", () => {
   })
 
   it("should have only valid locales for Intl", () => {
-    expect(
-      LOCALES.every(
-        (locale) => Intl.getCanonicalLocales(locale.value).length > 0,
-      ),
-    ).toBe(true)
+    expect(LOCALES.every((locale) => Intl.getCanonicalLocales(locale.value).length > 0)).toBe(true)
   })
 })

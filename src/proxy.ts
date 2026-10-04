@@ -26,4 +26,3 @@ const proxy = (req: NextRequest) => {
 }
 
 export default proxy
-

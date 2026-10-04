@@ -14,12 +14,7 @@ export default function NumberDecorator({ className, children }: any) {
     <>
       {parts.map((part, index) => {
         return (
-          <PartDecorator
-            key={index}
-            type={part.type}
-            matchTypes={["decimal", "group"]}
-            className={className}
-          >
+          <PartDecorator key={index} type={part.type} matchTypes={["decimal", "group"]} className={className}>
             {part.value}
           </PartDecorator>
         )

@@ -2,11 +2,7 @@ import { Urbanist } from "next/font/google"
 
 const googleFont = Urbanist({ subsets: ["latin"], weight: "700" })
 
-export default function DefaultCard({
-  fontSize = "16",
-}: {
-  fontSize?: string
-}) {
+export default function DefaultCard({ fontSize = "16" }: { fontSize?: string }) {
   return (
     <div
       className={googleFont.className}
@@ -79,9 +75,7 @@ export default function DefaultCard({
         </div>
         <div style={{ display: "flex", fontSize: "5em" }}>
           <div style={{}}>Every</div>
-          <div style={{ marginLeft: "1rem", color: "#c54b1b" }}>
-            number format
-          </div>
+          <div style={{ marginLeft: "1rem", color: "#c54b1b" }}>number format</div>
           <div style={{}}>,</div>
         </div>
         <div style={{ display: "flex", fontSize: "5em" }}>

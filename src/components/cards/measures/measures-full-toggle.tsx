@@ -5,8 +5,7 @@ import { Label } from "../../ui/label"
 import { Switch } from "../../ui/switch"
 
 export function MeasuresFullToggle() {
-  const { showFullMeasures, handleSetShowFullMeasures } =
-    useFullMeasuresContext()
+  const { showFullMeasures, handleSetShowFullMeasures } = useFullMeasuresContext()
   return (
     <div className="group ml-auto flex items-center gap-x-1">
       <Switch
