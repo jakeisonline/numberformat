@@ -4,26 +4,22 @@ import { createContext, useState } from "react"
 
 export const FullMeasuresContext = createContext({
   showFullMeasures: false,
-  handleSetShowFullMeasures: (showFullMeasures: boolean) => {},
+  handleSetShowFullMeasures: () => {},
 })
 
 type FullMeasuresContextProviderProps = {
   children: React.ReactNode
 }
 
-export default function FullMeasuresContextProvider({
-  children,
-}: FullMeasuresContextProviderProps) {
+export default function FullMeasuresContextProvider({ children }: FullMeasuresContextProviderProps) {
   const [showFullMeasures, setShowFullMeasures] = useState<boolean>(false)
 
-  const handleSetShowFullMeasures = (showFullMeasures: boolean) => {
+  const handleSetShowFullMeasures = () => {
     setShowFullMeasures(showFullMeasures)
   }
 
   return (
-    <FullMeasuresContext.Provider
-      value={{ showFullMeasures, handleSetShowFullMeasures }}
-    >
+    <FullMeasuresContext.Provider value={{ showFullMeasures, handleSetShowFullMeasures }}>
       {children}
     </FullMeasuresContext.Provider>
   )

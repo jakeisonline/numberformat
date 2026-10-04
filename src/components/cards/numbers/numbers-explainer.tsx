@@ -2,10 +2,10 @@
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { charIsSpace, getNumberPartTypes } from "@/lib/utils"
-import PartDecorator from "../../part-decorator"
 import NumberDecorator from "../../number-card/number-decorator"
-import NumberExample from "../../number-card/number-example"
 import NumberDescription from "../../number-card/number-description"
+import NumberExample from "../../number-card/number-example"
+import PartDecorator from "../../part-decorator"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
@@ -15,9 +15,7 @@ export default function NumbersExplainer() {
   const { group, decimal } = getNumberPartTypes(parts)
 
   if (!group || !decimal) {
-    throw new Error(
-      "Error when rendering NumbersExplainer: group or decimal part not found",
-    )
+    throw new Error("Error when rendering NumbersExplainer: group or decimal part not found")
   }
 
   return (
@@ -42,11 +40,7 @@ export default function NumbersExplainer() {
           decimals
         </PartDecorator>{" "}
         with a{" "}
-        <PartDecorator
-          type="decimal"
-          matchTypes={["decimal"]}
-          className="border-none px-0 text-xl"
-        >
+        <PartDecorator type="decimal" matchTypes={["decimal"]} className="border-none px-0 text-xl">
           {decimal.value}
         </PartDecorator>
       </NumberDescription>

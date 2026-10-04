@@ -1,5 +1,5 @@
-import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
 import { Button } from "@/components/ui/button"
+import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
 
 export default function ResetLocaleButton() {
   const { browserLocale, resetSelectedLocale } = useSelectedLocaleContext()

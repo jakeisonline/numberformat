@@ -3,5 +3,6 @@
     "source.fixAll.oxc": "always"
   },
   "editor.defaultFormatter": "oxc.oxc-vscode",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

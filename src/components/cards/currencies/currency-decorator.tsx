@@ -1,11 +1,7 @@
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import PartDecorator from "../../part-decorator"
 
-export default function CurrencyDecorator({
-  className,
-  currency,
-  children,
-}: any) {
+export default function CurrencyDecorator({ className, currency, children }: any) {
   if (typeof children !== "number") {
     throw new Error("CurrencyDecorator: children must be a number")
   }
@@ -22,12 +18,7 @@ export default function CurrencyDecorator({
     <>
       {parts.map((part, index) => {
         return (
-          <PartDecorator
-            key={index}
-            type={part.type}
-            matchTypes={["currency"]}
-            className={className}
-          >
+          <PartDecorator key={index} type={part.type} matchTypes={["currency"]} className={className}>
             {part.value}
           </PartDecorator>
         )

@@ -1,12 +1,7 @@
-import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
 import { Shuffle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
 
 export function RandomizeLocaleButton() {
   const { randomizeSelectedLocale } = useSelectedLocaleContext()
@@ -28,10 +23,7 @@ export function RandomizeLocaleButton() {
             <Shuffle className="h-5 w-5 shrink-0 opacity-50 group-hover:opacity-100" />
           </Button>
         </TooltipTrigger>
-        <TooltipContent
-          sideOffset={10}
-          className="border-none bg-neutral-200 dark:bg-slate-800"
-        >
+        <TooltipContent sideOffset={10} className="border-none bg-neutral-200 dark:bg-slate-800">
           <p>Pick a random locale</p>
         </TooltipContent>
       </Tooltip>

@@ -2415,15 +2415,4 @@ export const LOCALES = [
   },
 ]
 
-export const CURRENCIES = [
-  "USD",
-  "EUR",
-  "GBP",
-  "JPY",
-  "SEK",
-  "KRW",
-  "INR",
-  "AED",
-  "RUB",
-  "ZAR",
-]
+export const CURRENCIES = ["USD", "EUR", "GBP", "JPY", "SEK", "KRW", "INR", "AED", "RUB", "ZAR"]

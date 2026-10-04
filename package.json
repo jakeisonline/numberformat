@@ -9,7 +9,7 @@
     "lint:check": "oxlint",
     "lint:fix": "oxlint --fix",
     "format:check": "oxfmt --check",
-    "format:fix": "oxfmt --fix",
+    "format:fix": "oxfmt",
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "jest --watch",
     "cypress:open": "cypress open"

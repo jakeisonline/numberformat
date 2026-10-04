@@ -1,5 +1,5 @@
-import { LOCALES } from "@/lib/const"
 import type { MetadataRoute } from "next"
+import { LOCALES } from "@/lib/const"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const sitemap: any = []

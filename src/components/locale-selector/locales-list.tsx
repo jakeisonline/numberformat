@@ -1,4 +1,5 @@
-import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
+import { Shuffle, Undo2 } from "lucide-react"
+import { useCallback, useRef } from "react"
 import {
   Command,
   CommandEmpty,
@@ -9,21 +10,15 @@ import {
   CommandSeparator,
 } from "@/components/ui/command"
 import { LOCALES } from "@/lib/const"
-import { Shuffle, Undo2 } from "lucide-react"
-import { useCallback, useRef } from "react"
+import useSelectedLocaleContext from "../../hooks/use-selected-locale-context"
 
 export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
   // We're going to override the scroll behavior of cmdk
   // cf. https://github.com/pacocoursey/cmdk/issues/234#issuecomment-2105098199
   const listRef = useRef<HTMLDivElement>(null)
 
-  const {
-    selectedLocale,
-    browserLocale,
-    handleSelectedLocaleChange,
-    randomizeSelectedLocale,
-    resetSelectedLocale,
-  } = useSelectedLocaleContext()
+  const { selectedLocale, browserLocale, handleSelectedLocaleChange, randomizeSelectedLocale, resetSelectedLocale } =
+    useSelectedLocaleContext()
 
   const handleResetLocale = () => {
     resetSelectedLocale()
@@ -45,7 +40,7 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
     }
   }
 
-  const handleSearch = useCallback((value: string) => {
+  const handleSearch = useCallback(() => {
     requestAnimationFrame(() => {
       listRef.current?.scrollTo({ top: 0 })
     })
@@ -53,10 +48,7 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
 
   return (
     <Command loop>
-      <CommandInput
-        placeholder="Search locales..."
-        onValueChange={handleSearch}
-      />
+      <CommandInput placeholder="Search locales..." onValueChange={handleSearch} />
       <CommandList ref={listRef}>
         <CommandEmpty>No matching locale found.</CommandEmpty>
         <CommandGroup>
@@ -78,10 +70,7 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
           )}
         </CommandGroup>
         <CommandSeparator className="bg-black/20 dark:bg-white/30" />
-        <CommandGroup
-          heading="All Available Locales"
-          className="text-black/60 dark:text-white/60"
-        >
+        <CommandGroup heading="All Available Locales" className="text-black/60 dark:text-white/60">
           {LOCALES.map((locale) => (
             <CommandItem
               key={locale.value}
@@ -91,9 +80,7 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
               className="flex-col items-start hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
             >
               <p className="block text-black dark:text-white">{locale.label}</p>
-              <p className="block text-black/40 dark:text-white/60">
-                {locale.value}
-              </p>
+              <p className="block text-black/40 dark:text-white/60">{locale.value}</p>
             </CommandItem>
           ))}
         </CommandGroup>

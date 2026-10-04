@@ -1,11 +1,11 @@
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/react"
-import { Urbanist } from "next/font/google"
 import type { Metadata } from "next"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Urbanist } from "next/font/google"
 import { Suspense } from "react"
 import "./globals.css"
-import ThemeContextProvider from "@/contexts/theme-context-provider"
 import Footer from "@/components/footer"
+import ThemeContextProvider from "@/contexts/theme-context-provider"
 
 const font = Urbanist({ subsets: ["latin"] })
 
@@ -29,16 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html className="h-full" lang="en" suppressHydrationWarning>
-      <body
-        className={`flex min-h-full max-w-full flex-col overflow-x-hidden bg-page ${font.className}`}
-      >
+      <body className={`flex min-h-full max-w-full flex-col overflow-x-hidden bg-page ${font.className}`}>
         <Suspense fallback={null}>
-          <ThemeContextProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+          <ThemeContextProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             {children}
           </ThemeContextProvider>
         </Suspense>

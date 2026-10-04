@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/og"
-import "./globals.css"
 import DefaultCard from "@/components/open-graph/default-card"
 
 // Route segment config

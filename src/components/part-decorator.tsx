@@ -8,12 +8,7 @@ type PartDecoratorProps = {
   children: React.ReactNode
 }
 
-export default function PartDecorator({
-  type,
-  matchTypes,
-  className,
-  children,
-}: PartDecoratorProps) {
+export default function PartDecorator({ type, matchTypes, className, children }: PartDecoratorProps) {
   const validPartTypes = [
     "decimal",
     "group",
@@ -30,8 +25,7 @@ export default function PartDecorator({
     "dayPeriod",
   ]
   const nonMonoSpacedTypes = ["literal"]
-  const isDecoratedPartType =
-    type && matchTypes.includes(type) ? validPartTypes.includes(type) : false
+  const isDecoratedPartType = type && matchTypes.includes(type) ? validPartTypes.includes(type) : false
 
   let decoratorColor
 
@@ -70,11 +64,7 @@ export default function PartDecorator({
         className,
       )}
     >
-      {nonMonoSpacedTypes.includes(type) ? (
-        children
-      ) : (
-        <Monospace>{children}</Monospace>
-      )}
+      {nonMonoSpacedTypes.includes(type) ? children : <Monospace>{children}</Monospace>}
     </span>
   )
 }

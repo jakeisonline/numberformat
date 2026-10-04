@@ -1,9 +1,9 @@
 "use client"
 
+import { createContext, useState } from "react"
 import { DEFAULT_LOCALE, LOCALES } from "@/lib/const"
 import { TSelectedLocaleContextType, TLocale } from "@/lib/types"
 import { getLocaleByValue } from "@/lib/utils"
-import { createContext, useState } from "react"
 
 export const SelectedLocaleContext = createContext<TSelectedLocaleContextType>({
   selectedLocale: DEFAULT_LOCALE,
@@ -26,9 +26,7 @@ export default function SelectedLocaleContextProvider({
   children,
 }: SelectedLocaleContextProviderProps) {
   const displayLocale = localeOverride || browserLocale
-  const [selectedLocale, setSelectedLocale] = useState<TLocale>(
-    getLocaleByValue(displayLocale),
-  )
+  const [selectedLocale, setSelectedLocale] = useState<TLocale>(getLocaleByValue(displayLocale))
 
   const handleSelectedLocaleChange = (localeValue: string) => {
     const locale = getLocaleByValue(localeValue)

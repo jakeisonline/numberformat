@@ -2,9 +2,9 @@
 
 import useSelectedLocaleContext from "@/hooks/use-selected-locale-context"
 import { getNumberPartTypes } from "@/lib/utils"
-import PartDecorator from "../../part-decorator"
-import NumberExample from "../../number-card/number-example"
 import NumberDescription from "../../number-card/number-description"
+import NumberExample from "../../number-card/number-example"
+import PartDecorator from "../../part-decorator"
 
 export default function NumbersExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
@@ -19,9 +19,7 @@ export default function NumbersExplainer() {
   const { currency } = getNumberPartTypes(parts)
 
   if (!currency) {
-    throw new Error(
-      "Error when rendering NumbersExplainer: currency part not found",
-    )
+    throw new Error("Error when rendering NumbersExplainer: currency part not found")
   }
 
   return (
@@ -29,12 +27,7 @@ export default function NumbersExplainer() {
       <NumberExample>
         {parts.map((part, index) => {
           return (
-            <PartDecorator
-              key={index}
-              type={part.type}
-              matchTypes={["currency"]}
-              className="text-3xl"
-            >
+            <PartDecorator key={index} type={part.type} matchTypes={["currency"]} className="text-3xl">
               {part.value}
             </PartDecorator>
           )
@@ -45,8 +38,7 @@ export default function NumbersExplainer() {
         <PartDecorator type="currency" matchTypes={["currency"]}>
           symbol
         </PartDecorator>{" "}
-        position may depend on <strong>both</strong> locale & currency being
-        displayed.
+        position may depend on <strong>both</strong> locale & currency being displayed.
       </NumberDescription>
     </div>
   )

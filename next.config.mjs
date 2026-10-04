@@ -1,15 +1,13 @@
-import { withSentryConfig } from "@sentry/nextjs"
 /** @type {import('next').NextConfig} */
 import withBundleAnalyzer from "@next/bundle-analyzer"
+import { withSentryConfig } from "@sentry/nextjs"
 import { Config } from "next-recompose-plugins"
 
 const nextConfig = new Config({
   cacheComponents: true,
 })
   .applyPlugin((phase, args, nextConfig) => {
-    return withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })(
-      nextConfig,
-    )
+    return withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })(nextConfig)
   }, "@next/bundle-analyzer")
   .build()
 

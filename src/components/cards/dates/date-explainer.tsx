@@ -6,7 +6,8 @@ import PartDecorator from "../../part-decorator"
 
 export default function DatetimeExplainer() {
   const { selectedLocale } = useSelectedLocaleContext()
-
+  // Fix me: this is impure.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const currentDate = new Date()
   const localisedShortDate = new Intl.DateTimeFormat(selectedLocale.value, {
     dateStyle: "short",
@@ -44,9 +45,7 @@ export default function DatetimeExplainer() {
               matchTypes={["weekday", "day", "month", "year"]}
               className="px-0.5"
             >
-              {["weekday", "day", "month", "year"].indexOf(part.type) > -1
-                ? part.type
-                : part.value}
+              {["weekday", "day", "month", "year"].indexOf(part.type) > -1 ? part.type : part.value}
             </PartDecorator>
           )
         })}
@@ -62,9 +61,7 @@ export default function DatetimeExplainer() {
               matchTypes={["weekday", "day", "month", "year"]}
               className="border-0 px-0"
             >
-              {["weekday", "day", "month", "year"].indexOf(part.type) > -1
-                ? part.type
-                : part.value}
+              {["weekday", "day", "month", "year"].indexOf(part.type) > -1 ? part.type : part.value}
             </PartDecorator>
           )
         })}

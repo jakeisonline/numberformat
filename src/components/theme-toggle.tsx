@@ -4,14 +4,9 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Skeleton } from "./ui/skeleton"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
+import { Skeleton } from "./ui/skeleton"
 
 const buttonHeight = "h-8 md:h-10"
 const buttonWidth = "w-8 md:w-10"
@@ -24,8 +19,9 @@ export default function ThemeToggle() {
 
   /* We don't want this component to render until it's mounted,
   as the server doesn't understand nor care about a user's theme preference */
-
   useEffect(() => {
+    // Fix me: we should avoid client only rendering.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setMounted(true)
   }, [])
 
@@ -44,25 +40,11 @@ export default function ThemeToggle() {
           <Button
             variant="outline"
             size="icon"
-            className={cn(
-              "border-black/20 dark:border-white/20",
-              buttonHeight,
-              buttonWidth,
-            )}
+            className={cn("border-black/20 dark:border-white/20", buttonHeight, buttonWidth)}
             aria-label="Choose between dark and light modes"
           >
-            <Sun
-              className={cn(
-                "rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0",
-                iconSize,
-              )}
-            />
-            <Moon
-              className={cn(
-                "absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100",
-                iconSize,
-              )}
-            />
+            <Sun className={cn("rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0", iconSize)} />
+            <Moon className={cn("absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100", iconSize)} />
             <span className="sr-only">Toggle theme</span>
           </Button>
         </DropdownMenuTrigger>

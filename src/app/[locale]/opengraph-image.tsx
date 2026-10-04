@@ -1,7 +1,6 @@
 import { ImageResponse } from "next/og"
-import "../globals.css"
-import { getLocaleByValue } from "@/lib/utils"
 import LocaleCard from "@/components/open-graph/locale-card"
+import { getLocaleByValue } from "@/lib/utils"
 
 // Route segment config
 export const runtime = "edge"
@@ -16,11 +15,7 @@ export const size = {
 export const contentType = "image/png"
 
 // Image generation
-export default async function Image({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeValue } = await params
   const locale = getLocaleByValue(localeValue)
 
