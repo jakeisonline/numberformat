@@ -14,7 +14,7 @@ const Separator = React.forwardRef<
     orientation={orientation}
     className={cn(
       "bg-border mb-4 mt-6 shrink-0 bg-black/20 dark:bg-white/20",
-      orientation === "horizontal" ? "mx-auto h-[1px] w-5/6" : "h-full w-[1px]",
+      orientation === "horizontal" ? "mx-auto h-px w-5/6" : "h-full w-px",
       className,
     )}
     {...props}

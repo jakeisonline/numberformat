@@ -1,24 +1,60 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-orange: var(--orange);
+  --color-blue: var(--blue);
+  --color-yellow: var(--yellow);
+  --color-green: var(--green);
+  --color-purple: var(--purple);
+  --color-dark: #1b1d23;
+  --color-light: #ecece6;
+  --color-page: var(--background);
+
+  --shadow-b: 0 5px 8px -7px var(--foreground);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  html {
+    font-size: 22px;
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 :root {
   /* Your default theme */
   --background: rgb(236 236 230);
   --foreground: rgb(0 0 0);
-  --color-orange: rgb(197 75 27);
-  --color-blue: rgb(44 103 242);
-  --color-yellow: rgb(202 133 22);
-  --color-green: rgb(55 129 67);
-  --color-purple: rgb(168 74 211);
+  --orange: rgb(197 75 27);
+  --blue: rgb(44 103 242);
+  --yellow: rgb(202 133 22);
+  --green: rgb(55 129 67);
+  --purple: rgb(168 74 211);
 }
 
-[class~="dark"] {
+.dark {
   --background: rgb(27 29 35);
   --foreground: rgb(255 255 255);
-  --color-orange: rgb(222 84 30);
-  --color-blue: rgb(60 115 243);
-  --color-yellow: rgb(232 160 43);
-  --color-green: rgb(91 184 106);
-  --color-purple: rgb(168 74 211);
+  --orange: rgb(222 84 30);
+  --blue: rgb(60 115 243);
+  --yellow: rgb(232 160 43);
+  --green: rgb(91 184 106);
+  --purple: rgb(168 74 211);
 }
