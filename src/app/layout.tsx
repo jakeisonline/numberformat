@@ -6,8 +6,9 @@ import { Suspense } from "react"
 import "./globals.css"
 import Footer from "@/components/footer"
 import ThemeContextProvider from "@/contexts/theme-context-provider"
+import { cn } from "@/lib/utils"
 
-const font = Urbanist({ subsets: ["latin"] })
+const font = Urbanist({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL as string),
@@ -28,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html className="h-full" lang="en" suppressHydrationWarning>
-      <body className={`flex min-h-full max-w-full flex-col overflow-x-hidden bg-page ${font.className}`}>
+    <html className={cn("h-full", "font-sans", font.variable)} lang="en" suppressHydrationWarning>
+      <body className={`bg-page my-1 flex min-h-full max-w-full flex-col overflow-x-hidden ${font.className}`}>
         <Suspense fallback={null}>
           <ThemeContextProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             {children}

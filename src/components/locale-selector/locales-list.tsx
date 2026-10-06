@@ -47,40 +47,36 @@ export function LocalesList({ setOpen }: { setOpen: (open: boolean) => void }) {
   }, [])
 
   return (
-    <Command loop>
+    <Command className="bg-page border-border w-full border shadow-lg md:-ml-12 lg:w-96 dark:shadow-none" loop>
       <CommandInput placeholder="Search locales..." onValueChange={handleSearch} />
       <CommandList ref={listRef}>
         <CommandEmpty>No matching locale found.</CommandEmpty>
-        <CommandGroup>
-          <CommandItem
-            onSelect={handleRandomLocale}
-            className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
-          >
-            <Shuffle className="h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
+        <CommandGroup className="pb-2">
+          <CommandItem onSelect={handleRandomLocale} className="flex items-center gap-2 hover:cursor-pointer">
+            <Shuffle className="h-4 w-4 shrink-0 opacity-50 group-hover/command-item:opacity-100" />
             <p className="block">Pick a random locale</p>
           </CommandItem>
           {browserLocale && browserLocale !== selectedLocale.value && (
-            <CommandItem
-              onSelect={handleResetLocale}
-              className="flex items-center gap-2 hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
-            >
-              <Undo2 className="h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
+            <CommandItem onSelect={handleResetLocale} className="flex items-center gap-2 hover:cursor-pointer">
+              <Undo2 className="h-4 w-4 shrink-0 opacity-50 group-hover/command-item:opacity-100" />
               <p className="block">Reset to your browser locale</p>
             </CommandItem>
           )}
         </CommandGroup>
-        <CommandSeparator className="bg-black/20 dark:bg-white/30" />
-        <CommandGroup heading="All Available Locales" className="text-black/60 dark:text-white/60">
+        <CommandSeparator />
+        <CommandGroup heading="All Available Locales">
           {LOCALES.map((locale) => (
             <CommandItem
               key={locale.value}
               value={locale.value}
               keywords={[locale.label]}
               onSelect={handleSelectLocale}
-              className="flex-col items-start hover:cursor-pointer hover:bg-black/10 data-[selected=true]:bg-black/10 dark:hover:bg-white/10 dark:data-[selected=true]:bg-white/10"
+              className="hover:cursor-pointer"
             >
-              <p className="block text-black dark:text-white">{locale.label}</p>
-              <p className="block text-black/40 dark:text-white/60">{locale.value}</p>
+              <div className="flex flex-col items-start p-1">
+                <p className="text-base font-medium">{locale.label}</p>
+                <p className="text-muted-foreground text-xs">{locale.value}</p>
+              </div>
             </CommandItem>
           ))}
         </CommandGroup>

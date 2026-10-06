@@ -15,9 +15,9 @@ export default function NotFound() {
       <Button
         variant="outline"
         className="border-black/20 hover:bg-black/10 dark:border-white/20 dark:hover:bg-white/10"
-        asChild
+        render={<Link href="/" />}
       >
-        <Link href="/">Return home</Link>
+        Return home
       </Button>
     </main>
   )

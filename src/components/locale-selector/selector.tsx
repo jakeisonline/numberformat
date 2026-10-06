@@ -34,20 +34,21 @@ export default function Selector() {
     return (
       <>
         <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              role="combobox"
-              aria-expanded={open}
-              aria-label="Select a locale"
-              className="text-md group z-10 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 dark:border-white/20 dark:hover:border-white/50 dark:hover:bg-slate-800 md:min-w-96"
-            >
-              {selectedLocale ? <PrettyLocale locale={selectedLocale} /> : "Select locale..."}
-
-              <Pencil className="display-none sm:display ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
-            </Button>
+          <PopoverTrigger
+            render={
+              <Button
+                variant="outline"
+                role="combobox"
+                aria-expanded={open}
+                aria-label="Select a locale"
+                className="text-md group z-10 h-10 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 md:min-w-96 dark:border-white/20 dark:hover:border-white/50 dark:hover:bg-slate-800"
+              />
+            }
+          >
+            {selectedLocale ? <PrettyLocale locale={selectedLocale} /> : "Select locale..."}
+            <Pencil className="display-none sm:display ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
           </PopoverTrigger>
-          <PopoverContent className="min-w-full bg-page p-0">
+          <PopoverContent className="bg-page min-w-full p-0">
             <LocalesList setOpen={setOpen} />
           </PopoverContent>
         </Popover>
@@ -57,15 +58,17 @@ export default function Selector() {
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen} noBodyStyles>
-      <DrawerTrigger asChild>
-        <Button
-          variant="outline"
-          className="text-md group z-10 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 dark:border-white/20 dark:hover:border-white/50 dark:hover:bg-slate-800 md:min-w-96"
-        >
-          {selectedLocale ? <PrettyLocale locale={selectedLocale} /> : "Select locale..."}
-          <Pencil className="display-none sm:display ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
-        </Button>
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger
+        render={
+          <Button
+            variant="outline"
+            className="text-md group z-10 max-w-fit justify-between border-2 border-black/20 hover:bg-neutral-200 md:min-w-96 dark:border-white/20 dark:hover:border-white/50 dark:hover:bg-slate-800"
+          />
+        }
+      >
+        {selectedLocale ? <PrettyLocale locale={selectedLocale} /> : "Select locale..."}
+        <Pencil className="display-none sm:display ml-2 h-4 w-4 shrink-0 opacity-50 group-hover:opacity-100" />
       </DrawerTrigger>
       <DrawerContent className="bg-page">
         <div className="border-t">
