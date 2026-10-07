@@ -11,19 +11,21 @@ export function RandomizeLocaleButton() {
   }
 
   return (
-    <TooltipProvider delayDuration={300}>
+    <TooltipProvider delay={300}>
       <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            aria-label="Pick a random locale"
-            onClick={handleClick}
-            variant="ghost"
-            className="group absolute ml-2 inline-flex hover:bg-neutral-200 dark:hover:bg-slate-800"
-          >
-            <Shuffle className="h-5 w-5 shrink-0 opacity-50 group-hover:opacity-100" />
-          </Button>
+        <TooltipTrigger
+          render={
+            <Button
+              aria-label="Pick a random locale"
+              onClick={handleClick}
+              variant="ghost"
+              className="absolute ml-2 inline-flex size-10.25"
+            />
+          }
+        >
+          <Shuffle className="size-5 shrink-0 opacity-50 group-hover:opacity-100" />
         </TooltipTrigger>
-        <TooltipContent sideOffset={10} className="border-none bg-neutral-200 dark:bg-slate-800">
+        <TooltipContent sideOffset={10}>
           <p>Pick a random locale</p>
         </TooltipContent>
       </Tooltip>

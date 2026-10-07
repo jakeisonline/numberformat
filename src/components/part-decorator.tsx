@@ -60,7 +60,7 @@ export default function PartDecorator({ type, matchTypes, className, children }:
     <span
       className={cn(
         isDecoratedPartType &&
-          `text-${decoratorColor} inline-flex rounded-sm border border-slate-400 px-1 font-bold dark:border-white/40`,
+          `text-${decoratorColor} inline-flex rounded-xs border border-slate-400 px-1 font-bold dark:border-white/40`,
         className,
       )}
     >

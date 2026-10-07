@@ -3,7 +3,6 @@ import NumberHeading from "@/components/number-card/number-heading"
 import NumberIcon from "@/components/number-card/number-icon"
 import MeasuresListServer from "@/components/server/measures-list-server"
 import FullMeasuresContextProvider from "@/contexts/full-measures-context-provider"
-import { MeasuresFullToggle } from "./measures-full-toggle"
 
 export default function MeasuresCard() {
   return (
@@ -12,7 +11,8 @@ export default function MeasuresCard() {
         <NumberHeading>
           <NumberIcon iconName="cube-transparent" />
           Measures
-          <MeasuresFullToggle />
+          {/* FIXME: Instead of a toggle, group better and use imperial vs metric */}
+          {/* <MeasuresFullToggle /> */}
         </NumberHeading>
         <MeasuresListServer />
       </FullMeasuresContextProvider>

@@ -1,12 +1,7 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+export { cn } from "cn"
 import { DEFAULT_LOCALE, LOCALES } from "./const"
 import { SEEDS } from "./numbers-seeds"
 import { TCurrencyPartType, TDatetimePartType, TLocale, TNumberPartType } from "./types"
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
 
 export function getLocaleByValue(localeValue: string): TLocale {
   return LOCALES.find((locale) => locale.value.toLowerCase() === localeValue.toLowerCase()) || DEFAULT_LOCALE

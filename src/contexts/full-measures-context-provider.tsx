@@ -15,7 +15,7 @@ export default function FullMeasuresContextProvider({ children }: FullMeasuresCo
   const [showFullMeasures, setShowFullMeasures] = useState<boolean>(false)
 
   const handleSetShowFullMeasures = () => {
-    setShowFullMeasures(showFullMeasures)
+    setShowFullMeasures(!showFullMeasures)
   }
 
   return (

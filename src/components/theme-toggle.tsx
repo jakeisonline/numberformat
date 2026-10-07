@@ -36,17 +36,19 @@ export default function ThemeToggle() {
   return (
     <ThemeToggleWrapper>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className={cn("border-black/20 dark:border-white/20", buttonHeight, buttonWidth)}
-            aria-label="Choose between dark and light modes"
-          >
-            <Sun className={cn("rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0", iconSize)} />
-            <Moon className={cn("absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100", iconSize)} />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
+        <DropdownMenuTrigger
+          render={
+            <Button
+              variant="outline"
+              size="icon"
+              className={cn("border-black/20 dark:border-white/20", buttonHeight, buttonWidth)}
+              aria-label="Choose between dark and light modes"
+            />
+          }
+        >
+          <Sun className={cn("rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0", iconSize)} />
+          <Moon className={cn("absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100", iconSize)} />
+          <span className="sr-only">Toggle theme</span>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="bg-light dark:bg-dark">
           {["light", "dark", "system"].map((theme) => (
